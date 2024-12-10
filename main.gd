@@ -20,10 +20,10 @@ var unlocked_combos : Dictionary = {
 	"two pair" : false,
 	"tree-of-a-kind" : false,
 	"four-of-a-kind" : false,
-	"full-house" : false,
+	"full house" : false,
 	"little straight" : false,
 	"big straight" : false,
-	"yatch" : false
+	"yatch" : true
 }
 
 
