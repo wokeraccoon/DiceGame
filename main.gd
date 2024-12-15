@@ -1,9 +1,9 @@
 extends Node2D
 
-@onready var scoreboard: Label = $Scoreboard
-@onready var roll_button: Button = $RollButton
-@onready var round_stats: Label = $RoundStats
-@onready var game_result: Label = $GameResult
+@onready var scoreboard: Label = %Scoreboard
+@onready var roll_button: Button = %RollButton
+@onready var round_stats: Label = %RoundStats
+@onready var game_result: Label = %GameResult
 
 @export var dices : Array[Dice]
 
@@ -13,18 +13,9 @@ var rolls_left : int = 3
 var total_score : int = 0
 var reset_game : bool = true
 var reset_dice : bool = true
+var cash : int = 5
 
-var unlocked_combos : Dictionary = {
-	"singles" : true,
-	"pair" : false,
-	"two pair" : false,
-	"tree-of-a-kind" : false,
-	"four-of-a-kind" : false,
-	"full house" : false,
-	"little straight" : false,
-	"big straight" : false,
-	"yatch" : true
-}
+
 
 
 func _ready() -> void:
@@ -37,7 +28,8 @@ func _process(delta: float) -> void:
 	round_stats.text = str(
 		"Round ",current_round, "\n",
 		"Score at least ", score_to_win, "\n",
-		rolls_left," rolls left", "\n"
+		rolls_left," rolls left", "\n",
+		"Cash: $",cash,"\n"
 	)
 	
 
@@ -46,6 +38,7 @@ func _on_roll_button_pressed() -> void:
 		current_round = 1
 		rolls_left = 3
 		score_to_win = 10
+		cash = 5
 		reset_game = false
 	
 	game_result.visible = false
@@ -100,6 +93,16 @@ func _on_dice_rolled(value : int) -> void:
 			scoreboard.text += str("Sixes (6x",dice_values[6],") +",6 * dice_values[6],"\n")
 			total_score += 6 * dice_values[6]
 		
+		#pair and three-of-a-kind
+		for i in dice_values.keys().size():
+			if dice_values[dice_values.keys()[i]] == 2:
+				scoreboard.text += str("Pair of ",dice_values.keys()[i],"s +",dice_values.keys()[i]*2,"\n")
+				total_score += dice_values.keys()[i] * 2 + 1
+			if dice_values[dice_values.keys()[i]] == 3:
+				scoreboard.text += str("Trio of ",dice_values.keys()[i],"s +",dice_values.keys()[i]*3,"\n")
+				total_score += dice_values.keys()[i] * 3
+			
+		
 		#full house or four of a kind
 		if dice_values.size() == 2:
 			
@@ -116,7 +119,7 @@ func _on_dice_rolled(value : int) -> void:
 					total_score += full_house
 					
 					scoreboard.text += str("Full House +",full_house,"\n")
-			
+		
 			#four on a row
 			var four_on_a_row : int = 0
 			if set_one == 4:
@@ -155,6 +158,7 @@ func _on_dice_rolled(value : int) -> void:
 				current_round += 1
 				rolls_left = 3
 				score_to_win += 10
+				cash += 5
 				reset_game = false
 			else:
 				game_result.show()

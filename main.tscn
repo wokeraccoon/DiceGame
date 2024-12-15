@@ -5,24 +5,32 @@
 
 [node name="Main" type="Node2D" node_paths=PackedStringArray("dices")]
 script = ExtResource("1_188r0")
-dices = [NodePath("Dice"), NodePath("Dice2"), NodePath("Dice3"), NodePath("Dice4"), NodePath("Dice5")]
+dices = [NodePath("Game/Dice"), NodePath("Game/Dice2"), NodePath("Game/Dice3"), NodePath("Game/Dice4"), NodePath("Game/Dice5")]
 
-[node name="Dice" parent="." instance=ExtResource("1_kbq17")]
+[node name="Game" type="CanvasGroup" parent="."]
+
+[node name="Dice" parent="Game" instance=ExtResource("1_kbq17")]
+unique_name_in_owner = true
 position = Vector2(618, 300)
 
-[node name="Dice2" parent="." instance=ExtResource("1_kbq17")]
+[node name="Dice2" parent="Game" instance=ExtResource("1_kbq17")]
+unique_name_in_owner = true
 position = Vector2(710, 300)
 
-[node name="Dice3" parent="." instance=ExtResource("1_kbq17")]
+[node name="Dice3" parent="Game" instance=ExtResource("1_kbq17")]
+unique_name_in_owner = true
 position = Vector2(802, 300)
 
-[node name="Dice4" parent="." instance=ExtResource("1_kbq17")]
+[node name="Dice4" parent="Game" instance=ExtResource("1_kbq17")]
+unique_name_in_owner = true
 position = Vector2(896, 300)
 
-[node name="Dice5" parent="." instance=ExtResource("1_kbq17")]
+[node name="Dice5" parent="Game" instance=ExtResource("1_kbq17")]
+unique_name_in_owner = true
 position = Vector2(997, 300)
 
-[node name="RollButton" type="Button" parent="."]
+[node name="RollButton" type="Button" parent="Game"]
+unique_name_in_owner = true
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -37,7 +45,8 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 64
 text = "Roll"
 
-[node name="Scoreboard" type="Label" parent="."]
+[node name="Scoreboard" type="Label" parent="Game"]
+unique_name_in_owner = true
 offset_left = 37.0
 offset_top = 139.0
 offset_right = 440.0
@@ -48,7 +57,8 @@ text = "0"
 vertical_alignment = 2
 justification_flags = 131
 
-[node name="RoundStats" type="Label" parent="."]
+[node name="RoundStats" type="Label" parent="Game"]
+unique_name_in_owner = true
 offset_left = 37.0
 offset_top = 31.0
 offset_right = 416.0
@@ -58,15 +68,16 @@ text = "Round 1
 Score at least 10
 3 rolls left"
 
-[node name="GameResult" type="Label" parent="."]
+[node name="GameResult" type="Label" parent="Game"]
+unique_name_in_owner = true
 visible = false
 offset_left = 535.0
 offset_top = 51.0
 offset_right = 1076.0
-offset_bottom = 123.0
+offset_bottom = 139.0
 theme_override_font_sizes/font_size = 64
 text = "ROUND WON!!!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="pressed" from="RollButton" to="." method="_on_roll_button_pressed"]
+[connection signal="pressed" from="Game/RollButton" to="." method="_on_roll_button_pressed"]
