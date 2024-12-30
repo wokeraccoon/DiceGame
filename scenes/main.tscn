@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvgaunttcm2n5"]
+
+[ext_resource type="Script" path="res://scenes/main.gd" id="1_61q70"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_61q70")
+
+[node name="MainLayer" type="CanvasLayer" parent="."]
+unique_name_in_owner = true

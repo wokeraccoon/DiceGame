@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="SpaceMiner" load_steps=5 format=3 uid="uid://bth6mqkv73m3m"]
+
+[ext_resource type="Script" path="res://player_classes/space_miner/space_miner.gd" id="1_fbqqg"]
+[ext_resource type="Texture2D" uid="uid://cthdjn64hfl7r" path="res://icon.svg" id="2_6455f"]
+[ext_resource type="Script" path="res://classes/item.gd" id="3_hb5xc"]
+[ext_resource type="Resource" uid="uid://f8pupm0b1iix" path="res://weapons/mining_laser/mining_laser.tres" id="4_c78bf"]
+
+[resource]
+script = ExtResource("1_fbqqg")
+player_class_name = "Space Miner"
+description = "Looking for treasure accross the universe"
+sprite = ExtResource("2_6455f")
+base_health = 100
+starter_weapon = ExtResource("4_c78bf")
+starter_items = Array[ExtResource("3_hb5xc")]([])
