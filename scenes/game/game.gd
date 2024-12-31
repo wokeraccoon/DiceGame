@@ -1,8 +1,6 @@
 class_name Game
 extends Node2D
 
-@onready var stats_ui_layer: CanvasLayer = $StatsUILayer
-@onready var item_picker_layer: CanvasLayer = $ItemPickerLayer
 
 const ITEM_PICKER = preload("res://scenes/game/ui/item_picker/item_picker.tscn")
 

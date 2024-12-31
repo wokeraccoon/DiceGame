@@ -1,16 +1,268 @@
-[gd_scene load_steps=3 format=3 uid="uid://b6hkp7ydpotqs"]
+[gd_scene load_steps=5 format=3 uid="uid://b6hkp7ydpotqs"]
 
 [ext_resource type="Script" path="res://scenes/game/game.gd" id="1_kgimo"]
 [ext_resource type="PackedScene" uid="uid://gri2v0k6odm6" path="res://scenes/game/ui/status_ui/stats_ui.tscn" id="2_foyjd"]
+[ext_resource type="PackedScene" uid="uid://bsojk3ge2rhjf" path="res://scenes/game/3d_world/test_3d_world.tscn" id="2_luh81"]
+[ext_resource type="Texture2D" uid="uid://cthdjn64hfl7r" path="res://icon.svg" id="4_nb2tb"]
 
 [node name="Game" type="Node2D"]
 position = Vector2(-8, 0)
 script = ExtResource("1_kgimo")
 
-[node name="StatsUILayer" type="CanvasLayer" parent="."]
-layer = 2
+[node name="UI" type="CanvasLayer" parent="."]
 
-[node name="StatsUI" parent="StatsUILayer" instance=ExtResource("2_foyjd")]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI"]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -306.0
+offset_bottom = 306.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
 
-[node name="ItemPickerLayer" type="CanvasLayer" parent="."]
-layer = 3
+[node name="MarginContainer2" type="MarginContainer" parent="UI/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="UI/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Button" type="Button" parent="UI/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(128, 64)
+layout_mode = 2
+text = "Options
+"
+
+[node name="Button2" type="Button" parent="UI/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(128, 64)
+layout_mode = 2
+text = "Run Info"
+
+[node name="Button5" type="Button" parent="UI/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(128, 64)
+layout_mode = 2
+text = "Dice Reference"
+
+[node name="Button3" type="Button" parent="UI/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+size_flags_vertical = 3
+text = "Inventory"
+
+[node name="Button4" type="Button" parent="UI/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+size_flags_vertical = 3
+text = "Map"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 12
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="UI/HBoxContainer/VBoxContainer/HBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(640, 480)
+layout_mode = 2
+size_flags_horizontal = 6
+stretch = true
+stretch_shrink = 2
+
+[node name="SubViewport" type="SubViewport" parent="UI/HBoxContainer/VBoxContainer/HBoxContainer/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(320, 240)
+render_target_update_mode = 4
+
+[node name="Test3DWorld" parent="UI/HBoxContainer/VBoxContainer/HBoxContainer/SubViewportContainer/SubViewport" instance=ExtResource("2_luh81")]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="StatsUI" parent="UI/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer" instance=ExtResource("2_foyjd")]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(403, 0)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="UI/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="UI/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(403, 0)
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 32
+text = "Evil Enemy Cube"
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 8
+
+[node name="Panel" type="Panel" parent="UI/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Score "
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="UI/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "1000 pts"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="UI/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "to defeat enemy"
+horizontal_alignment = 1
+
+[node name="MarginContainer3" type="MarginContainer" parent="UI/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Panel" type="Panel" parent="UI/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer3"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="HBoxContainer" parent="UI/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer3"]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="UI/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer3/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_right = 4
+
+[node name="Label" type="Label" parent="UI/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer3/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Current Attack Score"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="UI/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer3/VBoxContainer"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer3/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_right = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="UI/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 160)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/HBoxContainer/VBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -42.5
+offset_bottom = 42.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_right = 16
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="UI/HBoxContainer/VBoxContainer/Panel/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/HBoxContainer/VBoxContainer/Panel/MarginContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(624, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="UI/HBoxContainer/VBoxContainer/Panel/MarginContainer/HBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(90, 90)
+layout_mode = 2
+texture = ExtResource("4_nb2tb")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="TextureRect2" type="TextureRect" parent="UI/HBoxContainer/VBoxContainer/Panel/MarginContainer/HBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(90, 90)
+layout_mode = 2
+texture = ExtResource("4_nb2tb")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="TextureRect3" type="TextureRect" parent="UI/HBoxContainer/VBoxContainer/Panel/MarginContainer/HBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(90, 90)
+layout_mode = 2
+texture = ExtResource("4_nb2tb")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="TextureRect4" type="TextureRect" parent="UI/HBoxContainer/VBoxContainer/Panel/MarginContainer/HBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(90, 90)
+layout_mode = 2
+texture = ExtResource("4_nb2tb")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="TextureRect5" type="TextureRect" parent="UI/HBoxContainer/VBoxContainer/Panel/MarginContainer/HBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(90, 90)
+layout_mode = 2
+texture = ExtResource("4_nb2tb")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="UI/HBoxContainer/VBoxContainer/Panel/MarginContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="Button" type="Button" parent="UI/HBoxContainer/VBoxContainer/Panel/MarginContainer/HBoxContainer2/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Reroll Dice"
+
+[node name="Button2" type="Button" parent="UI/HBoxContainer/VBoxContainer/Panel/MarginContainer/HBoxContainer2/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Attack"
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
