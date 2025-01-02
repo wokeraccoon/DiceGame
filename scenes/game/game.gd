@@ -1,8 +1,9 @@
 class_name Game
 extends Node2D
 
-
 const ITEM_PICKER = preload("res://scenes/game/ui/item_picker/item_picker.tscn")
+
+@export var dices : Array[Dice]
 
 enum DiceCombosNames {
 	SINGLE,
@@ -17,8 +18,6 @@ enum DiceCombosNames {
 
 var player_class : PlayerClass
 
-var player_health : int = 0
-var player_money : int = 0
 
 var current_dice_hand : Dictionary = {
 	"dice_one" : 1,
@@ -33,9 +32,6 @@ var total_dice_hand_score : float = 0
 
 var current_enemy : Enemy
 
-var enemy_health : int = 0
-var enemy_reward_money : int = 0
-
 enum GameStates {
 	RUN_START,
 	EXPLORING,
@@ -49,6 +45,9 @@ var games_state : GameStates = GameStates.RUN_START
 
 var player_weapon : Weapon
 var player_inventory : Array[Item]
+
+@onready var reroll_dice_button: Button = %RerollDiceButton
+@onready var attack_button: Button = %AttackButton
 
 
 func count_value_occurrences_concise(my_dictionary: Dictionary, target_value) -> int:
@@ -123,7 +122,14 @@ func check_for_dice_combos(dice_rolled : Dictionary) -> int:
 	
 	return current_dice_hand_score
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
+	
+	if dices[0].is_rolling and dices[1].is_rolling and dices[2].is_rolling and dices[3].is_rolling and dices[4].is_rolling:
+		reroll_dice_button.disabled = true
+	else:
+		reroll_dice_button.disabled = false
 
-	if Input.is_action_just_pressed("ui_accept") == true:
-		get_tree().reload_current_scene()
+func _on_reroll_dice_button_pressed() -> void:
+	
+	for dice : Dice in dices:
+		dice.roll_dice()

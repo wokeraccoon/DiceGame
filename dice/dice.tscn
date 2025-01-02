@@ -1,0 +1,86 @@
+[gd_scene load_steps=10 format=3 uid="uid://bpa5hb2vk5kyk"]
+
+[ext_resource type="Script" path="res://dice/dice.gd" id="1_desa2"]
+[ext_resource type="Texture2D" uid="uid://7cvmlj2y2oh4" path="res://dice/assets/dieWhite1.png" id="2_4g5sb"]
+[ext_resource type="Texture2D" uid="uid://dmxblsbw4581p" path="res://dice/assets/dieWhite2.png" id="3_65j1g"]
+[ext_resource type="Texture2D" uid="uid://bmqx0ua7bbog" path="res://dice/assets/dieWhite3.png" id="4_r8hbg"]
+[ext_resource type="Texture2D" uid="uid://co455utns4co8" path="res://dice/assets/dieWhite4.png" id="5_vu7s2"]
+[ext_resource type="Texture2D" uid="uid://x30rslxktgpk" path="res://dice/assets/dieWhite5.png" id="6_aj81a"]
+[ext_resource type="Texture2D" uid="uid://cbteib8xgyahj" path="res://dice/assets/dieWhite6.png" id="7_wa7qe"]
+[ext_resource type="Texture2D" uid="uid://bw4i5wmp2c7wo" path="res://dice/assets/locked.png" id="8_e7gbb"]
+[ext_resource type="Texture2D" uid="uid://c7jnfql54invx" path="res://dice/assets/unlocked.png" id="9_03fk4"]
+
+[node name="Dice" type="Control"]
+custom_minimum_size = Vector2(90, 90)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 90.0
+offset_bottom = 90.0
+script = ExtResource("1_desa2")
+dice_sprites = Array[Texture2D]([ExtResource("2_4g5sb"), ExtResource("3_65j1g"), ExtResource("4_r8hbg"), ExtResource("5_vu7s2"), ExtResource("6_aj81a"), ExtResource("7_wa7qe")])
+
+[node name="LockIcon" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -18.0
+offset_top = -36.0
+offset_right = 18.0
+grow_horizontal = 2
+texture = ExtResource("8_e7gbb")
+expand_mode = 1
+
+[node name="UnlockIcon" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -18.0
+offset_top = -36.0
+offset_right = 18.0
+grow_horizontal = 2
+texture = ExtResource("9_03fk4")
+expand_mode = 1
+
+[node name="DiceTexture" type="TextureRect" parent="."]
+clip_children = 2
+custom_minimum_size = Vector2(90, 90)
+layout_mode = 1
+offset_right = 90.0
+offset_bottom = 90.0
+texture = ExtResource("2_4g5sb")
+expand_mode = 1
+
+[node name="LockedColor" type="ColorRect" parent="DiceTexture"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.5, 0.440833, 0.145, 0.784314)
+
+[node name="LockButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true
+
+[node name="ChangeSpriteTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="RollTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="pressed" from="LockButton" to="." method="_on_lock_button_pressed"]
+[connection signal="timeout" from="ChangeSpriteTimer" to="." method="_on_change_sprite_timer_timeout"]
