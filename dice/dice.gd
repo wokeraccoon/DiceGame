@@ -10,28 +10,32 @@ var current_number : int = 1
 var is_rolling : bool = false
 var is_locked : bool = false
 
+signal roll_finished()
+
 func _ready() -> void:
 	reset_dice()
 
 func roll_dice() -> void:
-	if !is_locked:
-		is_rolling = true
-		change_sprite_timer.start()
-		roll_timer.start(randf_range(1,2))
+	is_rolling = true
+	change_sprite_timer.start()
+	roll_timer.start(randf_range(1,2))
 
 func reset_dice() -> void:
 	dice_texture.texture = dice_sprites[0]
 
 func _on_change_sprite_timer_timeout() -> void:
 	if !roll_timer.is_stopped():
-		current_number = randi_range(1,6)
-		dice_texture.texture = dice_sprites[1 - current_number]
+		if !is_locked:
+			current_number = randi_range(1,6)
+			dice_texture.texture = dice_sprites[current_number - 1]
 	else:
 		is_rolling = false
 		change_sprite_timer.stop()
+		roll_finished.emit()
 
 @onready var lock_icon: TextureRect = $LockIcon
 @onready var locked_color: ColorRect = %LockedColor
+
 
 func _on_lock_button_pressed() -> void:
 	if !is_rolling:

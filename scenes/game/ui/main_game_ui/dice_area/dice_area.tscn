@@ -1,0 +1,80 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnkrb5ku1hjwg"]
+
+[ext_resource type="Script" path="res://scenes/game/ui/main_game_ui/dice_area/dice_area.gd" id="1_2upbe"]
+[ext_resource type="PackedScene" uid="uid://bpa5hb2vk5kyk" path="res://dice/dice.tscn" id="1_7dek8"]
+
+[node name="DiceAreaUI" type="MarginContainer" node_paths=PackedStringArray("dices")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2upbe")
+dices = [NodePath("Panel/MarginContainer/HBoxContainer2/HBoxContainer/Dice1"), NodePath("Panel/MarginContainer/HBoxContainer2/HBoxContainer/Dice2"), NodePath("Panel/MarginContainer/HBoxContainer2/HBoxContainer/Dice3"), NodePath("Panel/MarginContainer/HBoxContainer2/HBoxContainer/Dice4"), NodePath("Panel/MarginContainer/HBoxContainer2/HBoxContainer/Dice5")]
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(0, 160)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -42.5
+offset_bottom = 42.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_right = 16
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(624, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="Dice1" parent="Panel/MarginContainer/HBoxContainer2/HBoxContainer" instance=ExtResource("1_7dek8")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Dice2" parent="Panel/MarginContainer/HBoxContainer2/HBoxContainer" instance=ExtResource("1_7dek8")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Dice3" parent="Panel/MarginContainer/HBoxContainer2/HBoxContainer" instance=ExtResource("1_7dek8")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Dice4" parent="Panel/MarginContainer/HBoxContainer2/HBoxContainer" instance=ExtResource("1_7dek8")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Dice5" parent="Panel/MarginContainer/HBoxContainer2/HBoxContainer" instance=ExtResource("1_7dek8")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/MarginContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="RerollDiceButton" type="Button" parent="Panel/MarginContainer/HBoxContainer2/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Reroll Dice"
+
+[node name="AttackButton" type="Button" parent="Panel/MarginContainer/HBoxContainer2/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Attack! "
+
+[connection signal="pressed" from="Panel/MarginContainer/HBoxContainer2/HBoxContainer2/RerollDiceButton" to="." method="_on_reroll_dice_button_pressed"]

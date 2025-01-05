@@ -2,11 +2,11 @@ class_name Main
 extends Node
 
 const MAIN_MENU = preload("res://scenes/main_menu/main_menu.tscn")
-const GAME = preload("res://scenes/game/game.tscn")
+const GAME = preload("res://scenes/game/game_manager.tscn")
 
 @onready var main_layer: CanvasLayer = %MainLayer
 
-var game : Game
+var game : GameManager
 
 func _ready() -> void:
 	var main_menu : MainMenu = MAIN_MENU.instantiate()
