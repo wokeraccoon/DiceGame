@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://b6hkp7ydpotqs"]
+[gd_scene load_steps=7 format=3 uid="uid://b6hkp7ydpotqs"]
 
 [ext_resource type="Script" path="res://scenes/game/game_manager.gd" id="1_x6pty"]
 [ext_resource type="PackedScene" uid="uid://bsojk3ge2rhjf" path="res://scenes/game/3d_world/test_3d_world.tscn" id="2_vusod"]
 [ext_resource type="Texture2D" uid="uid://cthdjn64hfl7r" path="res://icon.svg" id="3_gopoi"]
+[ext_resource type="PackedScene" uid="uid://dgwnbuub8o63f" path="res://scenes/game/ui/main_game_ui/player_stats_ui/player_stats_ui.tscn" id="3_klj1d"]
+[ext_resource type="PackedScene" uid="uid://vmfg2xgcf07j" path="res://scenes/game/ui/main_game_ui/enemy_stats_ui.tscn" id="3_tdyti"]
 [ext_resource type="PackedScene" uid="uid://cnkrb5ku1hjwg" path="res://scenes/game/ui/main_game_ui/dice_area/dice_area.tscn" id="4_m3en2"]
 
 [node name="GameManager" type="Node2D"]
@@ -31,33 +33,24 @@ size_flags_horizontal = 3
 [node name="LeftSideButtons" type="VBoxContainer" parent="UI/MainScreen"]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="UI/MainScreen/LeftSideButtons"]
+[node name="ResetGame" type="Button" parent="UI/MainScreen/LeftSideButtons"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(128, 64)
 layout_mode = 2
-text = "Options
+text = "Reset
 "
 
 [node name="Button2" type="Button" parent="UI/MainScreen/LeftSideButtons"]
 custom_minimum_size = Vector2(128, 64)
 layout_mode = 2
+disabled = true
 text = "Run Info"
 
 [node name="Button5" type="Button" parent="UI/MainScreen/LeftSideButtons"]
 custom_minimum_size = Vector2(128, 64)
 layout_mode = 2
+disabled = true
 text = "Dice Reference"
-
-[node name="Button3" type="Button" parent="UI/MainScreen/LeftSideButtons"]
-custom_minimum_size = Vector2(128, 0)
-layout_mode = 2
-size_flags_vertical = 3
-text = "Inventory"
-
-[node name="Button4" type="Button" parent="UI/MainScreen/LeftSideButtons"]
-custom_minimum_size = Vector2(128, 0)
-layout_mode = 2
-size_flags_vertical = 3
-text = "Map"
 
 [node name="GameScreenArea" type="VBoxContainer" parent="UI/MainScreen"]
 layout_mode = 2
@@ -70,7 +63,10 @@ size_flags_horizontal = 4
 theme_override_constants/separation = 12
 alignment = 1
 
-[node name="GameWorldViewport" type="SubViewportContainer" parent="UI/MainScreen/GameScreenArea/HBoxContainer"]
+[node name="CenterContainer" type="MarginContainer" parent="UI/MainScreen/GameScreenArea/HBoxContainer"]
+layout_mode = 2
+
+[node name="GameWorldViewport" type="SubViewportContainer" parent="UI/MainScreen/GameScreenArea/HBoxContainer/CenterContainer"]
 texture_filter = 1
 custom_minimum_size = Vector2(640, 480)
 layout_mode = 2
@@ -78,258 +74,466 @@ size_flags_horizontal = 6
 stretch = true
 stretch_shrink = 2
 
-[node name="SubViewport" type="SubViewport" parent="UI/MainScreen/GameScreenArea/HBoxContainer/GameWorldViewport"]
+[node name="SubViewport" type="SubViewport" parent="UI/MainScreen/GameScreenArea/HBoxContainer/CenterContainer/GameWorldViewport"]
 handle_input_locally = false
 size = Vector2i(320, 240)
 render_target_update_mode = 4
 
-[node name="Test3DWorld" parent="UI/MainScreen/GameScreenArea/HBoxContainer/GameWorldViewport/SubViewport" instance=ExtResource("2_vusod")]
+[node name="Test3DWorld" parent="UI/MainScreen/GameScreenArea/HBoxContainer/CenterContainer/GameWorldViewport/SubViewport" instance=ExtResource("2_vusod")]
+
+[node name="FightWonScreen" type="Panel" parent="UI/MainScreen/GameScreenArea/HBoxContainer/CenterContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/MainScreen/GameScreenArea/HBoxContainer/CenterContainer/FightWonScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "Enemy defeated!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FightLostScreen" type="Panel" parent="UI/MainScreen/GameScreenArea/HBoxContainer/CenterContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/MainScreen/GameScreenArea/HBoxContainer/CenterContainer/FightLostScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "You lost..."
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/MainScreen/GameScreenArea/HBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="EnemyStatsUI" type="MarginContainer" parent="UI/MainScreen/GameScreenArea/HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(403, 0)
-layout_mode = 2
-size_flags_vertical = 0
-
-[node name="Panel" type="Panel" parent="UI/MainScreen/GameScreenArea/HBoxContainer/VBoxContainer/EnemyStatsUI"]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/MainScreen/GameScreenArea/HBoxContainer/VBoxContainer/EnemyStatsUI"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-theme_override_constants/separation = 0
-
-[node name="Label" type="Label" parent="UI/MainScreen/GameScreenArea/HBoxContainer/VBoxContainer/EnemyStatsUI/VBoxContainer"]
-custom_minimum_size = Vector2(403, 0)
-layout_mode = 2
-size_flags_vertical = 6
-theme_override_font_sizes/font_size = 32
-text = "Evil Enemy Cube"
-horizontal_alignment = 1
-autowrap_mode = 1
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/MainScreen/GameScreenArea/HBoxContainer/VBoxContainer/EnemyStatsUI/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 6
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
-
-[node name="Panel" type="Panel" parent="UI/MainScreen/GameScreenArea/HBoxContainer/VBoxContainer/EnemyStatsUI/VBoxContainer/MarginContainer"]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/MainScreen/GameScreenArea/HBoxContainer/VBoxContainer/EnemyStatsUI/VBoxContainer/MarginContainer"]
-layout_mode = 2
-theme_override_constants/separation = 0
-
-[node name="Label" type="Label" parent="UI/MainScreen/GameScreenArea/HBoxContainer/VBoxContainer/EnemyStatsUI/VBoxContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "Score "
-horizontal_alignment = 1
-
-[node name="Label2" type="Label" parent="UI/MainScreen/GameScreenArea/HBoxContainer/VBoxContainer/EnemyStatsUI/VBoxContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 48
-text = "1000 pts"
-horizontal_alignment = 1
-
-[node name="Label3" type="Label" parent="UI/MainScreen/GameScreenArea/HBoxContainer/VBoxContainer/EnemyStatsUI/VBoxContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "to defeat enemy"
-horizontal_alignment = 1
-
-[node name="PlayerStatsUI" type="MarginContainer" parent="UI/MainScreen/GameScreenArea/HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(403, 0)
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Panel" type="Panel" parent="UI/MainScreen/GameScreenArea/HBoxContainer/VBoxContainer/PlayerStatsUI"]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/MainScreen/GameScreenArea/HBoxContainer/VBoxContainer/PlayerStatsUI"]
-layout_mode = 2
-theme_override_constants/separation = 0
-
-[node name="MarginContainer5" type="MarginContainer" parent="UI/MainScreen/GameScreenArea/HBoxContainer/VBoxContainer/PlayerStatsUI/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 4
-
-[node name="Panel" type="Panel" parent="UI/MainScreen/GameScreenArea/HBoxContainer/VBoxContainer/PlayerStatsUI/VBoxContainer/MarginContainer5"]
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/MainScreen/GameScreenArea/HBoxContainer/VBoxContainer/PlayerStatsUI/VBoxContainer/MarginContainer5"]
-layout_mode = 2
-theme_override_constants/separation = 0
-
-[node name="MarginContainer2" type="MarginContainer" parent="UI/MainScreen/GameScreenArea/HBoxContainer/VBoxContainer/PlayerStatsUI/VBoxContainer/MarginContainer5/HBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
-
-[node name="TextureRect" type="TextureRect" parent="UI/MainScreen/GameScreenArea/HBoxContainer/VBoxContainer/PlayerStatsUI/VBoxContainer/MarginContainer5/HBoxContainer/MarginContainer2"]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-texture = ExtResource("3_gopoi")
-expand_mode = 1
-stretch_mode = 4
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/MainScreen/GameScreenArea/HBoxContainer/VBoxContainer/PlayerStatsUI/VBoxContainer/MarginContainer5/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 0
-
-[node name="Label" type="Label" parent="UI/MainScreen/GameScreenArea/HBoxContainer/VBoxContainer/PlayerStatsUI/VBoxContainer/MarginContainer5/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "PlayerClassName"
-vertical_alignment = 1
-
-[node name="Label2" type="Label" parent="UI/MainScreen/GameScreenArea/HBoxContainer/VBoxContainer/PlayerStatsUI/VBoxContainer/MarginContainer5/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "Cash : $8"
-vertical_alignment = 1
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/MainScreen/GameScreenArea/HBoxContainer/VBoxContainer/PlayerStatsUI/VBoxContainer/MarginContainer5/HBoxContainer"]
-layout_mode = 2
-
-[node name="MarginContainer3" type="MarginContainer" parent="UI/MainScreen/GameScreenArea/HBoxContainer/VBoxContainer/PlayerStatsUI/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 4
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 4
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/MainScreen/GameScreenArea/HBoxContainer/VBoxContainer/PlayerStatsUI/VBoxContainer/MarginContainer3"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/separation = 8
-alignment = 1
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/MainScreen/GameScreenArea/HBoxContainer/VBoxContainer/PlayerStatsUI/VBoxContainer/MarginContainer3/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Panel" type="Panel" parent="UI/MainScreen/GameScreenArea/HBoxContainer/VBoxContainer/PlayerStatsUI/VBoxContainer/MarginContainer3/HBoxContainer/MarginContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="UI/MainScreen/GameScreenArea/HBoxContainer/VBoxContainer/PlayerStatsUI/VBoxContainer/MarginContainer3/HBoxContainer/MarginContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "Attacks: 3"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="MarginContainer2" type="MarginContainer" parent="UI/MainScreen/GameScreenArea/HBoxContainer/VBoxContainer/PlayerStatsUI/VBoxContainer/MarginContainer3/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Panel" type="Panel" parent="UI/MainScreen/GameScreenArea/HBoxContainer/VBoxContainer/PlayerStatsUI/VBoxContainer/MarginContainer3/HBoxContainer/MarginContainer2"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="UI/MainScreen/GameScreenArea/HBoxContainer/VBoxContainer/PlayerStatsUI/VBoxContainer/MarginContainer3/HBoxContainer/MarginContainer2"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "Rolls: 3"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="MarginContainer4" type="MarginContainer" parent="UI/MainScreen/GameScreenArea/HBoxContainer/VBoxContainer/PlayerStatsUI/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 4
-
-[node name="Panel" type="Panel" parent="UI/MainScreen/GameScreenArea/HBoxContainer/VBoxContainer/PlayerStatsUI/VBoxContainer/MarginContainer4"]
-layout_mode = 2
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="UI/MainScreen/GameScreenArea/HBoxContainer/VBoxContainer/PlayerStatsUI/VBoxContainer/MarginContainer4"]
-layout_mode = 2
-
-[node name="VBoxContainer" type="HBoxContainer" parent="UI/MainScreen/GameScreenArea/HBoxContainer/VBoxContainer/PlayerStatsUI/VBoxContainer/MarginContainer4/VBoxContainer2"]
-layout_mode = 2
-size_flags_vertical = 0
-
-[node name="MarginContainer2" type="MarginContainer" parent="UI/MainScreen/GameScreenArea/HBoxContainer/VBoxContainer/PlayerStatsUI/VBoxContainer/MarginContainer4/VBoxContainer2/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_right = 4
-
-[node name="Label" type="Label" parent="UI/MainScreen/GameScreenArea/HBoxContainer/VBoxContainer/PlayerStatsUI/VBoxContainer/MarginContainer4/VBoxContainer2/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Current Attack Score"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="AttackScoreLabel" type="Label" parent="UI/MainScreen/GameScreenArea/HBoxContainer/VBoxContainer/PlayerStatsUI/VBoxContainer/MarginContainer4/VBoxContainer2/VBoxContainer"]
+[node name="EnemyStatsUI" parent="UI/MainScreen/GameScreenArea/HBoxContainer/VBoxContainer" instance=ExtResource("3_tdyti")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 32
-text = "0"
-horizontal_alignment = 1
-vertical_alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="UI/MainScreen/GameScreenArea/HBoxContainer/VBoxContainer/PlayerStatsUI/VBoxContainer/MarginContainer4/VBoxContainer2/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_right = 4
-
-[node name="VBoxContainer2" type="HBoxContainer" parent="UI/MainScreen/GameScreenArea/HBoxContainer/VBoxContainer/PlayerStatsUI/VBoxContainer/MarginContainer4/VBoxContainer2"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="MarginContainer2" type="MarginContainer" parent="UI/MainScreen/GameScreenArea/HBoxContainer/VBoxContainer/PlayerStatsUI/VBoxContainer/MarginContainer4/VBoxContainer2/VBoxContainer2"]
-layout_mode = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_right = 4
-
-[node name="Label" type="Label" parent="UI/MainScreen/GameScreenArea/HBoxContainer/VBoxContainer/PlayerStatsUI/VBoxContainer/MarginContainer4/VBoxContainer2/VBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-text = "Current Dice Combo"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="DiceComboLabel" type="Label" parent="UI/MainScreen/GameScreenArea/HBoxContainer/VBoxContainer/PlayerStatsUI/VBoxContainer/MarginContainer4/VBoxContainer2/VBoxContainer2"]
+[node name="PlayerStatsUI" parent="UI/MainScreen/GameScreenArea/HBoxContainer/VBoxContainer" instance=ExtResource("3_klj1d")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-theme_override_font_sizes/font_size = 32
-text = "Yatch!"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/MainScreen/GameScreenArea/HBoxContainer/VBoxContainer/PlayerStatsUI/VBoxContainer/MarginContainer4/VBoxContainer2/VBoxContainer2"]
-layout_mode = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_right = 4
 
 [node name="DiceArea" parent="UI/MainScreen/GameScreenArea" instance=ExtResource("4_m3en2")]
 unique_name_in_owner = true
 layout_mode = 2
 
+[node name="LeftSideButtons2" type="VBoxContainer" parent="UI/MainScreen"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/MainScreen/LeftSideButtons2"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="UI/MainScreen/LeftSideButtons2/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/MainScreen/LeftSideButtons2/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MainScreen/LeftSideButtons2/MarginContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/MainScreen/LeftSideButtons2/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Current Weapon"
+
+[node name="TextureRect" type="TextureRect" parent="UI/MainScreen/LeftSideButtons2/MarginContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_gopoi")
+expand_mode = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="UI/MainScreen/LeftSideButtons2"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="UI/MainScreen/LeftSideButtons2/MarginContainer2"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/MainScreen/LeftSideButtons2/MarginContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MainScreen/LeftSideButtons2/MarginContainer2/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/MainScreen/LeftSideButtons2/MarginContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Upgrades"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/MainScreen/LeftSideButtons2/MarginContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="GridContainer" type="GridContainer" parent="UI/MainScreen/LeftSideButtons2/MarginContainer2/MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/MainScreen/LeftSideButtons2/MarginContainer2/MarginContainer/VBoxContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_gopoi")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="UI/MainScreen/LeftSideButtons2/MarginContainer2/MarginContainer/VBoxContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_gopoi")
+expand_mode = 1
+
+[node name="TextureRect3" type="TextureRect" parent="UI/MainScreen/LeftSideButtons2/MarginContainer2/MarginContainer/VBoxContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_gopoi")
+expand_mode = 1
+
+[node name="TextureRect4" type="TextureRect" parent="UI/MainScreen/LeftSideButtons2/MarginContainer2/MarginContainer/VBoxContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_gopoi")
+expand_mode = 1
+
+[node name="TextureRect5" type="TextureRect" parent="UI/MainScreen/LeftSideButtons2/MarginContainer2/MarginContainer/VBoxContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_gopoi")
+expand_mode = 1
+
+[node name="TextureRect6" type="TextureRect" parent="UI/MainScreen/LeftSideButtons2/MarginContainer2/MarginContainer/VBoxContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_gopoi")
+expand_mode = 1
+
+[node name="TextureRect7" type="TextureRect" parent="UI/MainScreen/LeftSideButtons2/MarginContainer2/MarginContainer/VBoxContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_gopoi")
+expand_mode = 1
+
+[node name="TextureRect8" type="TextureRect" parent="UI/MainScreen/LeftSideButtons2/MarginContainer2/MarginContainer/VBoxContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_gopoi")
+expand_mode = 1
+
+[node name="TextureRect9" type="TextureRect" parent="UI/MainScreen/LeftSideButtons2/MarginContainer2/MarginContainer/VBoxContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_gopoi")
+expand_mode = 1
+
+[node name="TextureRect10" type="TextureRect" parent="UI/MainScreen/LeftSideButtons2/MarginContainer2/MarginContainer/VBoxContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_gopoi")
+expand_mode = 1
+
+[node name="TextureRect11" type="TextureRect" parent="UI/MainScreen/LeftSideButtons2/MarginContainer2/MarginContainer/VBoxContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_gopoi")
+expand_mode = 1
+
+[node name="TextureRect12" type="TextureRect" parent="UI/MainScreen/LeftSideButtons2/MarginContainer2/MarginContainer/VBoxContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_gopoi")
+expand_mode = 1
+
+[node name="TextureRect13" type="TextureRect" parent="UI/MainScreen/LeftSideButtons2/MarginContainer2/MarginContainer/VBoxContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_gopoi")
+expand_mode = 1
+
+[node name="TextureRect14" type="TextureRect" parent="UI/MainScreen/LeftSideButtons2/MarginContainer2/MarginContainer/VBoxContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_gopoi")
+expand_mode = 1
+
+[node name="TextureRect15" type="TextureRect" parent="UI/MainScreen/LeftSideButtons2/MarginContainer2/MarginContainer/VBoxContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_gopoi")
+expand_mode = 1
+
+[node name="TextureRect16" type="TextureRect" parent="UI/MainScreen/LeftSideButtons2/MarginContainer2/MarginContainer/VBoxContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_gopoi")
+expand_mode = 1
+
+[node name="TextureRect17" type="TextureRect" parent="UI/MainScreen/LeftSideButtons2/MarginContainer2/MarginContainer/VBoxContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_gopoi")
+expand_mode = 1
+
+[node name="TextureRect18" type="TextureRect" parent="UI/MainScreen/LeftSideButtons2/MarginContainer2/MarginContainer/VBoxContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_gopoi")
+expand_mode = 1
+
+[node name="TextureRect19" type="TextureRect" parent="UI/MainScreen/LeftSideButtons2/MarginContainer2/MarginContainer/VBoxContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_gopoi")
+expand_mode = 1
+
+[node name="MarginContainer3" type="MarginContainer" parent="UI/MainScreen/LeftSideButtons2"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="UI/MainScreen/LeftSideButtons2/MarginContainer3"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/MainScreen/LeftSideButtons2/MarginContainer3"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MainScreen/LeftSideButtons2/MarginContainer3/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/MainScreen/LeftSideButtons2/MarginContainer3/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Consumables"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/MainScreen/LeftSideButtons2/MarginContainer3/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="GridContainer" type="GridContainer" parent="UI/MainScreen/LeftSideButtons2/MarginContainer3/MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/MainScreen/LeftSideButtons2/MarginContainer3/MarginContainer/VBoxContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_gopoi")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="UI/MainScreen/LeftSideButtons2/MarginContainer3/MarginContainer/VBoxContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_gopoi")
+expand_mode = 1
+
+[node name="TextureRect3" type="TextureRect" parent="UI/MainScreen/LeftSideButtons2/MarginContainer3/MarginContainer/VBoxContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_gopoi")
+expand_mode = 1
+
+[node name="TextureRect4" type="TextureRect" parent="UI/MainScreen/LeftSideButtons2/MarginContainer3/MarginContainer/VBoxContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_gopoi")
+expand_mode = 1
+
+[node name="TextureRect5" type="TextureRect" parent="UI/MainScreen/LeftSideButtons2/MarginContainer3/MarginContainer/VBoxContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_gopoi")
+expand_mode = 1
+
+[node name="TextureRect6" type="TextureRect" parent="UI/MainScreen/LeftSideButtons2/MarginContainer3/MarginContainer/VBoxContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_gopoi")
+expand_mode = 1
+
+[node name="TextureRect7" type="TextureRect" parent="UI/MainScreen/LeftSideButtons2/MarginContainer3/MarginContainer/VBoxContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_gopoi")
+expand_mode = 1
+
+[node name="TextureRect8" type="TextureRect" parent="UI/MainScreen/LeftSideButtons2/MarginContainer3/MarginContainer/VBoxContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_gopoi")
+expand_mode = 1
+
+[node name="TextureRect9" type="TextureRect" parent="UI/MainScreen/LeftSideButtons2/MarginContainer3/MarginContainer/VBoxContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_gopoi")
+expand_mode = 1
+
+[node name="TextureRect10" type="TextureRect" parent="UI/MainScreen/LeftSideButtons2/MarginContainer3/MarginContainer/VBoxContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_gopoi")
+expand_mode = 1
+
+[node name="TextureRect11" type="TextureRect" parent="UI/MainScreen/LeftSideButtons2/MarginContainer3/MarginContainer/VBoxContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_gopoi")
+expand_mode = 1
+
+[node name="TextureRect12" type="TextureRect" parent="UI/MainScreen/LeftSideButtons2/MarginContainer3/MarginContainer/VBoxContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_gopoi")
+expand_mode = 1
+
+[node name="TextureRect13" type="TextureRect" parent="UI/MainScreen/LeftSideButtons2/MarginContainer3/MarginContainer/VBoxContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_gopoi")
+expand_mode = 1
+
+[node name="TextureRect14" type="TextureRect" parent="UI/MainScreen/LeftSideButtons2/MarginContainer3/MarginContainer/VBoxContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_gopoi")
+expand_mode = 1
+
+[node name="TextureRect15" type="TextureRect" parent="UI/MainScreen/LeftSideButtons2/MarginContainer3/MarginContainer/VBoxContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_gopoi")
+expand_mode = 1
+
+[node name="TextureRect16" type="TextureRect" parent="UI/MainScreen/LeftSideButtons2/MarginContainer3/MarginContainer/VBoxContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_gopoi")
+expand_mode = 1
+
+[node name="TextureRect17" type="TextureRect" parent="UI/MainScreen/LeftSideButtons2/MarginContainer3/MarginContainer/VBoxContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_gopoi")
+expand_mode = 1
+
+[node name="TextureRect18" type="TextureRect" parent="UI/MainScreen/LeftSideButtons2/MarginContainer3/MarginContainer/VBoxContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_gopoi")
+expand_mode = 1
+
+[node name="TextureRect19" type="TextureRect" parent="UI/MainScreen/LeftSideButtons2/MarginContainer3/MarginContainer/VBoxContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_gopoi")
+expand_mode = 1
+
 [node name="MarginContainer" type="MarginContainer" parent="UI/MainScreen"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[connection signal="all_dice_rolled" from="UI/MainScreen/GameScreenArea/DiceArea" to="." method="_on_dice_area_all_dice_rolled"]
+[connection signal="pressed" from="UI/MainScreen/LeftSideButtons/ResetGame" to="." method="_on_reset_game_pressed"]
+[connection signal="attack_requested" from="UI/MainScreen/GameScreenArea/DiceArea" to="." method="_on_dice_area_attack_requested"]
+[connection signal="roll_finished" from="UI/MainScreen/GameScreenArea/DiceArea" to="." method="_on_dice_area_roll_finished"]
+[connection signal="roll_started" from="UI/MainScreen/GameScreenArea/DiceArea" to="." method="_on_dice_area_roll_started"]

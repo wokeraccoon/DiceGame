@@ -22,6 +22,9 @@ func roll_dice() -> void:
 
 func reset_dice() -> void:
 	dice_texture.texture = dice_sprites[0]
+	is_locked = false
+	lock_icon.hide()
+	locked_color.hide()
 
 func _on_change_sprite_timer_timeout() -> void:
 	if !roll_timer.is_stopped():

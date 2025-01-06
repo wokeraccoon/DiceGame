@@ -12,10 +12,6 @@ var dice_combos_scores : Dictionary = {
 	"Yatch" : 100
 }
 
-var player_class : PlayerClass
-
-var current_enemy : Enemy
-
 enum GameStates {
 	RUN_START,
 	EXPLORING,
@@ -27,6 +23,15 @@ enum GameStates {
 
 var games_state : GameStates = GameStates.RUN_START
 
+var player_class : PlayerClass
+
+var current_enemy : Enemy
+
+var score_to_defeat_enemy : int  = 1000
+var attacks_left : int = 3
+var rolls_left : int = 3
+
+
 var player_weapon : Weapon
 var player_inventory : Array[Item]
 
@@ -34,6 +39,8 @@ var dice_hand_score : int = 0
 var dice_hand_combo : String = ""
 
 @onready var dice_area: DiceAreaUI = %DiceArea
+@onready var player_stats_ui: PlayerStatsUI = %PlayerStatsUI
+@onready var enemy_stats_ui: EnemyStatsUI = %EnemyStatsUI
 
 func count_value_occurrences_concise(my_dictionary: Dictionary, target_value) -> int:
 	return my_dictionary.values().count(target_value)
@@ -107,14 +114,52 @@ func check_for_dice_combos(dice_rolled : Dictionary) -> void:
 	else:
 		dice_hand_score *= dice_combos_scores[dice_hand_combo]
 
-@onready var dice_combo_label: Label = %DiceComboLabel
-@onready var attack_score_label: Label = %AttackScoreLabel
-
-func _on_dice_area_all_dice_rolled(dice_data: Dictionary) -> void:
-	check_for_dice_combos(dice_data)
-	attack_score_label.text = str(dice_hand_score)
+func _process(_delta: float) -> void:
+	player_stats_ui.attacks_label.text = str("Attacks left: ",attacks_left)
+	player_stats_ui.rolls_label.text = str("Rolls left: ", rolls_left)
 	
-	if dice_hand_combo == "Yatch":
-		dice_combo_label.text = str(dice_hand_combo,"!")
-	else:
-		dice_combo_label.text = dice_hand_combo
+	enemy_stats_ui.defeat_points_label.text = str(score_to_defeat_enemy)
+
+func _on_dice_area_roll_started() -> void:
+	rolls_left -= 1
+	player_stats_ui.attack_score_label.text = "0"
+	player_stats_ui.dice_combo_label.text = "Rolling..."
+	dice_area.roll_dice()
+	
+
+func _on_dice_area_roll_finished(dice_data: Dictionary) -> void:
+	check_for_dice_combos(dice_data)
+	dice_area.attack_button.disabled = false
+	if rolls_left == 0:
+		dice_area.roll_dice_button.disabled = true
+	
+	player_stats_ui.attack_score_label.text = str(dice_hand_score)
+	player_stats_ui.dice_combo_label.text = dice_hand_combo
+
+@onready var fight_lost_screen: Panel = %FightLostScreen
+@onready var fight_won_screen: Panel = %FightWonScreen
+
+func _on_dice_area_attack_requested() -> void:
+	score_to_defeat_enemy -= dice_hand_score
+	dice_area.roll_dice_button.disabled = false
+	dice_area.attack_button.disabled = true
+	attacks_left -= 1
+	rolls_left = 3
+	
+	if attacks_left == 0 and score_to_defeat_enemy > 0:
+		fight_lost_screen.show()
+		dice_area.roll_dice_button.disabled = true
+		dice_area.attack_button.disabled = true
+	
+	if score_to_defeat_enemy <= 0:
+		fight_won_screen.show()
+		dice_area.roll_dice_button.disabled = true
+		dice_area.attack_button.disabled = true
+	
+	dice_area.reset_all_dice()
+	player_stats_ui.attack_score_label.text = "0"
+	player_stats_ui.dice_combo_label.text = ""
+
+
+func _on_reset_game_pressed() -> void:
+	get_tree().reload_current_scene()
