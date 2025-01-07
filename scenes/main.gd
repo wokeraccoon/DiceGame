@@ -19,3 +19,8 @@ func _start_new_game() -> void:
 	
 	game = GAME.instantiate()
 	main_layer.add_child(game)
+	game.restart_run.connect(_restart_game)
+
+func _restart_game() -> void:
+	game.queue_free()
+	_start_new_game()

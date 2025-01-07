@@ -38,6 +38,10 @@ var player_inventory : Array[Item]
 var dice_hand_score : int = 0
 var dice_hand_combo : String = ""
 
+signal restart_run
+
+#in fight screen stuff
+
 @onready var dice_area: DiceAreaUI = %DiceArea
 @onready var player_stats_ui: PlayerStatsUI = %PlayerStatsUI
 @onready var enemy_stats_ui: EnemyStatsUI = %EnemyStatsUI
@@ -115,8 +119,8 @@ func check_for_dice_combos(dice_rolled : Dictionary) -> void:
 		dice_hand_score *= dice_combos_scores[dice_hand_combo]
 
 func _process(_delta: float) -> void:
-	player_stats_ui.attacks_label.text = str("Attacks left: ",attacks_left)
-	player_stats_ui.rolls_label.text = str("Rolls left: ", rolls_left)
+	player_stats_ui.attacks_label.text = str(attacks_left)
+	player_stats_ui.rolls_label.text = str(rolls_left)
 	
 	enemy_stats_ui.defeat_points_label.text = str(score_to_defeat_enemy)
 
@@ -125,7 +129,6 @@ func _on_dice_area_roll_started() -> void:
 	player_stats_ui.attack_score_label.text = "0"
 	player_stats_ui.dice_combo_label.text = "Rolling..."
 	dice_area.roll_dice()
-	
 
 func _on_dice_area_roll_finished(dice_data: Dictionary) -> void:
 	check_for_dice_combos(dice_data)
@@ -161,5 +164,20 @@ func _on_dice_area_attack_requested() -> void:
 	player_stats_ui.dice_combo_label.text = ""
 
 
-func _on_reset_game_pressed() -> void:
+#options menu stuff
+@onready var options_menu_ui: OptionsMenuUI = %OptionsMenuUI
+
+func _on_options_button_pressed() -> void:
+	options_menu_ui.visible = true
+
+func _on_options_menu_ui_main_menu_requested() -> void:
 	get_tree().reload_current_scene()
+
+func _on_options_menu_ui_restart_run_requested() -> void:
+	restart_run.emit()
+
+#reference menu stuff
+@onready var reference_menu_ui: Control = %ReferenceMenuUI
+
+func _on_reference_button_pressed() -> void:
+	reference_menu_ui.visible = true
