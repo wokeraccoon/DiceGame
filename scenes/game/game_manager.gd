@@ -12,39 +12,21 @@ var dice_combos_scores : Dictionary = {
 	"Yatch" : 100
 }
 
-enum GameStates {
-	RUN_START,
-	EXPLORING,
-	OPEN_CHEST,
-	STORE,
-	FIGHT,
-	RUN_LOST
-}
+var is_player_turn : bool = true
 
-var games_state : GameStates = GameStates.RUN_START
+var player_max_health : int = 300
+var player_current_health : int = 300
+var starter_rolls : int = 3
+var player_rolls : int = 3
 
-var player_class : PlayerClass
+var enemy_max_health : int = 100
+var enemy_current_health : int = 100
 
-var current_enemy : Enemy
-
-var score_to_defeat_enemy : int  = 1000
-var attacks_left : int = 3
-var rolls_left : int = 3
-
-
-var player_weapon : Weapon
-var player_inventory : Array[Item]
 
 var dice_hand_score : int = 0
 var dice_hand_combo : String = ""
 
 signal restart_run
-
-#in fight screen stuff
-
-@onready var dice_area: DiceAreaUI = %DiceArea
-@onready var player_stats_ui: PlayerStatsUI = %PlayerStatsUI
-@onready var enemy_stats_ui: EnemyStatsUI = %EnemyStatsUI
 
 func count_value_occurrences_concise(my_dictionary: Dictionary, target_value) -> int:
 	return my_dictionary.values().count(target_value)
@@ -118,66 +100,151 @@ func check_for_dice_combos(dice_rolled : Dictionary) -> void:
 	else:
 		dice_hand_score *= dice_combos_scores[dice_hand_combo]
 
-func _process(_delta: float) -> void:
-	player_stats_ui.attacks_label.text = str(attacks_left)
-	player_stats_ui.rolls_label.text = str(rolls_left)
+
+@onready var player_health_bar: ProgressBar = %PlayerHealthBar
+@onready var player_health_text: Label = %PlayerHealthText
+
+@onready var enemy_health_bar: ProgressBar = %EnemyHealthBar
+@onready var enemy_health_text: Label = %EnemyHealthText
+
+@onready var player_dice_ui: MarginContainer = %PlayerDiceUI
+@onready var enemy_dice_ui: MarginContainer = %EnemyDiceUI
+
+@export var player_dice : Array[Dice] = []
+@export var enemy_dice : Array[Dice] = []
+
+@onready var player_rolls_ammount: Label = %PlayerRollsAmmount
+@onready var roll_dice_button: Button = %RollDiceButton
+@onready var send_attack_button: Button = %SendAttackButton
+
+@onready var player_dice_combo: Label = %PlayerDiceCombo
+@onready var player_dice_score: Label = %PlayerDiceScore
+@onready var enemy_damage_label: Label = %EnemyDamageLabel
+@onready var enemy_dice_combo: Label = %EnemyDiceCombo
+@onready var enemy_dice_score: Label = %EnemyDiceScore
+
+@onready var fight_ui_animation_player: AnimationPlayer = %FightUIAnimationPlayer
+
+var is_dice_rolling : bool = false
+
+func _ready() -> void:
+	for dice in player_dice:
+		dice.roll_finished.connect(_on_player_roll_finished)
 	
-	enemy_stats_ui.defeat_points_label.text = str(score_to_defeat_enemy)
+	for dice in enemy_dice:
+		dice.disable_dice()
+		dice.roll_finished.connect(_on_enemy_roll_finished)
+		
+	player_dice_ui.visible = true
+	enemy_dice_ui.visible = false
 
-func _on_dice_area_roll_started() -> void:
-	rolls_left -= 1
-	player_stats_ui.attack_score_label.text = "0"
-	player_stats_ui.dice_combo_label.text = "Rolling..."
-	dice_area.roll_dice()
-
-func _on_dice_area_roll_finished(dice_data: Dictionary) -> void:
-	check_for_dice_combos(dice_data)
-	dice_area.attack_button.disabled = false
-	if rolls_left == 0:
-		dice_area.roll_dice_button.disabled = true
+func _process(delta: float) -> void:
 	
-	player_stats_ui.attack_score_label.text = str(dice_hand_score)
-	player_stats_ui.dice_combo_label.text = dice_hand_combo
-
-@onready var fight_lost_screen: Panel = %FightLostScreen
-@onready var fight_won_screen: Panel = %FightWonScreen
-
-func _on_dice_area_attack_requested() -> void:
-	score_to_defeat_enemy -= dice_hand_score
-	dice_area.roll_dice_button.disabled = false
-	dice_area.attack_button.disabled = true
-	attacks_left -= 1
-	rolls_left = 3
+	player_health_bar.max_value = player_max_health
+	player_health_bar.value = player_current_health
+	player_health_text.text = str(player_current_health,"/",player_max_health)
 	
-	if attacks_left == 0 and score_to_defeat_enemy > 0:
-		fight_lost_screen.show()
-		dice_area.roll_dice_button.disabled = true
-		dice_area.attack_button.disabled = true
+	enemy_health_bar.max_value = enemy_max_health
+	enemy_health_bar.value = enemy_current_health
+	enemy_health_text.text = str(enemy_current_health,"/",enemy_max_health)
 	
-	if score_to_defeat_enemy <= 0:
-		fight_won_screen.show()
-		dice_area.roll_dice_button.disabled = true
-		dice_area.attack_button.disabled = true
 	
-	dice_area.reset_all_dice()
-	player_stats_ui.attack_score_label.text = "0"
-	player_stats_ui.dice_combo_label.text = ""
+	if player_rolls == 0 or is_dice_rolling == true:
+		roll_dice_button.disabled = true
+	else:
+		roll_dice_button.disabled = false
+	
+	if is_dice_rolling == true or player_rolls == starter_rolls:
+		send_attack_button.disabled = true
+	else:
+		send_attack_button.disabled = false
+	
+	player_dice_combo.text = dice_hand_combo
+	player_dice_score.text = str(dice_hand_score)
+	player_rolls_ammount.text = str(player_rolls)
+	
+	enemy_dice_combo.text = dice_hand_combo
+	enemy_dice_score.text = str(dice_hand_score)
 
 
-#options menu stuff
-@onready var options_menu_ui: OptionsMenuUI = %OptionsMenuUI
+func _on_roll_dice_button_pressed() -> void:
+	dice_rolled = 0
+	for dice in player_dice:
+		dice.roll_dice()
+		
+		if player_rolls == starter_rolls:
+			dice.reset_dice()
+	
+	player_rolls -= 1
+	is_dice_rolling = true
 
-func _on_options_button_pressed() -> void:
-	options_menu_ui.visible = true
+func _on_send_attack_button_pressed() -> void:
+	dice_rolled = 0
+	enemy_damage_label.text = str(dice_hand_score, "ATTACK POINTS")
+	enemy_current_health -= dice_hand_score
+	fight_ui_animation_player.play("HIT_TO_ENEMY")
+	is_player_turn = false
 
-func _on_options_menu_ui_main_menu_requested() -> void:
-	get_tree().reload_current_scene()
+var dice_rolled : int = 0
 
-func _on_options_menu_ui_restart_run_requested() -> void:
+func _on_player_roll_finished() -> void:
+	dice_rolled += 1
+	
+	var dice_data : Dictionary = {}
+	
+	if dice_rolled == 5:
+		is_dice_rolling = false
+		
+		for dice in player_dice:
+			dice_data[dice.name] = dice.current_number
+		
+		check_for_dice_combos(dice_data)
+
+func _on_enemy_roll_finished() -> void:
+	dice_rolled += 1
+	
+	var dice_data : Dictionary = {}
+	
+	if dice_rolled == 5:
+		is_dice_rolling = false
+		
+		for dice in enemy_dice:
+			dice_data[dice.name] = dice.current_number
+		
+		check_for_dice_combos(dice_data)
+		
+		enemy_damage_label.text = str(dice_hand_score, " DAMAGE POINTS")
+		fight_ui_animation_player.play("HIT_TO_PLAYER")
+		player_current_health -= dice_hand_score
+
+func enemy_attack() -> void:
+	
+	if enemy_current_health <= 0:
+		win_screen.visible = true
+	else:
+		dice_hand_score = 0
+		dice_hand_combo = ""
+		player_rolls = starter_rolls
+		for dice in enemy_dice:
+			dice.roll_dice()
+	
+	dice_rolled = 0
+
+func reset_player_ui() -> void:
+	if player_current_health <= 0:
+		defeat_screen.visible = true
+	else:
+		dice_hand_score = 0
+		dice_hand_combo = ""
+		player_rolls = starter_rolls
+		for dice in player_dice:
+			dice.reset_dice()
+
+	
+	
+@onready var defeat_screen: ColorRect = %DefeatScreen
+@onready var win_screen: ColorRect = %WinScreen
+
+
+func _on_new_game_button_pressed() -> void:
 	restart_run.emit()
-
-#reference menu stuff
-@onready var reference_menu_ui: Control = %ReferenceMenuUI
-
-func _on_reference_button_pressed() -> void:
-	reference_menu_ui.visible = true

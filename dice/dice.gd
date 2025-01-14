@@ -5,15 +5,22 @@ extends Control
 @onready var dice_texture: TextureRect = $DiceTexture
 @onready var roll_timer: Timer = $RollTimer
 @onready var change_sprite_timer: Timer = $ChangeSpriteTimer
+@onready var lock_button: Button = $LockButton
 
 var current_number : int = 1
 var is_rolling : bool = false
 var is_locked : bool = false
 
+var is_dice_disabled : bool = false
+
 signal roll_finished()
 
 func _ready() -> void:
 	reset_dice()
+
+func disable_dice() -> void:
+	is_dice_disabled = true
+	lock_button.disabled = true
 
 func roll_dice() -> void:
 	is_rolling = true
@@ -36,7 +43,7 @@ func _on_change_sprite_timer_timeout() -> void:
 		change_sprite_timer.stop()
 		roll_finished.emit()
 
-@onready var lock_icon: TextureRect = $LockIcon
+@onready var lock_icon: TextureRect = %LockIcon
 @onready var locked_color: ColorRect = %LockedColor
 
 
