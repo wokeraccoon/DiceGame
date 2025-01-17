@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bunk117rnoi5j"]
+
+[ext_resource type="Script" path="res://scenes/game/dungeon_world/player_camera/player_camera.gd" id="1_gm5eu"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ife7x"]
+
+[node name="PlayerCamera" type="CharacterBody3D"]
+script = ExtResource("1_gm5eu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_ife7x")
+
+[node name="Camera3D" type="Camera3D" parent="CollisionShape3D"]
+fov = 120.0

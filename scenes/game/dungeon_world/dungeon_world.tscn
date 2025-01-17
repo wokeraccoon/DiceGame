@@ -1,0 +1,128 @@
+[gd_scene load_steps=6 format=3 uid="uid://dkx41chdlblvm"]
+
+[ext_resource type="PackedScene" uid="uid://bunk117rnoi5j" path="res://scenes/game/dungeon_world/player_camera/player_camera.tscn" id="1_3hwer"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_noexf"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_6d5qv"]
+sky_material = SubResource("ProceduralSkyMaterial_noexf")
+
+[sub_resource type="Environment" id="Environment_mlm72"]
+background_mode = 2
+sky = SubResource("Sky_6d5qv")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_4xn4m"]
+size = Vector3(2, 2, 2)
+
+[node name="DungeonWorld" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_mlm72")
+
+[node name="DungeonMesh" type="CSGCombiner3D" parent="."]
+operation = 2
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="DungeonMesh"]
+flip_faces = true
+mesh = SubResource("BoxMesh_4xn4m")
+
+[node name="CSGMesh3D2" type="CSGMesh3D" parent="DungeonMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+flip_faces = true
+mesh = SubResource("BoxMesh_4xn4m")
+
+[node name="CSGMesh3D3" type="CSGMesh3D" parent="DungeonMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+flip_faces = true
+mesh = SubResource("BoxMesh_4xn4m")
+
+[node name="CSGMesh3D4" type="CSGMesh3D" parent="DungeonMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6)
+flip_faces = true
+mesh = SubResource("BoxMesh_4xn4m")
+
+[node name="CSGMesh3D5" type="CSGMesh3D" parent="DungeonMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -4)
+flip_faces = true
+mesh = SubResource("BoxMesh_4xn4m")
+
+[node name="CSGMesh3D6" type="CSGMesh3D" parent="DungeonMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -4)
+flip_faces = true
+mesh = SubResource("BoxMesh_4xn4m")
+
+[node name="CSGMesh3D7" type="CSGMesh3D" parent="DungeonMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -6)
+flip_faces = true
+mesh = SubResource("BoxMesh_4xn4m")
+
+[node name="CSGMesh3D8" type="CSGMesh3D" parent="DungeonMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -8)
+flip_faces = true
+mesh = SubResource("BoxMesh_4xn4m")
+
+[node name="CSGMesh3D9" type="CSGMesh3D" parent="DungeonMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -8)
+flip_faces = true
+mesh = SubResource("BoxMesh_4xn4m")
+
+[node name="CSGMesh3D10" type="CSGMesh3D" parent="DungeonMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8)
+flip_faces = true
+mesh = SubResource("BoxMesh_4xn4m")
+
+[node name="CSGMesh3D11" type="CSGMesh3D" parent="DungeonMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -8)
+flip_faces = true
+mesh = SubResource("BoxMesh_4xn4m")
+
+[node name="CSGMesh3D12" type="CSGMesh3D" parent="DungeonMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -8)
+flip_faces = true
+mesh = SubResource("BoxMesh_4xn4m")
+
+[node name="CSGMesh3D13" type="CSGMesh3D" parent="DungeonMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -6)
+flip_faces = true
+mesh = SubResource("BoxMesh_4xn4m")
+
+[node name="CSGMesh3D14" type="CSGMesh3D" parent="DungeonMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -10)
+flip_faces = true
+mesh = SubResource("BoxMesh_4xn4m")
+
+[node name="CSGMesh3D15" type="CSGMesh3D" parent="DungeonMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -10)
+flip_faces = true
+mesh = SubResource("BoxMesh_4xn4m")
+
+[node name="CSGMesh3D16" type="CSGMesh3D" parent="DungeonMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -12)
+flip_faces = true
+mesh = SubResource("BoxMesh_4xn4m")
+
+[node name="CSGMesh3D17" type="CSGMesh3D" parent="DungeonMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -14)
+flip_faces = true
+mesh = SubResource("BoxMesh_4xn4m")
+
+[node name="CSGMesh3D18" type="CSGMesh3D" parent="DungeonMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -16)
+flip_faces = true
+mesh = SubResource("BoxMesh_4xn4m")
+
+[node name="CSGMesh3D19" type="CSGMesh3D" parent="DungeonMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16)
+flip_faces = true
+mesh = SubResource("BoxMesh_4xn4m")
+
+[node name="PlayerCamera" parent="." instance=ExtResource("1_3hwer")]
+metadata/_edit_lock_ = true
