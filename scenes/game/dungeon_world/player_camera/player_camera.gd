@@ -21,8 +21,7 @@ func _physics_process(delta: float) -> void:
 				
 	
 	global_rotation.y = lerp_angle(global_rotation.y, input_target_rotation, delta * 20)
-	print()
-	
+
 	global_position = lerp(global_position,input_target_position,delta * 10)
 	
 	if input_target_position.distance_to(global_position) <= 0.1:

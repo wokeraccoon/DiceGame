@@ -11,4 +11,8 @@ script = ExtResource("1_gm5eu")
 shape = SubResource("SphereShape3D_ife7x")
 
 [node name="Camera3D" type="Camera3D" parent="CollisionShape3D"]
-fov = 120.0
+fov = 90.0
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+spot_range = 5.77029
+spot_angle = 53.4375
