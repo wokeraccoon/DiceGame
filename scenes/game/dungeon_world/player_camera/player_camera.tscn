@@ -7,12 +7,19 @@
 [node name="PlayerCamera" type="CharacterBody3D"]
 script = ExtResource("1_gm5eu")
 
+[node name="Camera3D" type="Camera3D" parent="."]
+unique_name_in_owner = true
+fov = 90.0
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_ife7x")
-
-[node name="Camera3D" type="Camera3D" parent="CollisionShape3D"]
-fov = 90.0
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 spot_range = 5.77029
 spot_angle = 53.4375
+
+[node name="ForwardSolidDetector" type="RayCast3D" parent="."]
+target_position = Vector3(0, 0, -2)
+
+[node name="BackSolidDetector" type="RayCast3D" parent="."]
+target_position = Vector3(0, 0, 2)

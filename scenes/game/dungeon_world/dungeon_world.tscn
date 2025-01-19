@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dkx41chdlblvm"]
+[gd_scene load_steps=6 format=3 uid="uid://dkx41chdlblvm"]
 
 [ext_resource type="PackedScene" uid="uid://bunk117rnoi5j" path="res://scenes/game/dungeon_world/player_camera/player_camera.tscn" id="1_3hwer"]
 [ext_resource type="Texture2D" uid="uid://cnl8dub7a5egv" path="res://scenes/game/dungeon_world/wall_texture.png" id="1_vdw43"]
@@ -12,59 +12,6 @@ texture_filter = 0
 material = SubResource("StandardMaterial3D_yylj5")
 size = Vector3(2, 8, 2)
 
-[sub_resource type="BoxMesh" id="BoxMesh_w8tyh"]
-
-[sub_resource type="Animation" id="Animation_6mciy"]
-length = 0.001
-step = 1.0
-
-[sub_resource type="Animation" id="Animation_wl3al"]
-resource_name = "default"
-length = 10.0
-loop_mode = 2
-step = 1.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(-5, 0, 10),
-"transitions": PackedFloat32Array(1, 1, 152.218),
-"update": 0,
-"values": [Vector3(6.28319, -6.28319, 6.28319), Vector3(-6.28319, 6.28319, -6.28319), Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:position")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 2, 4, 6, 8, 10),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(4, 0, -16), Vector3(4, 0.25, -16), Vector3(4, 0, -16), Vector3(4, 0.25, -16), Vector3(4, 0, -16), Vector3(4, 0.25, -16)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_wgycb"]
-_data = {
-&"RESET": SubResource("Animation_6mciy"),
-&"default": SubResource("Animation_wl3al")
-}
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c312o"]
-animation = &"default"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ucyu4"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_iqu0i"]
-states/default/node = SubResource("AnimationNodeAnimation_c312o")
-states/default/position = Vector2(488, 99.3333)
-transitions = ["Start", "default", SubResource("AnimationNodeStateMachineTransition_ucyu4")]
-
 [sub_resource type="Environment" id="Environment_lm5dw"]
 fog_enabled = true
 fog_light_color = Color(0.17278, 0.0613303, 0.175375, 1)
@@ -74,6 +21,7 @@ fog_density = 0.5497
 
 [node name="DungeonMesh" type="CSGCombiner3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+use_collision = true
 
 [node name="CSGMesh3D" type="CSGMesh3D" parent="DungeonMesh"]
 flip_faces = true
@@ -179,22 +127,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -16)
 flip_faces = true
 mesh = SubResource("BoxMesh_4xn4m")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.882363, 0.0794487, 0.463814, -0.463814, 0.313247, 0.828706, -0.0794487, -0.946343, 0.313247, 4, 0.177713, -16)
-mesh = SubResource("BoxMesh_w8tyh")
-skeleton = NodePath("../PlayerCamera")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MeshInstance3D"]
-libraries = {
-&"": SubResource("AnimationLibrary_wgycb")
-}
-
-[node name="AnimationTree" type="AnimationTree" parent="MeshInstance3D"]
-tree_root = SubResource("AnimationNodeStateMachine_iqu0i")
-anim_player = NodePath("../AnimationPlayer")
-
 [node name="PlayerCamera" parent="." instance=ExtResource("1_3hwer")]
-metadata/_edit_lock_ = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_lm5dw")
