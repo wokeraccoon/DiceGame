@@ -14,6 +14,10 @@ size = Vector3(2, 8, 2)
 
 [sub_resource type="BoxMesh" id="BoxMesh_w8tyh"]
 
+[sub_resource type="Animation" id="Animation_6mciy"]
+length = 0.001
+step = 1.0
+
 [sub_resource type="Animation" id="Animation_wl3al"]
 resource_name = "default"
 length = 10.0
@@ -44,14 +48,10 @@ tracks/1/keys = {
 "values": [Vector3(4, 0, -16), Vector3(4, 0.25, -16), Vector3(4, 0, -16), Vector3(4, 0.25, -16), Vector3(4, 0, -16), Vector3(4, 0.25, -16)]
 }
 
-[sub_resource type="Animation" id="Animation_6mciy"]
-length = 0.001
-step = 1.0
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wgycb"]
 _data = {
-"RESET": SubResource("Animation_6mciy"),
-"default": SubResource("Animation_wl3al")
+&"RESET": SubResource("Animation_6mciy"),
+&"default": SubResource("Animation_wl3al")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c312o"]
@@ -180,13 +180,13 @@ flip_faces = true
 mesh = SubResource("BoxMesh_4xn4m")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.917921, -0.214494, -0.333787, 0.333787, 0.872272, 0.357391, 0.214494, -0.43947, 0.872272, 4, 0.192715, -16)
+transform = Transform3D(0.882363, 0.0794487, 0.463814, -0.463814, 0.313247, 0.828706, -0.0794487, -0.946343, 0.313247, 4, 0.177713, -16)
 mesh = SubResource("BoxMesh_w8tyh")
 skeleton = NodePath("../PlayerCamera")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MeshInstance3D"]
 libraries = {
-"": SubResource("AnimationLibrary_wgycb")
+&"": SubResource("AnimationLibrary_wgycb")
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="MeshInstance3D"]

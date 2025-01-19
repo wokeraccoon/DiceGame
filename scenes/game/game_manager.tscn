@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://b6hkp7ydpotqs"]
 
-[ext_resource type="Script" path="res://scenes/game/game_manager.gd" id="1_x6pty"]
+[ext_resource type="Script" uid="uid://v54vb110se7y" path="res://scenes/game/game_manager.gd" id="1_x6pty"]
 [ext_resource type="PackedScene" uid="uid://b2rt1670ts75n" path="res://scenes/game/dice_calculator/dice_calculator.tscn" id="2_ghnn3"]
 [ext_resource type="PackedScene" uid="uid://dkx41chdlblvm" path="res://scenes/game/dungeon_world/dungeon_world.tscn" id="3_i3nyo"]
 
