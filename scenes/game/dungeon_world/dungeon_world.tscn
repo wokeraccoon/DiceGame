@@ -1,135 +1,224 @@
-[gd_scene load_steps=6 format=3 uid="uid://dkx41chdlblvm"]
+[gd_scene load_steps=19 format=3 uid="uid://dkx41chdlblvm"]
 
-[ext_resource type="PackedScene" uid="uid://bunk117rnoi5j" path="res://scenes/game/dungeon_world/player_camera/player_camera.tscn" id="1_3hwer"]
-[ext_resource type="Texture2D" uid="uid://cnl8dub7a5egv" path="res://scenes/game/dungeon_world/wall_texture.png" id="1_vdw43"]
+[ext_resource type="Script" uid="uid://bofqdlnkp8a1t" path="res://scenes/game/dungeon_world/dungeon_world.gd" id="1_2g0lm"]
+[ext_resource type="Texture2D" uid="uid://cnl8dub7a5egv" path="res://scenes/game/dungeon_world/wall_texture.png" id="2_plnab"]
+[ext_resource type="Texture2D" uid="uid://cthdjn64hfl7r" path="res://icon.svg" id="4_plnab"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yylj5"]
-albedo_texture = ExtResource("1_vdw43")
+albedo_texture = ExtResource("2_plnab")
 uv1_triplanar = true
 texture_filter = 0
 
 [sub_resource type="BoxMesh" id="BoxMesh_4xn4m"]
 material = SubResource("StandardMaterial3D_yylj5")
-size = Vector3(2, 8, 2)
+size = Vector3(4, 8, 6)
 
-[sub_resource type="Environment" id="Environment_lm5dw"]
+[sub_resource type="Environment" id="Environment_2em46"]
 fog_enabled = true
 fog_light_color = Color(0.17278, 0.0613303, 0.175375, 1)
 fog_density = 0.5497
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_plnab"]
+animation = &"PLAYER_IDLE"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ahytf"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_plnab"]
+states/PLAYER_IDLE/node = SubResource("AnimationNodeAnimation_plnab")
+states/PLAYER_IDLE/position = Vector2(415.333, 91.3333)
+transitions = ["Start", "PLAYER_IDLE", SubResource("AnimationNodeStateMachineTransition_ahytf")]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2em46"]
+animation = &"ENEMY_IDLE"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_plnab"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_a033r"]
+states/ENEMY_IDLE/node = SubResource("AnimationNodeAnimation_2em46")
+states/ENEMY_IDLE/position = Vector2(503.333, 88.6667)
+states/Start/position = Vector2(266, 82)
+transitions = ["Start", "ENEMY_IDLE", SubResource("AnimationNodeStateMachineTransition_plnab")]
+
+[sub_resource type="Animation" id="Animation_ahytf"]
+resource_name = "PLAYER_IDLE"
+length = 3.0
+loop_mode = 2
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerCamera:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0.1, 0), Vector3(0, -0.1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_3nvg1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerCamera:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3nvg1"]
+_data = {
+&"PLAYER_IDLE": SubResource("Animation_ahytf"),
+&"RESET": SubResource("Animation_3nvg1")
+}
+
+[sub_resource type="Animation" id="Animation_2em46"]
+resource_name = "ENEMY_IDLE"
+length = 5.0
+loop_mode = 2
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemySpot:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.261799, -0.261799, 0), Vector3(0.261799, 0.261799, -7.71341e-09)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("EnemySpot:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.5, 5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, -2.5), Vector3(0, 0.1, -2.5), Vector3(0, 0, -2.5)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("EnemySpot/EnemySprite:rotation")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5, 2.5, 4.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0.523599), Vector3(0, 0, -0.523599), Vector3(0, 0, 0.523599)]
+}
+
+[sub_resource type="Animation" id="Animation_plnab"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemySpot:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("EnemySpot:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, -2.5)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("EnemySpot/EnemySprite:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_plnab"]
+_data = {
+&"ENEMY_IDLE": SubResource("Animation_2em46"),
+&"RESET": SubResource("Animation_plnab")
+}
+
 [node name="DungeonWorld" type="Node3D"]
+script = ExtResource("1_2g0lm")
 
 [node name="DungeonMesh" type="CSGCombiner3D" parent="."]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 use_collision = true
 
-[node name="CSGMesh3D" type="CSGMesh3D" parent="DungeonMesh"]
-flip_faces = true
-mesh = SubResource("BoxMesh_4xn4m")
-
-[node name="CSGMesh3D2" type="CSGMesh3D" parent="DungeonMesh"]
+[node name="RoomPieces" type="CSGMesh3D" parent="DungeonMesh"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
 flip_faces = true
 mesh = SubResource("BoxMesh_4xn4m")
 
-[node name="CSGMesh3D3" type="CSGMesh3D" parent="DungeonMesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
-flip_faces = true
-mesh = SubResource("BoxMesh_4xn4m")
-
-[node name="CSGMesh3D4" type="CSGMesh3D" parent="DungeonMesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6)
-flip_faces = true
-mesh = SubResource("BoxMesh_4xn4m")
-
-[node name="CSGMesh3D5" type="CSGMesh3D" parent="DungeonMesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -4)
-flip_faces = true
-mesh = SubResource("BoxMesh_4xn4m")
-
-[node name="CSGMesh3D6" type="CSGMesh3D" parent="DungeonMesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -4)
-flip_faces = true
-mesh = SubResource("BoxMesh_4xn4m")
-
-[node name="CSGMesh3D7" type="CSGMesh3D" parent="DungeonMesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -6)
-flip_faces = true
-mesh = SubResource("BoxMesh_4xn4m")
-
-[node name="CSGMesh3D8" type="CSGMesh3D" parent="DungeonMesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -8)
-flip_faces = true
-mesh = SubResource("BoxMesh_4xn4m")
-
-[node name="CSGMesh3D9" type="CSGMesh3D" parent="DungeonMesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -8)
-flip_faces = true
-mesh = SubResource("BoxMesh_4xn4m")
-
-[node name="CSGMesh3D10" type="CSGMesh3D" parent="DungeonMesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8)
-flip_faces = true
-mesh = SubResource("BoxMesh_4xn4m")
-
-[node name="CSGMesh3D11" type="CSGMesh3D" parent="DungeonMesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -8)
-flip_faces = true
-mesh = SubResource("BoxMesh_4xn4m")
-
-[node name="CSGMesh3D12" type="CSGMesh3D" parent="DungeonMesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -8)
-flip_faces = true
-mesh = SubResource("BoxMesh_4xn4m")
-
-[node name="CSGMesh3D13" type="CSGMesh3D" parent="DungeonMesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -6)
-flip_faces = true
-mesh = SubResource("BoxMesh_4xn4m")
-
-[node name="CSGMesh3D14" type="CSGMesh3D" parent="DungeonMesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -10)
-flip_faces = true
-mesh = SubResource("BoxMesh_4xn4m")
-
-[node name="CSGMesh3D15" type="CSGMesh3D" parent="DungeonMesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -10)
-flip_faces = true
-mesh = SubResource("BoxMesh_4xn4m")
-
-[node name="CSGMesh3D16" type="CSGMesh3D" parent="DungeonMesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -12)
-flip_faces = true
-mesh = SubResource("BoxMesh_4xn4m")
-
-[node name="CSGMesh3D17" type="CSGMesh3D" parent="DungeonMesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -14)
-flip_faces = true
-mesh = SubResource("BoxMesh_4xn4m")
-
-[node name="CSGMesh3D18" type="CSGMesh3D" parent="DungeonMesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -16)
-flip_faces = true
-mesh = SubResource("BoxMesh_4xn4m")
-
-[node name="CSGMesh3D19" type="CSGMesh3D" parent="DungeonMesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16)
-flip_faces = true
-mesh = SubResource("BoxMesh_4xn4m")
-
-[node name="CSGMesh3D20" type="CSGMesh3D" parent="DungeonMesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -16)
-flip_faces = true
-mesh = SubResource("BoxMesh_4xn4m")
-
-[node name="CSGMesh3D21" type="CSGMesh3D" parent="DungeonMesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -16)
-flip_faces = true
-mesh = SubResource("BoxMesh_4xn4m")
-
-[node name="PlayerCamera" parent="." instance=ExtResource("1_3hwer")]
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_lm5dw")
+environment = SubResource("Environment_2em46")
 
-[editable path="PlayerCamera"]
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 2, 0)
+spot_range = 4.97841
+spot_attenuation = -1.31
+spot_angle = 39.6113
+
+[node name="EnemySpot" type="Marker3D" parent="."]
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0, 0, -2.5)
+
+[node name="EnemySprite" type="Sprite3D" parent="EnemySpot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shaded = true
+texture_filter = 0
+texture = ExtResource("4_plnab")
+
+[node name="PlayerCamera" type="Camera3D" parent="."]
+fov = 90.0
+
+[node name="SpotLight3D" type="SpotLight3D" parent="PlayerCamera"]
+spot_range = 5.77029
+spot_angle = 53.4375
+
+[node name="PlayerAnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_plnab")
+anim_player = NodePath("../PlayerAnimationPlayer")
+
+[node name="EnemyAnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_a033r")
+anim_player = NodePath("../EnemyAnimationPlayer")
+
+[node name="PlayerAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_3nvg1")
+}
+
+[node name="EnemyAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_plnab")
+}
