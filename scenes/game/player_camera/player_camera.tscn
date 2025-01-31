@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bunk117rnoi5j"]
 
-[ext_resource type="Script" uid="uid://du6o1441adbxd" path="res://scenes/game/dungeon_world/player_camera/player_camera.gd" id="1_gm5eu"]
+[ext_resource type="Script" uid="uid://du6o1441adbxd" path="res://scenes/game/player_camera/player_camera.gd" id="1_gm5eu"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ife7x"]
 

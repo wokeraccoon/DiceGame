@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bw4i5wmp2c7wo"
-path="res://.godot/imported/locked.png-430db8fcfe64aae384aa43801ecbec91.ctex"
+uid="uid://cdu0ub01qy070"
+path="res://.godot/imported/dice6.png-ae4613369fb50b26dda88ac81b31761b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://dice/assets/locked.png"
-dest_files=["res://.godot/imported/locked.png-430db8fcfe64aae384aa43801ecbec91.ctex"]
+source_file="res://dice/assets/dice_normal/dice6.png"
+dest_files=["res://.godot/imported/dice6.png-ae4613369fb50b26dda88ac81b31761b.ctex"]
 
 [params]
 

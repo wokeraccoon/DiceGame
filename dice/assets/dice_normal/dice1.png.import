@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dmxblsbw4581p"
-path="res://.godot/imported/dieWhite2.png-2d2ff047fae8b5446c334cd12dac42f1.ctex"
+uid="uid://cj28p46kn3610"
+path="res://.godot/imported/dice1.png-de9faa3e197e7db7f69559989efb5b6e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://dice/assets/dieWhite2.png"
-dest_files=["res://.godot/imported/dieWhite2.png-2d2ff047fae8b5446c334cd12dac42f1.ctex"]
+source_file="res://dice/assets/dice_normal/dice1.png"
+dest_files=["res://.godot/imported/dice1.png-de9faa3e197e7db7f69559989efb5b6e.ctex"]
 
 [params]
 

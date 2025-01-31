@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c7jnfql54invx"
-path="res://.godot/imported/unlocked.png-0d70d5aecca7d3e87ed5f32686a8f74a.ctex"
+uid="uid://bpf667y0k8xmh"
+path="res://.godot/imported/dice2.png-08f629d0de13ca17e779bf7bda43a9fa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://dice/assets/unlocked.png"
-dest_files=["res://.godot/imported/unlocked.png-0d70d5aecca7d3e87ed5f32686a8f74a.ctex"]
+source_file="res://dice/assets/dice_normal/dice2.png"
+dest_files=["res://.godot/imported/dice2.png-08f629d0de13ca17e779bf7bda43a9fa.ctex"]
 
 [params]
 

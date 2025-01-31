@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bmqx0ua7bbog"
-path="res://.godot/imported/dieWhite3.png-05acc06a1e6df70021031058523129d8.ctex"
+uid="uid://cnl8dub7a5egv"
+path="res://.godot/imported/wall_texture.png-003e424848e314f5eb29b55caaf761f9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://dice/assets/dieWhite3.png"
-dest_files=["res://.godot/imported/dieWhite3.png-05acc06a1e6df70021031058523129d8.ctex"]
+source_file="res://scenes/game/battle_stage/wall_texture.png"
+dest_files=["res://.godot/imported/wall_texture.png-003e424848e314f5eb29b55caaf761f9.ctex"]
 
 [params]
 
@@ -31,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0

@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://b6hkp7ydpotqs"]
+[gd_scene load_steps=7 format=3 uid="uid://b6hkp7ydpotqs"]
 
 [ext_resource type="Script" uid="uid://v54vb110se7y" path="res://scenes/game/game_manager.gd" id="1_x6pty"]
 [ext_resource type="PackedScene" uid="uid://b2rt1670ts75n" path="res://scenes/game/dice_calculator/dice_calculator.tscn" id="2_ghnn3"]
-[ext_resource type="PackedScene" uid="uid://dkx41chdlblvm" path="res://scenes/game/dungeon_world/dungeon_world.tscn" id="3_i3nyo"]
+[ext_resource type="PackedScene" uid="uid://dkx41chdlblvm" path="res://scenes/game/battle_stage/battle_stage.tscn" id="3_i3nyo"]
+[ext_resource type="PackedScene" uid="uid://bpa5hb2vk5kyk" path="res://dice/dice.tscn" id="4_g0gdj"]
 
 [sub_resource type="Gradient" id="Gradient_kn6ow"]
 offsets = PackedFloat32Array(0.608696, 1)
@@ -18,9 +19,9 @@ script = ExtResource("1_x6pty")
 
 [node name="DiceCalculator" parent="." instance=ExtResource("2_ghnn3")]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="BattleScreen" type="CanvasLayer" parent="."]
 
-[node name="DungeonScreen" type="Control" parent="CanvasLayer"]
+[node name="DungeonScreen" type="Control" parent="BattleScreen"]
 custom_minimum_size = Vector2(480, 480)
 layout_mode = 3
 anchors_preset = 15
@@ -29,9 +30,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
-metadata/_edit_use_anchors_ = true
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer/DungeonScreen"]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="BattleScreen/DungeonScreen"]
 texture_filter = 1
 texture_repeat = 1
 custom_minimum_size = Vector2(640, 480)
@@ -46,14 +46,14 @@ stretch = true
 stretch_shrink = 4
 metadata/_edit_use_anchors_ = true
 
-[node name="SubViewport" type="SubViewport" parent="CanvasLayer/DungeonScreen/SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="BattleScreen/DungeonScreen/SubViewportContainer"]
 handle_input_locally = false
 size = Vector2i(320, 180)
 render_target_update_mode = 4
 
-[node name="DungeonWorld" parent="CanvasLayer/DungeonScreen/SubViewportContainer/SubViewport" instance=ExtResource("3_i3nyo")]
+[node name="DungeonWorld" parent="BattleScreen/DungeonScreen/SubViewportContainer/SubViewport" instance=ExtResource("3_i3nyo")]
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/DungeonScreen"]
+[node name="TextureRect" type="TextureRect" parent="BattleScreen/DungeonScreen"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -62,3 +62,30 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_v6kut")
 metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BattleScreen/DungeonScreen"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 128
+alignment = 1
+
+[node name="Dice" parent="BattleScreen/DungeonScreen/HBoxContainer" instance=ExtResource("4_g0gdj")]
+layout_mode = 2
+
+[node name="Dice2" parent="BattleScreen/DungeonScreen/HBoxContainer" instance=ExtResource("4_g0gdj")]
+layout_mode = 2
+
+[node name="Dice3" parent="BattleScreen/DungeonScreen/HBoxContainer" instance=ExtResource("4_g0gdj")]
+layout_mode = 2
+
+[node name="Dice4" parent="BattleScreen/DungeonScreen/HBoxContainer" instance=ExtResource("4_g0gdj")]
+layout_mode = 2
+
+[node name="Dice5" parent="BattleScreen/DungeonScreen/HBoxContainer" instance=ExtResource("4_g0gdj")]
+layout_mode = 2
