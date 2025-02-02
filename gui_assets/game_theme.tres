@@ -1,0 +1,63 @@
+[gd_resource type="Theme" load_steps=11 format=3 uid="uid://df1l4akfmabug"]
+
+[ext_resource type="Texture2D" uid="uid://bayb8nqmox68b" path="res://gui_assets/button/disabled_button.png" id="1_81tqi"]
+[ext_resource type="FontFile" uid="uid://bj3khu3tfqicx" path="res://gui_assets/MedodicaRegular.otf" id="1_ujgf4"]
+[ext_resource type="Texture2D" uid="uid://dcmfjc7d4ggjv" path="res://gui_assets/button/hover_button.png" id="2_ujgf4"]
+[ext_resource type="Texture2D" uid="uid://dxjf324xxne20" path="res://gui_assets/button/normal_button.png" id="3_38a42"]
+[ext_resource type="Texture2D" uid="uid://3sag2u7rk6e8" path="res://gui_assets/button/pressed_button.png" id="4_6ikhj"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_odgbc"]
+texture = ExtResource("1_81tqi")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_38a42"]
+bg_color = Color(1, 1, 1, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ype4b"]
+texture = ExtResource("2_ujgf4")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_snmd3"]
+texture = ExtResource("3_38a42")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3sgq2"]
+texture = ExtResource("4_6ikhj")
+texture_margin_left = 2.0
+texture_margin_top = 4.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+
+[resource]
+Button/colors/font_color = Color(0.243137, 0.207843, 0.27451, 1)
+Button/colors/font_disabled_color = Color(0.498039, 0.439216, 0.541176, 1)
+Button/colors/font_focus_color = Color(0.180392, 0.133333, 0.184314, 1)
+Button/colors/font_hover_color = Color(0.384314, 0.333333, 0.396078, 1)
+Button/colors/font_hover_pressed_color = Color(0.180392, 0.133333, 0.184314, 1)
+Button/colors/font_pressed_color = Color(0.180392, 0.133333, 0.184314, 1)
+Button/font_sizes/font_size = 32
+Button/fonts/font = ExtResource("1_ujgf4")
+Button/styles/disabled = SubResource("StyleBoxTexture_odgbc")
+Button/styles/focus = SubResource("StyleBoxFlat_38a42")
+Button/styles/hover = SubResource("StyleBoxTexture_ype4b")
+Button/styles/normal = SubResource("StyleBoxTexture_snmd3")
+Button/styles/pressed = SubResource("StyleBoxTexture_3sgq2")
+Label/fonts/font = ExtResource("1_ujgf4")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://bpa5hb2vk5kyk"]
+[gd_scene load_steps=23 format=3 uid="uid://bpa5hb2vk5kyk"]
 
 [ext_resource type="Script" uid="uid://ghp56d1pp8oe" path="res://dice/dice.gd" id="1_desa2"]
 [ext_resource type="Texture2D" uid="uid://cj28p46kn3610" path="res://dice/assets/dice_normal/dice1.png" id="2_2tv1o"]
@@ -8,21 +8,12 @@
 [ext_resource type="Texture2D" uid="uid://cltm4gs0k8mko" path="res://dice/assets/dice_normal/dice5.png" id="6_60uon"]
 [ext_resource type="Texture2D" uid="uid://cdu0ub01qy070" path="res://dice/assets/dice_normal/dice6.png" id="7_x8mqb"]
 [ext_resource type="Texture2D" uid="uid://bw4i3h1joq3ob" path="res://dice/assets/dice_locked.png" id="8_5157l"]
-
-[sub_resource type="AnimatedTexture" id="AnimatedTexture_p3s5a"]
-frames = 6
-pause = true
-frame_0/texture = ExtResource("2_2tv1o")
-frame_1/texture = ExtResource("3_5157l")
-frame_1/duration = 1.0
-frame_2/texture = ExtResource("4_w0qrj")
-frame_2/duration = 1.0
-frame_3/texture = ExtResource("5_65ktn")
-frame_3/duration = 1.0
-frame_4/texture = ExtResource("6_60uon")
-frame_4/duration = 1.0
-frame_5/texture = ExtResource("7_x8mqb")
-frame_5/duration = 1.0
+[ext_resource type="Texture2D" uid="uid://bjuns6kocdrrx" path="res://dice/assets/dice_alt/dice_alt1.png" id="8_burml"]
+[ext_resource type="Texture2D" uid="uid://c4vob515lak08" path="res://dice/assets/dice_alt/dice_alt2.png" id="9_6s3cu"]
+[ext_resource type="Texture2D" uid="uid://ej7echp0ehuf" path="res://dice/assets/dice_alt/dice_alt3.png" id="10_dw3ln"]
+[ext_resource type="Texture2D" uid="uid://c8iv7eio5b7l4" path="res://dice/assets/dice_alt/dice_alt4.png" id="11_5lqs7"]
+[ext_resource type="Texture2D" uid="uid://d1kaldjvh3i6l" path="res://dice/assets/dice_alt/dice_alt5.png" id="12_x7m6l"]
+[ext_resource type="Texture2D" uid="uid://42f013m5yv4f" path="res://dice/assets/dice_alt/dice_alt6.png" id="13_vt45r"]
 
 [sub_resource type="Animation" id="Animation_2tv1o"]
 resource_name = "DICE_IDLE"
@@ -53,6 +44,180 @@ tracks/1/keys = {
 "values": [Vector2(1, 1), Vector2(0.9, 0.9), Vector2(1, 1), Vector2(0.9, 0.9)]
 }
 
+[sub_resource type="Animation" id="Animation_x8mqb"]
+resource_name = "DICE_INTRO"
+length = 0.4
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DiceTexture:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.5, 1.5), Vector2(1, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.39),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"start_roll_dice"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_65ktn"]
+resource_name = "DICE_LOCK"
+length = 0.1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DiceTexture:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.02, 0.03, 0.04, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 1.1), Vector2(1, 1), Vector2(1.1, 1.1), Vector2(0.9, 0.9)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:dice_state")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.01),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DiceTexture:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_p3s5a"]
+resource_name = "DICE_OUTRO"
+length = 0.4
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DiceTexture:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.00136e-05, 1.00136e-05)]
+}
+
+[sub_resource type="Animation" id="Animation_w0qrj"]
+resource_name = "DICE_ROLL"
+length = 0.2
+loop_mode = 1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DiceTexture:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-48, -48), Vector2(-50, -50), Vector2(-48, -50), Vector2(-46, -48), Vector2(-48, -48), Vector2(-50, -50), Vector2(-48, -50), Vector2(-46, -48), Vector2(-46, -46)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DiceTexture:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0872665, -0.0872665, 0.0872665, -0.0872665, 0.0872665]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DiceTexture:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_set_random_number"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_60uon"]
+resource_name = "DICE_UNLOCK"
+length = 0.1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DiceTexture:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.02, 0.03, 0.04, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.9, 0.9), Vector2(1.1, 1.1), Vector2(1, 1), Vector2(1.1, 1.1), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:dice_state")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.09),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
 [sub_resource type="Animation" id="Animation_5157l"]
 length = 0.001
 tracks/0/type = "value"
@@ -77,7 +242,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1, 1)]
+"values": [Vector2(0, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -94,136 +259,14 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("DiceTexture/LockIcon:visible")
+tracks/3/path = NodePath(".:dice_state")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_w0qrj"]
-resource_name = "DICE_ROLL"
-length = 0.2
-loop_mode = 2
-step = 0.01
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("DiceTexture:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(-48, -48), Vector2(-50, -50), Vector2(-48, -50), Vector2(-46, -48), Vector2(-46, -46)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("DiceTexture:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.0872665, -0.0872665, 0.0872665]
-}
-
-[sub_resource type="Animation" id="Animation_65ktn"]
-resource_name = "DICE_LOCK"
-length = 0.1
-step = 0.01
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("DiceTexture:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.02, 0.03, 0.04, 0.1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1.1, 1.1), Vector2(1, 1), Vector2(1.1, 1.1), Vector2(0.9, 0.9)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("DiceTexture/LockIcon:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.02),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-
-[sub_resource type="Animation" id="Animation_60uon"]
-resource_name = "DICE_UNLOCK"
-length = 0.1
-step = 0.01
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("DiceTexture:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.02, 0.03, 0.04, 0.1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0.9, 0.9), Vector2(1.1, 1.1), Vector2(1, 1), Vector2(1.1, 1.1), Vector2(1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("DiceTexture/LockIcon:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.02),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-
-[sub_resource type="Animation" id="Animation_x8mqb"]
-resource_name = "DICE_INTRO"
-length = 0.4
-step = 0.01
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("DiceTexture:scale")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(1.5, 1.5), Vector2(1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_p3s5a"]
-resource_name = "DICE_OUTRO"
-length = 0.4
-step = 0.01
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("DiceTexture:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1.00136e-05, 1.00136e-05)]
+"values": [0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5157l"]
@@ -237,84 +280,15 @@ _data = {
 &"RESET": SubResource("Animation_5157l")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_burml"]
-animation = &"DICE_IDLE"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6s3cu"]
-animation = &"DICE_INTRO"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dw3ln"]
-animation = &"DICE_LOCK"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5lqs7"]
-animation = &"DICE_OUTRO"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_x7m6l"]
-animation = &"DICE_ROLL"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vt45r"]
-animation = &"DICE_UNLOCK"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_a23mt"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8v4uc"]
-xfade_time = 0.5
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hgso2"]
-advance_mode = 2
-advance_condition = &"is_fight_over"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_aeh4v"]
-xfade_time = 0.1
-switch_mode = 1
-advance_mode = 2
-advance_condition = &"is_rolling"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pjcgm"]
-xfade_time = 0.1
-switch_mode = 1
-advance_mode = 2
-advance_condition = &"is_not_rolling"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gsnqd"]
-xfade_time = 0.25
-advance_mode = 2
-advance_condition = &"lock_dice"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_llyp0"]
-advance_mode = 2
-advance_condition = &"unlock_dice"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_csi6a"]
-xfade_time = 0.25
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_x8mqb"]
-states/DICE_IDLE/node = SubResource("AnimationNodeAnimation_burml")
-states/DICE_IDLE/position = Vector2(578.667, 85.3333)
-states/DICE_INTRO/node = SubResource("AnimationNodeAnimation_6s3cu")
-states/DICE_INTRO/position = Vector2(374.667, 96)
-states/DICE_LOCK/node = SubResource("AnimationNodeAnimation_dw3ln")
-states/DICE_LOCK/position = Vector2(526, -19.8518)
-states/DICE_OUTRO/node = SubResource("AnimationNodeAnimation_5lqs7")
-states/DICE_OUTRO/position = Vector2(750.667, 82.6667)
-states/DICE_ROLL/node = SubResource("AnimationNodeAnimation_x7m6l")
-states/DICE_ROLL/position = Vector2(540, 216)
-states/DICE_UNLOCK/node = SubResource("AnimationNodeAnimation_vt45r")
-states/DICE_UNLOCK/position = Vector2(695.333, -19.7778)
-transitions = ["Start", "DICE_INTRO", SubResource("AnimationNodeStateMachineTransition_a23mt"), "DICE_INTRO", "DICE_IDLE", SubResource("AnimationNodeStateMachineTransition_8v4uc"), "DICE_IDLE", "DICE_OUTRO", SubResource("AnimationNodeStateMachineTransition_hgso2"), "DICE_IDLE", "DICE_ROLL", SubResource("AnimationNodeStateMachineTransition_aeh4v"), "DICE_ROLL", "DICE_IDLE", SubResource("AnimationNodeStateMachineTransition_pjcgm"), "DICE_IDLE", "DICE_LOCK", SubResource("AnimationNodeStateMachineTransition_gsnqd"), "DICE_LOCK", "DICE_UNLOCK", SubResource("AnimationNodeStateMachineTransition_llyp0"), "DICE_UNLOCK", "DICE_IDLE", SubResource("AnimationNodeStateMachineTransition_csi6a")]
-graph_offset = Vector2(-101, -245)
-
 [node name="Dice" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_desa2")
+dice_array_textures = Array[Texture2D]([ExtResource("2_2tv1o"), ExtResource("3_5157l"), ExtResource("4_w0qrj"), ExtResource("5_65ktn"), ExtResource("6_60uon"), ExtResource("7_x8mqb")])
+alt_dice_array_textures = Array[Texture2D]([ExtResource("8_burml"), ExtResource("9_6s3cu"), ExtResource("10_dw3ln"), ExtResource("11_5lqs7"), ExtResource("12_x7m6l"), ExtResource("13_vt45r")])
 
 [node name="DiceTexture" type="TextureRect" parent="."]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
 offset_left = -48.0
@@ -323,12 +297,14 @@ offset_right = 48.0
 offset_bottom = 48.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1e-05, 1e-05)
 pivot_offset = Vector2(48, 48)
-texture = SubResource("AnimatedTexture_p3s5a")
+mouse_filter = 2
+texture = ExtResource("2_2tv1o")
 
 [node name="LockIcon" type="TextureRect" parent="DiceTexture"]
-visible = false
-modulate = Color(1, 1, 1, 0.5)
+unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 0.503)
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
 offset_right = 96.0
@@ -336,18 +312,33 @@ offset_bottom = 96.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(48, 48)
+mouse_filter = 2
 texture = ExtResource("8_5157l")
+
+[node name="DiceButton" type="Button" parent="DiceTexture"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+flat = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_5157l")
 }
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource("AnimationNodeStateMachine_x8mqb")
-anim_player = NodePath("../AnimationPlayer")
-parameters/conditions/is_fight_over = false
-parameters/conditions/is_not_rolling = false
-parameters/conditions/is_rolling = false
-parameters/conditions/lock_dice = false
-parameters/conditions/unlock_dice = false
+[node name="RollDiceTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[connection signal="button_down" from="DiceTexture/DiceButton" to="." method="_on_dice_button_button_down"]
+[connection signal="focus_entered" from="DiceTexture/DiceButton" to="." method="_on_dice_button_focus_entered"]
+[connection signal="focus_exited" from="DiceTexture/DiceButton" to="." method="_on_dice_button_focus_exited"]
+[connection signal="mouse_entered" from="DiceTexture/DiceButton" to="." method="_on_dice_button_mouse_entered"]
+[connection signal="mouse_exited" from="DiceTexture/DiceButton" to="." method="_on_dice_button_mouse_exited"]
+[connection signal="timeout" from="RollDiceTimer" to="." method="_on_roll_dice_timer_timeout"]

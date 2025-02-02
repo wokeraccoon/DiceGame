@@ -18,6 +18,89 @@ fog_enabled = true
 fog_light_color = Color(0.17278, 0.0613303, 0.175375, 1)
 fog_density = 0.5497
 
+[sub_resource type="Animation" id="Animation_laqph"]
+resource_name = "ENEMY_ATTACK"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemySpot:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, -2.5), Vector3(0, 0, -1.3), Vector3(0, 0, -1.3), Vector3(0, 0, -2.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("EnemySpot/EnemySprite:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.466667, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0.785398, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_clh0e"]
+resource_name = "ENEMY_DEATH"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemySpot:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, -2.5), Vector3(0, 0, -2.5), Vector3(0, -10, -2.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("EnemySpot/EnemySprite:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -6.28319)]
+}
+
+[sub_resource type="Animation" id="Animation_hbjoa"]
+resource_name = "ENEMY_HIT"
+length = 0.25
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemySpot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.2, 0, -2.5), Vector3(0.2, 0, -2.5), Vector3(-0.2, 0, -2.5), Vector3(0.2, 0, -2.5), Vector3(-0.2, 0, -2.5), Vector3(0.2, 0, -2.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("EnemySpot:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_5fcvq"]
 resource_name = "ENEMY_IDLE"
 length = 4.0
@@ -87,89 +170,6 @@ tracks/2/keys = {
 "values": [Vector3(0, 0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_hbjoa"]
-resource_name = "ENEMY_HIT"
-length = 0.25
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("EnemySpot:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(-0.2, 0, -2.5), Vector3(0.2, 0, -2.5), Vector3(-0.2, 0, -2.5), Vector3(0.2, 0, -2.5), Vector3(-0.2, 0, -2.5), Vector3(0.2, 0, -2.5)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("EnemySpot:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_clh0e"]
-resource_name = "ENEMY_DEATH"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("EnemySpot:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, -2.5), Vector3(0, 0, -2.5), Vector3(0, -10, -2.5)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("EnemySpot/EnemySprite:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, -6.28319)]
-}
-
-[sub_resource type="Animation" id="Animation_laqph"]
-resource_name = "ENEMY_ATTACK"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("EnemySpot:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.6, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, -2.5), Vector3(0, 0, -1.3), Vector3(0, 0, -1.3), Vector3(0, 0, -2.5)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("EnemySpot/EnemySprite:rotation")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.466667, 0.6, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0.785398, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u1udp"]
 _data = {
 &"ENEMY_ATTACK": SubResource("Animation_laqph"),
@@ -228,6 +228,35 @@ states/ENEMY_IDLE/position = Vector2(439.333, 85.6667)
 transitions = ["Start", "ENEMY_IDLE", SubResource("AnimationNodeStateMachineTransition_nmwqp"), "ENEMY_IDLE", "ENEMY_HIT", SubResource("AnimationNodeStateMachineTransition_aekn8"), "ENEMY_HIT", "ENEMY_IDLE", SubResource("AnimationNodeStateMachineTransition_gvf2a"), "ENEMY_HIT", "ENEMY_DEATH", SubResource("AnimationNodeStateMachineTransition_mf65u"), "ENEMY_IDLE", "ENEMY_ATTACK", SubResource("AnimationNodeStateMachineTransition_ab7sp"), "ENEMY_ATTACK", "ENEMY_IDLE", SubResource("AnimationNodeStateMachineTransition_ksgs3")]
 graph_offset = Vector2(-325, -289)
 
+[sub_resource type="Animation" id="Animation_hkqk2"]
+resource_name = "PLAYER_DEATH"
+length = 0.25
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerCamera:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -0.8, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerCamera:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.523599)]
+}
+
 [sub_resource type="Animation" id="Animation_kxkif"]
 resource_name = "PLAYER_HURT"
 length = 0.4
@@ -276,6 +305,20 @@ tracks/0/keys = {
 "handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(5, -0.25, 0, 1, -0.0294418, 0, -0.64, 0.00384025, 0.25, 0),
 "times": PackedFloat32Array(0, 1)
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"battle_stage_ready"],
+"method": &"emit_signal"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_1ybse"]
@@ -361,35 +404,6 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_hkqk2"]
-resource_name = "PLAYER_DEATH"
-length = 0.25
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerCamera:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, -0.8, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("PlayerCamera:rotation")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.2, 0.25),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.523599)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3nvg1"]
@@ -480,7 +494,7 @@ states/PLAYER_ZOOM_OUT/node = SubResource("AnimationNodeAnimation_hkqk2")
 states/PLAYER_ZOOM_OUT/position = Vector2(768, 366)
 states/Start/position = Vector2(212.667, 94.2222)
 transitions = ["Start", "PLAYER_INTRO", SubResource("AnimationNodeStateMachineTransition_hbjoa"), "PLAYER_INTRO", "PLAYER_IDLE", SubResource("AnimationNodeStateMachineTransition_clh0e"), "PLAYER_IDLE", "PLAYER_OUTRO", SubResource("AnimationNodeStateMachineTransition_hkqk2"), "PLAYER_ZOOM_IN", "PLAYER_ZOOM_OUT", SubResource("AnimationNodeStateMachineTransition_laqph"), "PLAYER_IDLE", "PLAYER_ZOOM_IN", SubResource("AnimationNodeStateMachineTransition_pjel8"), "PLAYER_ZOOM_OUT", "PLAYER_IDLE", SubResource("AnimationNodeStateMachineTransition_mb0h6"), "PLAYER_IDLE", "PLAYER_HURT", SubResource("AnimationNodeStateMachineTransition_7fcjs"), "PLAYER_HURT", "PLAYER_IDLE", SubResource("AnimationNodeStateMachineTransition_odxky"), "PLAYER_HURT", "PLAYER_DEATH", SubResource("AnimationNodeStateMachineTransition_k1inx")]
-graph_offset = Vector2(-295, 49)
+graph_offset = Vector2(185, 25)
 
 [node name="BattleStage" type="Node3D"]
 script = ExtResource("1_1ybse")
@@ -508,7 +522,6 @@ spot_angle = 39.6113
 transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0, 0.1, -2.5)
 
 [node name="EnemySprite" type="Sprite3D" parent="EnemySpot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 pixel_size = 0.05
 shaded = true
 texture_filter = 2

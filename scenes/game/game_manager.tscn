@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://v54vb110se7y" path="res://scenes/game/game_manager.gd" id="1_x6pty"]
 [ext_resource type="PackedScene" uid="uid://b2rt1670ts75n" path="res://scenes/game/dice_calculator/dice_calculator.tscn" id="2_ghnn3"]
+[ext_resource type="Theme" uid="uid://df1l4akfmabug" path="res://gui_assets/game_theme.tres" id="3_g0gdj"]
 [ext_resource type="PackedScene" uid="uid://dkx41chdlblvm" path="res://scenes/game/battle_stage/battle_stage.tscn" id="3_i3nyo"]
-[ext_resource type="PackedScene" uid="uid://bpa5hb2vk5kyk" path="res://dice/dice.tscn" id="4_g0gdj"]
 
 [sub_resource type="Gradient" id="Gradient_kn6ow"]
 offsets = PackedFloat32Array(0.608696, 1)
@@ -30,6 +30,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
+theme = ExtResource("3_g0gdj")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="BattleScreen/DungeonScreen"]
 texture_filter = 1
@@ -51,7 +52,8 @@ handle_input_locally = false
 size = Vector2i(320, 180)
 render_target_update_mode = 4
 
-[node name="DungeonWorld" parent="BattleScreen/DungeonScreen/SubViewportContainer/SubViewport" instance=ExtResource("3_i3nyo")]
+[node name="BattleStage" parent="BattleScreen/DungeonScreen/SubViewportContainer/SubViewport" instance=ExtResource("3_i3nyo")]
+unique_name_in_owner = true
 
 [node name="TextureRect" type="TextureRect" parent="BattleScreen/DungeonScreen"]
 layout_mode = 1
@@ -64,28 +66,58 @@ texture = SubResource("GradientTexture2D_v6kut")
 metadata/_edit_use_anchors_ = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="BattleScreen/DungeonScreen"]
-custom_minimum_size = Vector2(0, 64)
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -128.0
 grow_horizontal = 2
 grow_vertical = 0
+alignment = 1
+
+[node name="MarginContainer4" type="MarginContainer" parent="BattleScreen/DungeonScreen/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="RollButton" type="Button" parent="BattleScreen/DungeonScreen/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Roll"
+
+[node name="MarginContainer" type="MarginContainer" parent="BattleScreen/DungeonScreen/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="PlayerDiceHolder" type="HBoxContainer" parent="BattleScreen/DungeonScreen/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
 theme_override_constants/separation = 128
 alignment = 1
 
-[node name="Dice" parent="BattleScreen/DungeonScreen/HBoxContainer" instance=ExtResource("4_g0gdj")]
+[node name="MarginContainer2" type="MarginContainer" parent="BattleScreen/DungeonScreen/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
 
-[node name="Dice2" parent="BattleScreen/DungeonScreen/HBoxContainer" instance=ExtResource("4_g0gdj")]
+[node name="AttackButton" type="Button" parent="BattleScreen/DungeonScreen/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 64)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Attack"
 
-[node name="Dice3" parent="BattleScreen/DungeonScreen/HBoxContainer" instance=ExtResource("4_g0gdj")]
+[node name="MarginContainer3" type="MarginContainer" parent="BattleScreen/DungeonScreen/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
 
-[node name="Dice4" parent="BattleScreen/DungeonScreen/HBoxContainer" instance=ExtResource("4_g0gdj")]
-layout_mode = 2
-
-[node name="Dice5" parent="BattleScreen/DungeonScreen/HBoxContainer" instance=ExtResource("4_g0gdj")]
-layout_mode = 2
+[connection signal="pressed" from="BattleScreen/DungeonScreen/HBoxContainer/RollButton" to="." method="_on_roll_button_pressed"]
