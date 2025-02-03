@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://n3qds18fabsn"]
 
-[ext_resource type="Script" path="res://scenes/main_menu/main_menu.gd" id="1_yl4tm"]
+[ext_resource type="Script" uid="uid://ccs4n8wx8a2fg" path="res://scenes/main_menu/main_menu.gd" id="1_yl4tm"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -36,7 +36,6 @@ horizontal_alignment = 1
 custom_minimum_size = Vector2(0, 96)
 layout_mode = 2
 size_flags_vertical = 4
-theme_override_font_sizes/font_size = 32
 text = "Start Run"
 
 [node name="QuitButton" type="Button" parent="VBoxContainer"]

@@ -1,0 +1,134 @@
+[gd_scene load_steps=3 format=3 uid="uid://tliv023b8t2y"]
+
+[ext_resource type="Script" uid="uid://c8el58cqssgax" path="res://scenes/game/battle_stage/battle_ui/player_dice_ui.gd" id="1_3dxad"]
+[ext_resource type="Texture2D" uid="uid://cthdjn64hfl7r" path="res://icon.svg" id="2_bj2he"]
+
+[node name="PlayerDiceUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3dxad")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+
+[node name="PlayerStats" type="HBoxContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 8
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/PlayerStats"]
+layout_mode = 2
+
+[node name="PlayerClassIcon" type="TextureRect" parent="VBoxContainer/PlayerStats/VBoxContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("2_bj2he")
+expand_mode = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer/PlayerStats/VBoxContainer"]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+
+[node name="ScoringArea" type="HBoxContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+alignment = 1
+
+[node name="DiceHandPanel" type="MarginContainer" parent="VBoxContainer/ScoringArea"]
+custom_minimum_size = Vector2(272, 97)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="VBoxContainer/ScoringArea/DiceHandPanel"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ScoringArea/DiceHandPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScoringArea/DiceHandPanel/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/ScoringArea/DiceHandPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Current Dice Hand"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DiceHandLabel" type="RichTextLabel" parent="VBoxContainer/ScoringArea/DiceHandPanel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "[shake rate=25.0 level=5 connected=0][font_size=64]Rolling...[/font_size][/shake]"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DiceArea" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+size_flags_vertical = 8
+alignment = 1
+
+[node name="MarginContainer4" type="MarginContainer" parent="VBoxContainer/DiceArea"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="RollButton" type="Button" parent="VBoxContainer/DiceArea"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Roll"
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/DiceArea"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="PlayerDiceHolder" type="HBoxContainer" parent="VBoxContainer/DiceArea"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_constants/separation = 128
+alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/DiceArea"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="AttackButton" type="Button" parent="VBoxContainer/DiceArea"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Attack"
+
+[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer/DiceArea"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[connection signal="pressed" from="VBoxContainer/DiceArea/RollButton" to="." method="_on_roll_button_pressed"]

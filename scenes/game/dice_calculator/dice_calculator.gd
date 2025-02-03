@@ -1,7 +1,7 @@
 class_name DiceCalculator
 extends Node
 
-enum DiceHandNames {
+enum DiceComboNames {
 	SINGLES,
 	PAIR,
 	TWO_PAIR,
@@ -12,7 +12,7 @@ enum DiceHandNames {
 	YATCH
 }
 
-var dice_combos_scores : Dictionary = {
+var dice_combos_scores : Dictionary[String,int] = {
 	"Singles" : 1,
 	"Pair" : 5,
 	"Two Pair" : 10,
@@ -26,7 +26,7 @@ var dice_combos_scores : Dictionary = {
 func count_value_occurrences_concise(my_dictionary: Dictionary, target_value) -> int:
 	return my_dictionary.values().count(target_value)
 
-func check_for_dice_combos(dice_rolled : Dictionary) -> DiceHandNames:
+func check_for_dice_combos(dice_rolled : Dictionary) -> DiceComboNames:
 	var dice_sides_ammounts : Dictionary = {}
 
 	for dice_value in 6:
@@ -37,14 +37,14 @@ func check_for_dice_combos(dice_rolled : Dictionary) -> DiceHandNames:
 
 	#yatch
 	if dice_sides_ammounts.size() == 1:
-		return DiceHandNames.YATCH
+		return DiceComboNames.YATCH
 	
 	#straights
 	if dice_sides_ammounts.has(2) and dice_sides_ammounts.has(3) and dice_sides_ammounts.has(4) and dice_sides_ammounts.has(5) and dice_sides_ammounts.has(6):
-		return DiceHandNames.STRAIGHT
+		return DiceComboNames.STRAIGHT
 		
 	if dice_sides_ammounts.has(1) and dice_sides_ammounts.has(2) and dice_sides_ammounts.has(3) and dice_sides_ammounts.has(4) and dice_sides_ammounts.has(5):
-		return DiceHandNames.STRAIGHT
+		return DiceComboNames.STRAIGHT
 
 	#full house or four on a row
 	if dice_sides_ammounts.size() == 2:
@@ -54,15 +54,15 @@ func check_for_dice_combos(dice_rolled : Dictionary) -> DiceHandNames:
 		
 		#full house
 		if set_one == 2 and set_one == 3:
-			return DiceHandNames.FULL_HOUSE
+			return DiceComboNames.FULL_HOUSE
 		elif set_two == 2 or set_two == 3:
-			return DiceHandNames.FULL_HOUSE
+			return DiceComboNames.FULL_HOUSE
 
 		#four on a row
 		if set_one == 4:
-			return DiceHandNames.FOUR_OF_A_KIND
+			return DiceComboNames.FOUR_OF_A_KIND
 		elif set_two == 4:
-			return DiceHandNames.FOUR_OF_A_KIND
+			return DiceComboNames.FOUR_OF_A_KIND
 
 	else:
 		#pair, two pair, and tree of a kind
@@ -76,12 +76,12 @@ func check_for_dice_combos(dice_rolled : Dictionary) -> DiceHandNames:
 				has_trio = true
 
 		if pair_ammount == 1:
-			return DiceHandNames.PAIR
+			return DiceComboNames.PAIR
 		elif pair_ammount == 2:
-			return DiceHandNames.TWO_PAIR
+			return DiceComboNames.TWO_PAIR
 		elif has_trio:
-			return DiceHandNames.THREE_OF_A_KIND
+			return DiceComboNames.THREE_OF_A_KIND
 	
-	return DiceHandNames.SINGLES
+	return DiceComboNames.SINGLES
 	
 	

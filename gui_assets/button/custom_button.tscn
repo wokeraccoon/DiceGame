@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://csglvb0lbeaa0"]
-
-[ext_resource type="Theme" uid="uid://df1l4akfmabug" path="res://gui_assets/game_theme.tres" id="1_p4nl3"]
-
-[node name="Button" type="Button"]
-offset_right = 108.0
-offset_bottom = 50.0
-theme = ExtResource("1_p4nl3")
-text = "Test"
