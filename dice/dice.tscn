@@ -286,7 +286,6 @@ anchors_preset = 0
 script = ExtResource("1_desa2")
 dice_array_textures = Array[Texture2D]([ExtResource("2_2tv1o"), ExtResource("3_5157l"), ExtResource("4_w0qrj"), ExtResource("5_65ktn"), ExtResource("6_60uon"), ExtResource("7_x8mqb")])
 alt_dice_array_textures = Array[Texture2D]([ExtResource("8_burml"), ExtResource("9_6s3cu"), ExtResource("10_dw3ln"), ExtResource("11_5lqs7"), ExtResource("12_x7m6l"), ExtResource("13_vt45r")])
-use_alt_dice = true
 
 [node name="DiceTexture" type="TextureRect" parent="."]
 unique_name_in_owner = true

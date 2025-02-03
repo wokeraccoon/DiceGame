@@ -540,7 +540,8 @@ parameters/conditions/enemy_attacked = false
 parameters/conditions/is_enemy_dead = false
 
 [node name="PlayerCamera" type="Camera3D" parent="."]
-fov = 90.0
+v_offset = -0.305
+fov = 120.0
 
 [node name="SpotLight3D" type="SpotLight3D" parent="PlayerCamera"]
 spot_range = 5.77029
