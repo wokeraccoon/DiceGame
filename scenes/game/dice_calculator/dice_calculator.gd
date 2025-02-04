@@ -12,15 +12,15 @@ enum DiceComboNames {
 	YATCH
 }
 
-var dice_combos_scores : Dictionary[String,int] = {
-	"Singles" : 1,
-	"Pair" : 5,
-	"Two Pair" : 10,
-	"Three of a Kind" : 15,
-	"Four of a Kind" : 30,
-	"Full House" : 25,
-	"Straight" : 35,
-	"Yatch" : 100
+var dice_combos_scores : Dictionary[DiceComboNames,int] = {
+	DiceComboNames.SINGLES : 1,
+	DiceComboNames.PAIR : 5,
+	DiceComboNames.TWO_PAIR : 10,
+	DiceComboNames.THREE_OF_A_KIND : 15,
+	DiceComboNames.FOUR_OF_A_KIND : 30,
+	DiceComboNames.FULL_HOUSE : 25,
+	DiceComboNames.STRAIGHT : 35,
+	DiceComboNames.YATCH : 100
 }
 
 func count_value_occurrences_concise(my_dictionary: Dictionary, target_value) -> int:

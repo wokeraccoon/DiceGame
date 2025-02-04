@@ -12,6 +12,12 @@ func _ready() -> void:
 	var main_menu : MainMenu = MAIN_MENU.instantiate()
 	main_layer.add_child(main_menu)
 	main_menu.new_game_started.connect(_start_new_game)
+	
+	if OS.has_feature("android"):
+		get_tree().root.content_scale_factor = 1
+
+	else:
+		get_tree().root.content_scale_factor = 0.8
 
 func _start_new_game() -> void:
 	for child in main_layer.get_children():

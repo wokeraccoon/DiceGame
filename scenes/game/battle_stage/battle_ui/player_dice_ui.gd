@@ -8,17 +8,24 @@ const DICE: PackedScene = preload("res://dice/dice.tscn")
 @onready var attack_button: Button = %AttackButton
 @onready var scoring_area: HBoxContainer = %ScoringArea
 @onready var top_bar_ui: MarginContainer = %TopBarUI
+@onready var total_dice_score_label: Label = %TotalDiceScoreLabel
+@onready var attack_score_label: Label = %AttackScoreLabel
 
 @export var player_dice : Array[Dice] = []
+
+var total_dice_score : int = 0
 
 signal dice_roll_finished(dice_values : Dictionary[String,int])
 
 func _ready() -> void:
-	
+	total_dice_score = 0
+	total_dice_score_label.text = str(total_dice_score)
 	
 	roll_button.hide()
 	attack_button.hide()
 	scoring_area.hide()
+	
+	set_attack_score_label(0)
 	
 	_on_battle_stage_ready()
 	
@@ -43,7 +50,7 @@ func _on_battle_stage_ready() -> void:
 
 var dice_rolled : int = 0
 
-func on_dice_roll_complete(_number : int) -> void:
+func on_dice_roll_complete() -> void:
 	dice_rolled += 1
 	
 	if dice_rolled == 5:
@@ -58,6 +65,9 @@ func on_dice_roll_complete(_number : int) -> void:
 		for dice in player_dice.size():
 			dice_values[str("Dice",dice)] = player_dice[dice].dice_value
 			
+			total_dice_score += player_dice[dice].dice_value
+		total_dice_score_label.text = str(total_dice_score)
+		
 		dice_roll_finished.emit(dice_values)
 		
 		
@@ -81,9 +91,15 @@ func show_dice_combo(dice_combo : DiceCalculator.DiceComboNames) -> void:
 		DiceCalculator.DiceComboNames.STRAIGHT:
 			dice_hand_label.text = "[font_size=48]Straight (35)[/font_size]"
 		DiceCalculator.DiceComboNames.YATCH:
-			dice_hand_label.text = "[rainbow sat=0.5][wave amp=100 freq=5][font_size=48]Yatch! (50)[/font_size][/wave][/rainbow]"
+			dice_hand_label.text = "[rainbow sat=0.5][wave amp=100 freq=5][font_size=48]Yatch! (100)[/font_size][/wave][/rainbow]"
+
+func set_attack_score_label(score : int):
+	attack_score_label.text = str(score)
 
 func _on_roll_button_pressed() -> void:
+	set_attack_score_label(0)
+	total_dice_score = 0
+	total_dice_score_label.text = str(total_dice_score)
 	
 	dice_hand_label.text = "[shake rate=20.0 level=5 connected=1][font_size=48]Rolling...[/font_size][/shake]"
 	

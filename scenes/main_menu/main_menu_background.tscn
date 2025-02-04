@@ -1,0 +1,148 @@
+[gd_scene load_steps=10 format=3 uid="uid://cxccrwe47j83a"]
+
+[ext_resource type="Texture2D" uid="uid://d20xhjxo51k87" path="res://gui_assets/dice_3d_texture.png" id="1_o8g08"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_vywvl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qoh75"]
+albedo_texture = ExtResource("1_o8g08")
+texture_filter = 0
+
+[sub_resource type="Animation" id="Animation_r42no"]
+resource_name = "DEFAULT"
+length = 10.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DicePivot/Dice1:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5, 10),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.92025, 3.0633, -0.911685), Vector3(0.919789, 9.34624, -0.911062), Vector3(0.919789, 15.6294, -0.911062)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DicePivot/Dice2:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.659058, 0.463648, -0.886077), Vector3(6.94292, 0.464258, -0.886627)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DicePivot:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.5, 0), Vector3(0, 0, 0), Vector3(0, 0.5, 0), Vector3(0, 0, 0), Vector3(0, 0.5, 0), Vector3(0, 0, 0), Vector3(0, 0.5, 0), Vector3(0, 0, 0), Vector3(0, 0.5, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_q345f"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DicePivot/Dice1:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.92025, 3.0633, -0.911685)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DicePivot/Dice2:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.659058, 0.463648, -0.886077)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DicePivot:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o6e0f"]
+_data = {
+&"DEFAULT": SubResource("Animation_r42no"),
+&"RESET": SubResource("Animation_q345f")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_o8g08"]
+animation = &"DEFAULT"
+use_custom_timeline = true
+timeline_length = 100.0
+stretch_time_scale = true
+start_offset = 0.0
+loop_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vywvl"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_qoh75"]
+states/DEFAULT/node = SubResource("AnimationNodeAnimation_o8g08")
+states/DEFAULT/position = Vector2(374, 94)
+transitions = ["Start", "DEFAULT", SubResource("AnimationNodeStateMachineTransition_vywvl")]
+
+[node name="MainMenuBackground" type="Node3D"]
+
+[node name="DicePivot" type="Marker3D" parent="."]
+
+[node name="Dice1" type="MeshInstance3D" parent="DicePivot"]
+transform = Transform3D(-0.659739, -0.75, 0.0473672, -0.478766, 0.370891, -0.795753, 0.579247, -0.547668, -0.603766, -0.3, 0, 0)
+mesh = SubResource("BoxMesh_vywvl")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_qoh75")
+
+[node name="Dice2" type="MeshInstance3D" parent="DicePivot"]
+transform = Transform3D(0.353553, 0.866025, 0.353553, -0.612372, 0.5, -0.612373, -0.707107, 2.98023e-08, 0.707107, 0.9, 0, -1)
+mesh = SubResource("BoxMesh_vywvl")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_qoh75")
+
+[node name="CameraPivot" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.266265, -0.543138)
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.8)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="CameraPivot/Camera3D"]
+spot_range = 6.7
+spot_angle = 59.65
+spot_angle_attenuation = 0.133972
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_o6e0f")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_qoh75")
+anim_player = NodePath("../AnimationPlayer")

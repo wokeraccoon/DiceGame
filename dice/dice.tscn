@@ -334,6 +334,7 @@ libraries = {
 [node name="RollDiceTimer" type="Timer" parent="."]
 one_shot = true
 
+[connection signal="roll_complete" from="." to="." method="_on_roll_complete"]
 [connection signal="button_down" from="DiceTexture/DiceButton" to="." method="_on_dice_button_button_down"]
 [connection signal="focus_entered" from="DiceTexture/DiceButton" to="." method="_on_dice_button_focus_entered"]
 [connection signal="focus_exited" from="DiceTexture/DiceButton" to="." method="_on_dice_button_focus_exited"]

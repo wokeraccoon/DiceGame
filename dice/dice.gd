@@ -4,6 +4,8 @@ extends Control
 const DICE_UNLOCKED_TEXTURE = preload("res://dice/assets/dice_unlocked.png")
 const DICE_LOCKED_TEXTURE = preload("res://dice/assets/dice_locked.png")
 
+const FLOATING_TEXT : PackedScene = preload("res://gui_assets/floating_text/floating_text.tscn")
+
 @onready var dice_texture: TextureRect = $DiceTexture
 
 @onready var lock_icon: TextureRect = %LockIcon
@@ -117,4 +119,13 @@ func _on_dice_button_focus_exited() -> void:
 
 
 func _on_roll_dice_timer_timeout() -> void:
-	roll_complete.emit(dice_value)
+	roll_complete.emit()
+
+
+func _on_roll_complete() -> void:
+	#var floating_text : FloatingText = FLOATING_TEXT.instantiate()
+	#add_child(floating_text)
+	#floating_text.global_position = global_position
+	#floating_text.rotation_degrees = 0
+	#floating_text.start_floating_text(str(dice_value,"+"))
+	pass
