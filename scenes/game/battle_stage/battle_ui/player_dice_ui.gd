@@ -81,25 +81,25 @@ func on_dice_roll_complete() -> void:
 		
 		
 
-func show_dice_combo(dice_combo : DiceCalculator.DiceComboNames) -> void:
+func show_dice_combo(dice_combo : DiceCalculator.DiceComboNames, combo_score) -> void:
 	
 	match dice_combo:
 		DiceCalculator.DiceComboNames.SINGLES:
-			dice_hand_label.text = "[font_size=48]Singles (1)[/font_size]"
+			dice_hand_label.text = str("[font_size=48]Singles (",combo_score,")[/font_size]")
 		DiceCalculator.DiceComboNames.PAIR:
-			dice_hand_label.text = "[font_size=48]Pair (5)[/font_size]"
+			dice_hand_label.text = str("[font_size=48]Pair (",combo_score,")[/font_size]")
 		DiceCalculator.DiceComboNames.TWO_PAIR:
-			dice_hand_label.text = "[font_size=48]Two Pair (10)[/font_size]"
+			dice_hand_label.text = str("[font_size=48]Two Pair (",combo_score,")[/font_size]")
 		DiceCalculator.DiceComboNames.THREE_OF_A_KIND:
-			dice_hand_label.text = "[font_size=48]Three of a kind (20)[/font_size]"
+			dice_hand_label.text = str("[font_size=48]Three of a kind (",combo_score,")[/font_size]")
 		DiceCalculator.DiceComboNames.FOUR_OF_A_KIND:
-			dice_hand_label.text = "[font_size=48]Four of a kind (30)[/font_size]"
+			dice_hand_label.text = str("[font_size=48]Four of a kind (",combo_score,")[/font_size]")
 		DiceCalculator.DiceComboNames.FULL_HOUSE:
-			dice_hand_label.text = "[font_size=48]Full house (25)[/font_size]"
+			dice_hand_label.text = str("[font_size=48]Full house (",combo_score,")[/font_size]")
 		DiceCalculator.DiceComboNames.STRAIGHT:
-			dice_hand_label.text = "[font_size=48]Straight (35)[/font_size]"
+			dice_hand_label.text = str("[font_size=48]Straight (",combo_score,")[/font_size]")
 		DiceCalculator.DiceComboNames.YATCH:
-			dice_hand_label.text = "[rainbow sat=0.5][wave amp=100 freq=5][font_size=48]Yatch! (100)[/font_size][/wave][/rainbow]"
+			dice_hand_label.text = str("[rainbow sat=0.5][wave amp=100 freq=5][font_size=48]Yatch! (",combo_score,")[/font_size][/wave][/rainbow]")
 
 func set_rolls_left(rolls : int) -> void:
 	rolls_left = rolls

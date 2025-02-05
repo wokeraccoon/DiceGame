@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://dkx41chdlblvm"]
+[gd_scene load_steps=22 format=3 uid="uid://dkx41chdlblvm"]
 
 [ext_resource type="Script" uid="uid://bofqdlnkp8a1t" path="res://scenes/game/battle_stage/battle_stage.gd" id="1_1ybse"]
 [ext_resource type="Texture2D" uid="uid://cnl8dub7a5egv" path="res://scenes/game/battle_stage/wall_texture.png" id="2_5fcvq"]
@@ -178,55 +178,6 @@ _data = {
 &"ENEMY_IDLE": SubResource("Animation_5fcvq"),
 &"RESET": SubResource("Animation_u1udp")
 }
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_odxky"]
-animation = &"ENEMY_ATTACK"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7fcjs"]
-animation = &"ENEMY_DEATH"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pjel8"]
-animation = &"ENEMY_HIT"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mb0h6"]
-animation = &"ENEMY_IDLE"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nmwqp"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_aekn8"]
-advance_mode = 2
-advance_condition = &"enemy_attacked"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gvf2a"]
-xfade_time = 0.1
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mf65u"]
-switch_mode = 2
-advance_mode = 2
-advance_condition = &"is_enemy_dead"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ab7sp"]
-advance_mode = 2
-advance_condition = &"enemy_attack"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ksgs3"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_mf65u"]
-states/ENEMY_ATTACK/node = SubResource("AnimationNodeAnimation_odxky")
-states/ENEMY_ATTACK/position = Vector2(458.333, 206)
-states/ENEMY_DEATH/node = SubResource("AnimationNodeAnimation_7fcjs")
-states/ENEMY_DEATH/position = Vector2(440.222, -153)
-states/ENEMY_HIT/node = SubResource("AnimationNodeAnimation_pjel8")
-states/ENEMY_HIT/position = Vector2(432.667, -28)
-states/ENEMY_IDLE/node = SubResource("AnimationNodeAnimation_mb0h6")
-states/ENEMY_IDLE/position = Vector2(439.333, 85.6667)
-transitions = ["Start", "ENEMY_IDLE", SubResource("AnimationNodeStateMachineTransition_nmwqp"), "ENEMY_IDLE", "ENEMY_HIT", SubResource("AnimationNodeStateMachineTransition_aekn8"), "ENEMY_HIT", "ENEMY_IDLE", SubResource("AnimationNodeStateMachineTransition_gvf2a"), "ENEMY_HIT", "ENEMY_DEATH", SubResource("AnimationNodeStateMachineTransition_mf65u"), "ENEMY_IDLE", "ENEMY_ATTACK", SubResource("AnimationNodeStateMachineTransition_ab7sp"), "ENEMY_ATTACK", "ENEMY_IDLE", SubResource("AnimationNodeStateMachineTransition_ksgs3")]
-graph_offset = Vector2(-325, -289)
 
 [sub_resource type="Animation" id="Animation_hkqk2"]
 resource_name = "PLAYER_DEATH"
@@ -418,84 +369,6 @@ _data = {
 &"RESET": SubResource("Animation_3nvg1")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_laqph"]
-animation = &"PLAYER_DEATH"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hbjoa"]
-animation = &"PLAYER_HURT"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1ybse"]
-animation = &"PLAYER_IDLE"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5fcvq"]
-animation = &"PLAYER_INTRO"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_u1udp"]
-animation = &"PLAYER_OUTRO"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_clh0e"]
-animation = &"PLAYER_ZOOM_IN"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hkqk2"]
-animation = &"PLAYER_ZOOM_OUT"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hbjoa"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_clh0e"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hkqk2"]
-advance_mode = 2
-advance_condition = &"is_fight_over"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_laqph"]
-switch_mode = 2
-advance_mode = 2
-advance_condition = &"enemy_attacked"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pjel8"]
-advance_mode = 2
-advance_condition = &"attack_enemy"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mb0h6"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7fcjs"]
-advance_mode = 2
-advance_condition = &"player_hurt"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_odxky"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_k1inx"]
-switch_mode = 2
-advance_mode = 2
-advance_condition = &"player_dead"
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_1ybse"]
-states/End/position = Vector2(1076, 95.679)
-states/PLAYER_DEATH/node = SubResource("AnimationNodeAnimation_laqph")
-states/PLAYER_DEATH/position = Vector2(615.741, -127.667)
-states/PLAYER_HURT/node = SubResource("AnimationNodeAnimation_hbjoa")
-states/PLAYER_HURT/position = Vector2(615.444, -34.3333)
-states/PLAYER_IDLE/node = SubResource("AnimationNodeAnimation_1ybse")
-states/PLAYER_IDLE/position = Vector2(614.667, 94.6667)
-states/PLAYER_INTRO/node = SubResource("AnimationNodeAnimation_5fcvq")
-states/PLAYER_INTRO/position = Vector2(387.16, 94.8148)
-states/PLAYER_OUTRO/node = SubResource("AnimationNodeAnimation_u1udp")
-states/PLAYER_OUTRO/position = Vector2(861.333, 96.4444)
-states/PLAYER_ZOOM_IN/node = SubResource("AnimationNodeAnimation_clh0e")
-states/PLAYER_ZOOM_IN/position = Vector2(386.222, 371.333)
-states/PLAYER_ZOOM_OUT/node = SubResource("AnimationNodeAnimation_hkqk2")
-states/PLAYER_ZOOM_OUT/position = Vector2(768, 366)
-states/Start/position = Vector2(212.667, 94.2222)
-transitions = ["Start", "PLAYER_INTRO", SubResource("AnimationNodeStateMachineTransition_hbjoa"), "PLAYER_INTRO", "PLAYER_IDLE", SubResource("AnimationNodeStateMachineTransition_clh0e"), "PLAYER_IDLE", "PLAYER_OUTRO", SubResource("AnimationNodeStateMachineTransition_hkqk2"), "PLAYER_ZOOM_IN", "PLAYER_ZOOM_OUT", SubResource("AnimationNodeStateMachineTransition_laqph"), "PLAYER_IDLE", "PLAYER_ZOOM_IN", SubResource("AnimationNodeStateMachineTransition_pjel8"), "PLAYER_ZOOM_OUT", "PLAYER_IDLE", SubResource("AnimationNodeStateMachineTransition_mb0h6"), "PLAYER_IDLE", "PLAYER_HURT", SubResource("AnimationNodeStateMachineTransition_7fcjs"), "PLAYER_HURT", "PLAYER_IDLE", SubResource("AnimationNodeStateMachineTransition_odxky"), "PLAYER_HURT", "PLAYER_DEATH", SubResource("AnimationNodeStateMachineTransition_k1inx")]
-graph_offset = Vector2(185, 25)
-
 [node name="BattleStage" type="Node3D"]
 script = ExtResource("1_1ybse")
 
@@ -532,13 +405,6 @@ libraries = {
 &"": SubResource("AnimationLibrary_u1udp")
 }
 
-[node name="EnemyAnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource("AnimationNodeStateMachine_mf65u")
-anim_player = NodePath("../EnemyAnimationPlayer")
-parameters/conditions/enemy_attack = false
-parameters/conditions/enemy_attacked = false
-parameters/conditions/is_enemy_dead = false
-
 [node name="PlayerCamera" type="Camera3D" parent="."]
 v_offset = -0.305
 fov = 120.0
@@ -552,11 +418,4 @@ libraries = {
 &"": SubResource("AnimationLibrary_3nvg1")
 }
 
-[node name="PlayerAnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource("AnimationNodeStateMachine_1ybse")
-anim_player = NodePath("../PlayerAnimationPlayer")
-parameters/conditions/attack_enemy = false
-parameters/conditions/enemy_attacked = false
-parameters/conditions/is_fight_over = false
-parameters/conditions/player_dead = false
-parameters/conditions/player_hurt = false
+[connection signal="battle_stage_ready" from="." to="." method="_on_battle_stage_ready"]

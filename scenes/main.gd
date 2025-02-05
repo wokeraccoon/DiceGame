@@ -13,13 +13,6 @@ func _ready() -> void:
 	var main_menu : MainMenuUI = MAIN_MENU_UI.instantiate()
 	main_layer.add_child(main_menu)
 	main_menu.new_run_requested.connect(_new_run)
-	
-	if OS.has_feature("android"):
-		get_tree().root.content_scale_factor = 1
-
-	else:
-		get_tree().root.content_scale_factor = 0.8
-
 
 func _new_run() -> void:
 	if game != null:

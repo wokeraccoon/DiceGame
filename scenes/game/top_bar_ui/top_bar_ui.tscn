@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cv7a1erym7ml7"]
+[gd_scene load_steps=5 format=3 uid="uid://cv7a1erym7ml7"]
 
 [ext_resource type="Texture2D" uid="uid://cggkenhrhp6g4" path="res://gui_assets/heart.png" id="1_gl2go"]
 [ext_resource type="Script" uid="uid://cyqm86svhb0ah" path="res://scenes/game/top_bar_ui/top_bar_ui.gd" id="1_xkuxh"]
+[ext_resource type="StyleBox" uid="uid://cicxvr8nl2f60" path="res://gui_assets/panel_alt.tres" id="2_2v6fl"]
 [ext_resource type="Texture2D" uid="uid://o60prr8yrji" path="res://gui_assets/coin_ui.png" id="2_xkuxh"]
 
 [node name="TopBarUI" type="MarginContainer"]
@@ -24,6 +25,7 @@ layout_mode = 2
 [node name="MarginContainer5" type="MarginContainer" parent="HBoxContainer"]
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
 layout_mode = 2
@@ -52,10 +54,30 @@ disabled = true
 text = "Run info"
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/MarginContainer/HBoxContainer"]
+[node name="MarginContainer3" type="MarginContainer" parent="HBoxContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(412, 0)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="HBoxContainer/MarginContainer/HBoxContainer/MarginContainer3"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("2_2v6fl")
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/MarginContainer/HBoxContainer/MarginContainer3"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer/HBoxContainer/MarginContainer3/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/MarginContainer/HBoxContainer/MarginContainer3/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -64,17 +86,19 @@ texture = ExtResource("1_gl2go")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="PlayerHealthLabel" type="Label" parent="HBoxContainer/MarginContainer/HBoxContainer"]
+[node name="PlayerHealthLabel" type="Label" parent="HBoxContainer/MarginContainer/HBoxContainer/MarginContainer3/MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 46)
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "100/100"
+horizontal_alignment = 1
 
-[node name="MarginContainer3" type="MarginContainer" parent="HBoxContainer/MarginContainer/HBoxContainer"]
+[node name="MarginContainer3" type="MarginContainer" parent="HBoxContainer/MarginContainer/HBoxContainer/MarginContainer3/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 
-[node name="TextureRect2" type="TextureRect" parent="HBoxContainer/MarginContainer/HBoxContainer"]
+[node name="TextureRect2" type="TextureRect" parent="HBoxContainer/MarginContainer/HBoxContainer/MarginContainer3/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -83,13 +107,16 @@ texture = ExtResource("2_xkuxh")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="PlayerMoneyLabel" type="Label" parent="HBoxContainer/MarginContainer/HBoxContainer"]
+[node name="PlayerMoneyLabel" type="Label" parent="HBoxContainer/MarginContainer/HBoxContainer/MarginContainer3/MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 46)
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
-text = "$1000"
+text = "$0"
+horizontal_alignment = 1
 
 [node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -108,5 +135,6 @@ text = "Inventory"
 [node name="MarginContainer4" type="MarginContainer" parent="HBoxContainer"]
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
+size_flags_horizontal = 3
 
 [connection signal="pressed" from="HBoxContainer/MarginContainer/HBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
