@@ -39,6 +39,10 @@ func _ready() -> void:
 		dice_texture.texture = alt_dice_array_textures[dice_value - 1]
 	else:
 		dice_texture.texture = dice_array_textures[dice_value - 1]
+	
+	can_interact = true
+	dice_state = DiceStates.INTRO
+		
 
 func _process(delta: float) -> void:
 	
@@ -101,6 +105,8 @@ func _on_dice_button_button_down() -> void:
 		elif dice_state == DiceStates.LOCK:
 			animation_player.play("DICE_UNLOCK")
 
+func reset_dice() -> void:
+	_ready() 
 
 func _on_dice_button_focus_entered() -> void:
 	if can_interact:

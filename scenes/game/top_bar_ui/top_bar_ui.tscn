@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cv7a1erym7ml7"]
+[gd_scene load_steps=4 format=3 uid="uid://cv7a1erym7ml7"]
 
 [ext_resource type="Texture2D" uid="uid://cggkenhrhp6g4" path="res://gui_assets/heart.png" id="1_gl2go"]
+[ext_resource type="Script" uid="uid://cyqm86svhb0ah" path="res://scenes/game/top_bar_ui/top_bar_ui.gd" id="1_xkuxh"]
 [ext_resource type="Texture2D" uid="uid://o60prr8yrji" path="res://gui_assets/coin_ui.png" id="2_xkuxh"]
 
 [node name="TopBarUI" type="MarginContainer"]
@@ -12,6 +13,7 @@ theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
+script = ExtResource("1_xkuxh")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 2
@@ -36,14 +38,17 @@ layout_mode = 2
 theme_override_constants/separation = 8
 alignment = 1
 
-[node name="Button" type="Button" parent="HBoxContainer/MarginContainer/HBoxContainer"]
+[node name="OptionsButton" type="Button" parent="HBoxContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(128, 64)
 layout_mode = 2
 text = "Options"
 
-[node name="Button2" type="Button" parent="HBoxContainer/MarginContainer/HBoxContainer"]
+[node name="RunInfoButton" type="Button" parent="HBoxContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(128, 64)
 layout_mode = 2
+disabled = true
 text = "Run info"
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/MarginContainer/HBoxContainer"]
@@ -59,7 +64,8 @@ texture = ExtResource("1_gl2go")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="Label" type="Label" parent="HBoxContainer/MarginContainer/HBoxContainer"]
+[node name="PlayerHealthLabel" type="Label" parent="HBoxContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "100/100"
@@ -77,7 +83,8 @@ texture = ExtResource("2_xkuxh")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="Label2" type="Label" parent="HBoxContainer/MarginContainer/HBoxContainer"]
+[node name="PlayerMoneyLabel" type="Label" parent="HBoxContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "$1000"
@@ -86,11 +93,20 @@ text = "$1000"
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Button3" type="Button" parent="HBoxContainer/MarginContainer/HBoxContainer"]
+[node name="MarginContainer4" type="MarginContainer" parent="HBoxContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="InventoryButton" type="Button" parent="HBoxContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(128, 64)
 layout_mode = 2
+disabled = true
 text = "Inventory"
 
 [node name="MarginContainer4" type="MarginContainer" parent="HBoxContainer"]
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
+
+[connection signal="pressed" from="HBoxContainer/MarginContainer/HBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]

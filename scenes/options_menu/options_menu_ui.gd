@@ -4,13 +4,15 @@ extends Control
 @onready var back_to_game_button: Button = %BackToGameButton
 
 signal main_menu_requested
-signal restart_run_requested
+signal new_run_requested
+
+signal back_to_game_requested
 
 func _on_back_to_game_button_pressed() -> void:
-	visible = false
+	back_to_game_requested.emit()
 
 func _on_main_menu_button_pressed() -> void:
 	main_menu_requested.emit()
 
-func _on_restart_run_button_pressed() -> void:
-	restart_run_requested.emit()
+func _on_new_run_button_pressed() -> void:
+	new_run_requested.emit()

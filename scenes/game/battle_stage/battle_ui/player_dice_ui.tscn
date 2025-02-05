@@ -24,14 +24,11 @@ script = ExtResource("1_3dxad")
 [node name="BottomAreaUi" type="MarginContainer" parent="."]
 custom_minimum_size = Vector2(964, 272)
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
+anchors_preset = 12
 anchor_top = 1.0
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -358.0
-offset_top = -248.0
-offset_right = 358.0
+offset_top = -261.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/margin_left = 8
@@ -207,6 +204,51 @@ layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 
+[node name="RollsLeftBox" type="MarginContainer" parent="BottomAreaUi/VBoxContainer/DiceArea"]
+custom_minimum_size = Vector2(142, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Panel2" type="Panel" parent="BottomAreaUi/VBoxContainer/DiceArea/RollsLeftBox"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_sjw43")
+
+[node name="MarginContainer" type="MarginContainer" parent="BottomAreaUi/VBoxContainer/DiceArea/RollsLeftBox"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="HBoxContainer" parent="BottomAreaUi/VBoxContainer/DiceArea/RollsLeftBox/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="RollsLeftLabel" type="Label" parent="BottomAreaUi/VBoxContainer/DiceArea/RollsLeftBox/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 48
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="BottomAreaUi/VBoxContainer/DiceArea/RollsLeftBox/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 32
+text = "Rolls Left"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer6" type="MarginContainer" parent="BottomAreaUi/VBoxContainer/DiceArea"]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+
 [node name="RollButton" type="Button" parent="BottomAreaUi/VBoxContainer/DiceArea"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(128, 64)
@@ -215,10 +257,14 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "Roll"
 
+[node name="HBoxContainer" type="HBoxContainer" parent="BottomAreaUi/VBoxContainer/DiceArea"]
+layout_mode = 2
+
 [node name="MarginContainer" type="MarginContainer" parent="BottomAreaUi/VBoxContainer/DiceArea"]
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 0
+size_flags_vertical = 4
 mouse_filter = 2
 
 [node name="PlayerDiceHolder" type="HBoxContainer" parent="BottomAreaUi/VBoxContainer/DiceArea"]
@@ -233,7 +279,8 @@ alignment = 1
 [node name="MarginContainer2" type="MarginContainer" parent="BottomAreaUi/VBoxContainer/DiceArea"]
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 0
+size_flags_vertical = 4
 mouse_filter = 2
 
 [node name="AttackButton" type="Button" parent="BottomAreaUi/VBoxContainer/DiceArea"]
@@ -244,9 +291,22 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "Attack"
 
-[node name="MarginContainer3" type="MarginContainer" parent="BottomAreaUi/VBoxContainer/DiceArea"]
+[node name="MarginContainer8" type="MarginContainer" parent="BottomAreaUi/VBoxContainer/DiceArea"]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+
+[node name="MarginContainer9" type="MarginContainer" parent="BottomAreaUi/VBoxContainer/DiceArea"]
+custom_minimum_size = Vector2(142, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MarginContainer7" type="MarginContainer" parent="BottomAreaUi/VBoxContainer/DiceArea"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 
 [connection signal="pressed" from="BottomAreaUi/VBoxContainer/DiceArea/RollButton" to="." method="_on_roll_button_pressed"]
+[connection signal="pressed" from="BottomAreaUi/VBoxContainer/DiceArea/AttackButton" to="." method="_on_attack_button_pressed"]

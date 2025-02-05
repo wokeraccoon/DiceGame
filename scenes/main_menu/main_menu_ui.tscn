@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://n3qds18fabsn"]
 
-[ext_resource type="Script" uid="uid://ccs4n8wx8a2fg" path="res://scenes/main_menu/main_menu.gd" id="1_yl4tm"]
-[ext_resource type="PackedScene" uid="uid://bt7hu8n4rfque" path="res://gui_assets/vignette.tscn" id="2_0ebjn"]
-[ext_resource type="PackedScene" uid="uid://cxccrwe47j83a" path="res://scenes/main_menu/main_menu_background.tscn" id="3_ob46e"]
+[ext_resource type="Script" uid="uid://ccs4n8wx8a2fg" path="res://scenes/main_menu/main_menu_ui.gd" id="1_c7op6"]
+[ext_resource type="PackedScene" uid="uid://cxccrwe47j83a" path="res://scenes/main_menu/main_menu_background.tscn" id="2_lhs03"]
+[ext_resource type="PackedScene" uid="uid://bt7hu8n4rfque" path="res://gui_assets/vignette.tscn" id="3_rfupy"]
 
 [sub_resource type="Animation" id="Animation_ob46e"]
 resource_name = "INTRO"
@@ -101,14 +101,14 @@ states/INTRO/node = SubResource("AnimationNodeAnimation_ob46e")
 states/INTRO/position = Vector2(346.667, 94.6667)
 transitions = ["Start", "INTRO", SubResource("AnimationNodeStateMachineTransition_uqeha")]
 
-[node name="MainMenu" type="Control"]
+[node name="MainMenuUI" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_yl4tm")
+script = ExtResource("1_c7op6")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -141,9 +141,9 @@ handle_input_locally = false
 size = Vector2i(320, 180)
 render_target_update_mode = 4
 
-[node name="MainMenuBackground" parent="SubViewportContainer/SubViewport" instance=ExtResource("3_ob46e")]
+[node name="MainMenuBackground" parent="SubViewportContainer/SubViewport" instance=ExtResource("2_lhs03")]
 
-[node name="Vignette" parent="." instance=ExtResource("2_0ebjn")]
+[node name="Vignette" parent="." instance=ExtResource("3_rfupy")]
 layout_mode = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -179,7 +179,7 @@ grow_vertical = 2
 rotation = -0.449135
 bbcode_enabled = true
 text = "[wave][shake][color=#f9c22b][font_size=64]Super WIP demo![/font_size]
-[font_size=32]Probably very buggy!"
+[font_size=32]Warning: May contain bugs!"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
@@ -225,6 +225,7 @@ text = "Play"
 custom_minimum_size = Vector2(256, 64)
 layout_mode = 2
 size_flags_horizontal = 4
+disabled = true
 text = "Settings"
 
 [node name="QuitButton" type="Button" parent="MarginContainer/MarginContainer2/VBoxContainer"]

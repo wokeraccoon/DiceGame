@@ -9,3 +9,5 @@ script = ExtResource("1_61q70")
 unique_name_in_owner = true
 
 [node name="PauseLayer" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+layer = 3
