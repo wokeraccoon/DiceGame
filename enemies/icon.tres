@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Enemy" load_steps=4 format=3 uid="uid://bla561aa14rfg"]
+
+[ext_resource type="Script" uid="uid://bmuicu5jd88ev" path="res://classes/item.gd" id="1_2qum4"]
+[ext_resource type="Script" uid="uid://igki11xootrd" path="res://classes/enemy.gd" id="1_aj32u"]
+[ext_resource type="Texture2D" uid="uid://cthdjn64hfl7r" path="res://icon.svg" id="2_72rr7"]
+
+[resource]
+script = ExtResource("1_aj32u")
+name = "Icon.svg"
+short_description = "The default enemy"
+dice_ammount = 2
+enemy_sprite = ExtResource("2_72rr7")
+default_items = Array[ExtResource("1_2qum4")]([])
+base_health = 3000
+metadata/_custom_type_script = ExtResource("1_aj32u")

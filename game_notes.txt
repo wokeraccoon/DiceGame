@@ -15,6 +15,7 @@ Game name: Dice Game
   -Bottle of Poison: 15+ damage on enemy. Increases by  5+ on every attack
   -Wizard hat: 5-10+ dice total score
   -Revolver: 1 in 6 chance to 2x dice total 
+  -Membership Card: Gives a food consumable after every fight. -$5 after each fight.
 
  -Uncommon:
   -Short shotgun: 50-100+ damage
@@ -47,6 +48,7 @@ Game name: Dice Game
   -Gum: select a dice to make into a weigthed dice
   -Bottle of XXX: Select a dice to make into a casino dice
   -Expired medicine: 50% chance to fully heal, 50% chance to divide health in half
+  -$1.50 Hotdog: +100 health
 
 -Dice effects (negative):
  -Negative dice: initally locked. Locks all other dice when unlocked

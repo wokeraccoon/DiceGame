@@ -1,0 +1,48 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5ikku78eibxf"]
+
+[ext_resource type="Script" uid="uid://cua0sn62swojw" path="res://scenes/debug/debug_stats_panel.gd" id="1_p7q4p"]
+
+[node name="DebugStatsPanel" type="Control"]
+modulate = Color(1, 1, 1, 0.5)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_p7q4p")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.245018, 0.245018, 0.245018, 1)
+
+[node name="SpecsLabel" type="Label" parent="VBoxContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/MarginContainer2"]
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.245018, 0.245018, 0.245018, 1)
+
+[node name="FPSLabel" type="Label" parent="VBoxContainer/MarginContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 32

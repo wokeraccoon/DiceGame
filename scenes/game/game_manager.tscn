@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b6hkp7ydpotqs"]
+[gd_scene load_steps=11 format=3 uid="uid://b6hkp7ydpotqs"]
 
 [ext_resource type="Script" uid="uid://v54vb110se7y" path="res://scenes/game/game_manager.gd" id="1_x6pty"]
 [ext_resource type="PackedScene" uid="uid://b2rt1670ts75n" path="res://scenes/game/dice_calculator/dice_calculator.tscn" id="2_ghnn3"]
@@ -6,7 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://c8iv0aaoj855d" path="res://scenes/game/player_manager/player_manager.tscn" id="3_o5hsk"]
 [ext_resource type="PackedScene" uid="uid://tliv023b8t2y" path="res://scenes/game/battle_stage/battle_ui/player_dice_ui.tscn" id="4_g0gdj"]
 [ext_resource type="PackedScene" uid="uid://bt7hu8n4rfque" path="res://gui_assets/vignette.tscn" id="4_o5hsk"]
+[ext_resource type="PackedScene" uid="uid://cdbe3ylrhpbku" path="res://scenes/game/enemy_manager/enemy_manager.tscn" id="4_wap17"]
+[ext_resource type="Resource" uid="uid://bla561aa14rfg" path="res://enemies/icon.tres" id="5_0vd8f"]
 [ext_resource type="PackedScene" uid="uid://cv7a1erym7ml7" path="res://scenes/game/top_bar_ui/top_bar_ui.tscn" id="6_u5ytd"]
+[ext_resource type="PackedScene" uid="uid://dsqqw522ht8gh" path="res://scenes/game/battle_stage/battle_ui/enemy_info_ui.tscn" id="7_ok4xb"]
 
 [node name="GameManager" type="Node2D"]
 script = ExtResource("1_x6pty")
@@ -14,6 +17,9 @@ script = ExtResource("1_x6pty")
 [node name="DiceCalculator" parent="." instance=ExtResource("2_ghnn3")]
 
 [node name="PlayerManager" parent="." instance=ExtResource("3_o5hsk")]
+
+[node name="EnemyManager" parent="." instance=ExtResource("4_wap17")]
+enemy_resource = ExtResource("5_0vd8f")
 
 [node name="BattleScreen" type="CanvasLayer" parent="."]
 
@@ -62,44 +68,19 @@ grow_vertical = 1
 [node name="PlayerDiceUI" parent="BattleScreen" instance=ExtResource("4_g0gdj")]
 unique_name_in_owner = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="BattleScreen"]
-anchors_preset = 10
-anchor_right = 1.0
-grow_horizontal = 2
-alignment = 1
+[node name="EnemyInfoUI" parent="BattleScreen" instance=ExtResource("7_ok4xb")]
+unique_name_in_owner = true
 
-[node name="MarginContainer" type="MarginContainer" parent="BattleScreen/VBoxContainer"]
-custom_minimum_size = Vector2(0, 86)
-layout_mode = 2
-
-[node name="EnemyNameLabel" type="Label" parent="BattleScreen/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 64
-text = "{ENEMY NAME}"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="ProgressBar" type="ProgressBar" parent="BattleScreen/VBoxContainer"]
-custom_minimum_size = Vector2(512, 32)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-max_value = 150.0
-step = 1.0
-value = 50.0
-show_percentage = false
-
-[node name="Label" type="Label" parent="BattleScreen/VBoxContainer/ProgressBar"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="EnemyDamageTextSpawner" type="Control" parent="BattleScreen"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 32
-text = "100/100"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="InfoBar" type="CanvasLayer" parent="."]
 

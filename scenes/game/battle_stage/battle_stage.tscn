@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dkx41chdlblvm"]
+[gd_scene load_steps=24 format=3 uid="uid://dkx41chdlblvm"]
 
 [ext_resource type="Script" uid="uid://bofqdlnkp8a1t" path="res://scenes/game/battle_stage/battle_stage.gd" id="1_1ybse"]
 [ext_resource type="Texture2D" uid="uid://cnl8dub7a5egv" path="res://scenes/game/battle_stage/wall_texture.png" id="2_5fcvq"]
@@ -86,7 +86,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(-0.2, 0, -2.5), Vector3(0.2, 0, -2.5), Vector3(-0.2, 0, -2.5), Vector3(0.2, 0, -2.5), Vector3(-0.2, 0, -2.5), Vector3(0.2, 0, -2.5)]
+"values": [Vector3(0, 0, -2.5), Vector3(0.2, 0, -2.5), Vector3(-0.2, 0, -2.5), Vector3(0.2, 0, -2.5), Vector3(-0.2, 0, -2.5), Vector3(0, 0, -2.5)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -224,6 +224,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector3(-0.2, 0, 0), Vector3(0.2, 0, 0), Vector3(-0.1, 0, 0), Vector3(0.1, 0, 0), Vector3(-0.05, 0, 0), Vector3(0.05, 0, 0), Vector3(0, 0, 0)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DamageVignette:self_modulate")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_ahytf"]
 resource_name = "PLAYER_IDLE"
@@ -356,6 +368,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector3(0, 0, 0)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("DamageVignette:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3nvg1"]
 _data = {
@@ -368,6 +392,15 @@ _data = {
 &"PLAYER_ZOOM_OUT": SubResource("Animation_ljc2o"),
 &"RESET": SubResource("Animation_3nvg1")
 }
+
+[sub_resource type="Gradient" id="Gradient_kn6ow"]
+offsets = PackedFloat32Array(0.716216, 1)
+colors = PackedColorArray(0.180392, 0.133333, 0.184314, 0, 0.909804, 0.231373, 0.231373, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1ybse"]
+gradient = SubResource("Gradient_kn6ow")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [node name="BattleStage" type="Node3D"]
 script = ExtResource("1_1ybse")
@@ -395,6 +428,7 @@ spot_angle = 39.6113
 transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0, 0.1, -2.5)
 
 [node name="EnemySprite" type="Sprite3D" parent="EnemySpot"]
+unique_name_in_owner = true
 pixel_size = 0.05
 shaded = true
 texture_filter = 2
@@ -417,5 +451,14 @@ spot_angle = 53.4375
 libraries = {
 &"": SubResource("AnimationLibrary_3nvg1")
 }
+
+[node name="DamageVignette" type="TextureRect" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_1ybse")
 
 [connection signal="battle_stage_ready" from="." to="." method="_on_battle_stage_ready"]

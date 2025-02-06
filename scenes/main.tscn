@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cvgaunttcm2n5"]
+[gd_scene load_steps=3 format=3 uid="uid://cvgaunttcm2n5"]
 
 [ext_resource type="Script" uid="uid://cu7g380kqpmrd" path="res://scenes/main.gd" id="1_61q70"]
+[ext_resource type="PackedScene" uid="uid://c5ikku78eibxf" path="res://scenes/debug/debug_stats_panel.tscn" id="2_0wfyh"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_61q70")
@@ -11,3 +12,8 @@ unique_name_in_owner = true
 [node name="PauseLayer" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
 layer = 3
+
+[node name="DebugLayer" type="CanvasLayer" parent="."]
+layer = 5
+
+[node name="DebugStatsPanel" parent="DebugLayer" instance=ExtResource("2_0wfyh")]
