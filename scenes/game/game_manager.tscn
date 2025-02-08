@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b6hkp7ydpotqs"]
+[gd_scene load_steps=12 format=3 uid="uid://b6hkp7ydpotqs"]
 
 [ext_resource type="Script" uid="uid://v54vb110se7y" path="res://scenes/game/game_manager.gd" id="1_x6pty"]
 [ext_resource type="PackedScene" uid="uid://b2rt1670ts75n" path="res://scenes/game/dice_calculator/dice_calculator.tscn" id="2_ghnn3"]
@@ -10,6 +10,7 @@
 [ext_resource type="Resource" uid="uid://bla561aa14rfg" path="res://enemies/icon.tres" id="5_0vd8f"]
 [ext_resource type="PackedScene" uid="uid://cv7a1erym7ml7" path="res://scenes/game/top_bar_ui/top_bar_ui.tscn" id="6_u5ytd"]
 [ext_resource type="PackedScene" uid="uid://dsqqw522ht8gh" path="res://scenes/game/battle_stage/battle_ui/enemy_info_ui.tscn" id="7_ok4xb"]
+[ext_resource type="PackedScene" uid="uid://o0mlkxh53i6j" path="res://scenes/game/battle_stage/battle_ui/enemy_dice_ui.tscn" id="10_0vd8f"]
 
 [node name="GameManager" type="Node2D"]
 script = ExtResource("1_x6pty")
@@ -67,9 +68,15 @@ grow_vertical = 1
 
 [node name="PlayerDiceUI" parent="BattleScreen" instance=ExtResource("4_g0gdj")]
 unique_name_in_owner = true
+visible = false
 
 [node name="EnemyInfoUI" parent="BattleScreen" instance=ExtResource("7_ok4xb")]
 unique_name_in_owner = true
+visible = false
+
+[node name="EnemyDiceUI" parent="BattleScreen" instance=ExtResource("10_0vd8f")]
+unique_name_in_owner = true
+visible = false
 
 [node name="EnemyDamageTextSpawner" type="Control" parent="BattleScreen"]
 unique_name_in_owner = true
@@ -87,5 +94,8 @@ grow_vertical = 2
 [node name="TopBarUI" parent="InfoBar" instance=ExtResource("6_u5ytd")]
 unique_name_in_owner = true
 
+[connection signal="enemy_turn" from="BattleScreen/DungeonScreen/SubViewportContainer/SubViewport/BattleStage" to="." method="_on_battle_stage_enemy_turn"]
+[connection signal="player_turn" from="BattleScreen/DungeonScreen/SubViewportContainer/SubViewport/BattleStage" to="." method="_on_battle_stage_player_turn"]
 [connection signal="dice_roll_finished" from="BattleScreen/PlayerDiceUI" to="." method="_on_player_dice_ui_dice_roll_finished"]
-[connection signal="player_attacked" from="BattleScreen/PlayerDiceUI" to="." method="_on_player_dice_ui_player_attacked"]
+[connection signal="player_attack" from="BattleScreen/PlayerDiceUI" to="." method="_on_player_dice_ui_player_attack"]
+[connection signal="dice_roll_finished" from="BattleScreen/EnemyDiceUI" to="." method="_on_enemy_dice_ui_dice_roll_finished"]

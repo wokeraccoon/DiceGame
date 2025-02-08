@@ -276,10 +276,10 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.99),
 "transitions": PackedFloat32Array(1),
 "values": [{
-"args": [&"battle_stage_ready"],
+"args": [&"player_turn"],
 "method": &"emit_signal"
 }]
 }
@@ -460,5 +460,3 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_1ybse")
-
-[connection signal="battle_stage_ready" from="." to="." method="_on_battle_stage_ready"]

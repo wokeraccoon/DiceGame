@@ -17,50 +17,33 @@ const DICE: PackedScene = preload("res://dice/dice.tscn")
 
 var total_dice_score : int = 0
 var rolls_left : int  = 0
+var dice_rolled : int = 0
+var max_dice_ammount : int = 5
 
 signal dice_roll_finished(dice_values : Dictionary[String,int])
 
-signal player_attacked
+signal player_attack
 
 func _ready() -> void:
-	total_dice_score = 0
-	total_dice_score_label.text = str(total_dice_score)
-	roll_button.hide()
-	attack_button.hide()
-	scoring_area.hide()
-	rolls_left_box.hide()
 	
 	set_attack_score_label(0)
-	
-	show_player_dice_ui()
-
-func show_player_dice_ui() -> void:
+	total_dice_score = 0
+	total_dice_score_label.text = str(total_dice_score)
+	dice_hand_label.text = "[shake rate=20.0 level=5 connected=1][font_size=48]Rolling...[/font_size][/shake]"
+	roll_button.disabled = true
+	attack_button.disabled = true
 	
 	if player_dice.is_empty():
-		for i in 5:
-			await get_tree().create_timer(0.25).timeout
+		for i in max_dice_ammount:
 			var dice : Dice = DICE.instantiate()
 			player_dice_holder.add_child(dice)
 			dice.connect("roll_complete",on_dice_roll_complete)
 			player_dice.append(dice)
-		
 	
-	await get_tree().create_timer(0.25).timeout
-	dice_hand_label.text = "[shake rate=20.0 level=5 connected=1][font_size=48]Rolling...[/font_size][/shake]"
-	roll_button.show()
-	attack_button.show()
-	scoring_area.show()
-	rolls_left_box.show()
-	roll_button.disabled = true
-	attack_button.disabled = true
-	
-
-var dice_rolled : int = 0
 
 func on_dice_roll_complete() -> void:
 	dice_rolled += 1
-	
-	if dice_rolled == 5:
+	if dice_rolled == max_dice_ammount:
 		dice_rolled = 0
 		
 		if rolls_left > 0:
@@ -71,13 +54,17 @@ func on_dice_roll_complete() -> void:
 		
 		var dice_values : Dictionary[String,int] = {}
 		
-		for dice in player_dice.size():
-			dice_values[str("Dice",dice)] = player_dice[dice].dice_value
+		for value in player_dice.size():
+			dice_values[str("Dice",value)] = player_dice[value].dice_value
 			
-			total_dice_score += player_dice[dice].dice_value
+			total_dice_score += player_dice[value].dice_value
 		total_dice_score_label.text = str(total_dice_score)
 		
+		for dice : Dice in player_dice:
+			dice.player_can_interact = true
+		
 		dice_roll_finished.emit(dice_values)
+
 		
 		
 
@@ -112,8 +99,16 @@ func _on_roll_button_pressed() -> void:
 	roll_dice()
 
 func roll_dice(initial_roll : bool = false) -> void:
+	dice_rolled = 0
 	if !initial_roll:
 		set_rolls_left(rolls_left - 1)
+		
+	for dice : Dice in player_dice:
+		if initial_roll:
+			dice._ready()
+		else:
+			dice.start_roll_dice()
+			dice.player_can_interact = false
 		
 	set_attack_score_label(0)
 	total_dice_score = 0
@@ -121,11 +116,11 @@ func roll_dice(initial_roll : bool = false) -> void:
 	
 	dice_hand_label.text = "[shake rate=20.0 level=5 connected=1][font_size=48]Rolling...[/font_size][/shake]"
 	
-	for dice : Dice in player_dice:
-		if initial_roll:
-			dice.reset_dice()
-		
-		dice.start_roll_dice()
+	#for dice : Dice in player_dice:
+		#if initial_roll:
+			#dice.reset_dice()
+		#
+		#dice.start_roll_dice()
 	
 	roll_button.disabled = true
 	attack_button.disabled = true
@@ -138,4 +133,4 @@ func reset_player_UI(rolls : int) -> void:
 func _on_attack_button_pressed() -> void:
 	hide()
 	
-	player_attacked.emit()
+	player_attack.emit()

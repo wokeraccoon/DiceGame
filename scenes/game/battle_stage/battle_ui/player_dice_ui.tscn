@@ -55,53 +55,6 @@ layout_mode = 2
 [node name="HBoxContainer" type="HBoxContainer" parent="BottomAreaUi/VBoxContainer/ScoringArea/DiceHandPanel"]
 layout_mode = 2
 
-[node name="MarginContainer2" type="MarginContainer" parent="BottomAreaUi/VBoxContainer/ScoringArea/DiceHandPanel/HBoxContainer"]
-custom_minimum_size = Vector2(128, 0)
-layout_mode = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
-
-[node name="Panel" type="Panel" parent="BottomAreaUi/VBoxContainer/ScoringArea/DiceHandPanel/HBoxContainer/MarginContainer2"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_sjw43")
-
-[node name="MarginContainer" type="MarginContainer" parent="BottomAreaUi/VBoxContainer/ScoringArea/DiceHandPanel/HBoxContainer/MarginContainer2"]
-layout_mode = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
-
-[node name="VBoxContainer" type="VBoxContainer" parent="BottomAreaUi/VBoxContainer/ScoringArea/DiceHandPanel/HBoxContainer/MarginContainer2/MarginContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="Label2" type="Label" parent="BottomAreaUi/VBoxContainer/ScoringArea/DiceHandPanel/HBoxContainer/MarginContainer2/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "Total Dice Points"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="TotalDiceScoreLabel" type="Label" parent="BottomAreaUi/VBoxContainer/ScoringArea/DiceHandPanel/HBoxContainer/MarginContainer2/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_vertical = 6
-theme_override_font_sizes/font_size = 48
-text = "30"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Label" type="Label" parent="BottomAreaUi/VBoxContainer/ScoringArea/DiceHandPanel/HBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 1
-theme_override_font_sizes/font_size = 64
-text = "x"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="MarginContainer" type="MarginContainer" parent="BottomAreaUi/VBoxContainer/ScoringArea/DiceHandPanel/HBoxContainer"]
 custom_minimum_size = Vector2(364, 0)
 layout_mode = 2
@@ -122,19 +75,55 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="BottomAreaUi/VBoxContainer/ScoringArea/DiceHandPanel/HBoxContainer/MarginContainer/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="BottomAreaUi/VBoxContainer/ScoringArea/DiceHandPanel/HBoxContainer/MarginContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="BottomAreaUi/VBoxContainer/ScoringArea/DiceHandPanel/HBoxContainer/MarginContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="Label2" type="Label" parent="BottomAreaUi/VBoxContainer/ScoringArea/DiceHandPanel/HBoxContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 32
+text = "Total Dice Points"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TotalDiceScoreLabel" type="Label" parent="BottomAreaUi/VBoxContainer/ScoringArea/DiceHandPanel/HBoxContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 48
+text = "30"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="BottomAreaUi/VBoxContainer/ScoringArea/DiceHandPanel/HBoxContainer/MarginContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 48
+text = "X"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BottomAreaUi/VBoxContainer/ScoringArea/DiceHandPanel/HBoxContainer/MarginContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(256, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="Label" type="Label" parent="BottomAreaUi/VBoxContainer/ScoringArea/DiceHandPanel/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="BottomAreaUi/VBoxContainer/ScoringArea/DiceHandPanel/HBoxContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_font_sizes/font_size = 32
 text = "Current Dice Combo"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DiceHandLabel" type="RichTextLabel" parent="BottomAreaUi/VBoxContainer/ScoringArea/DiceHandPanel/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
+[node name="DiceHandLabel" type="RichTextLabel" parent="BottomAreaUi/VBoxContainer/ScoringArea/DiceHandPanel/HBoxContainer/MarginContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3

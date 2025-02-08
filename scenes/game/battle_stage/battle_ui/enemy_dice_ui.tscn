@@ -1,4 +1,7 @@
-[gd_scene format=3 uid="uid://o0mlkxh53i6j"]
+[gd_scene load_steps=3 format=3 uid="uid://o0mlkxh53i6j"]
+
+[ext_resource type="Script" uid="uid://dt82luyyo7iua" path="res://scenes/game/battle_stage/battle_ui/enemy_dice_ui.gd" id="1_omwut"]
+[ext_resource type="StyleBox" uid="uid://cicxvr8nl2f60" path="res://gui_assets/panel_alt.tres" id="3_omwut"]
 
 [node name="EnemyDiceUI" type="Control"]
 layout_mode = 3
@@ -7,3 +10,101 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_omwut")
+
+[node name="BottomAreaUi" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -164.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BottomAreaUi"]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="BottomAreaUi/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BottomAreaUi/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="BottomAreaUi/VBoxContainer/MarginContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BottomAreaUi/VBoxContainer/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="BottomAreaUi/VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+
+[node name="EnemyDiceHolder" type="HBoxContainer" parent="BottomAreaUi/VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 128
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="BottomAreaUi/VBoxContainer/MarginContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="BottomAreaUi/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Panel" type="Panel" parent="BottomAreaUi/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="BottomAreaUi/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Panel" type="Panel" parent="BottomAreaUi/VBoxContainer/MarginContainer/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("3_omwut")
+
+[node name="MarginContainer" type="MarginContainer" parent="BottomAreaUi/VBoxContainer/MarginContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BottomAreaUi/VBoxContainer/MarginContainer/MarginContainer/MarginContainer"]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+
+[node name="EnemyAttackScoreLabel" type="RichTextLabel" parent="BottomAreaUi/VBoxContainer/MarginContainer/MarginContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(312, 64)
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "[shake rate=25.0 level=5 connected=0][font_size=96]Enemy is rolling...[/font_size][/shake]"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="BottomAreaUi/VBoxContainer/MarginContainer/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Enemy attack points"
+horizontal_alignment = 1
+vertical_alignment = 1

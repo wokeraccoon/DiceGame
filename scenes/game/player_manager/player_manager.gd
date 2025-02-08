@@ -6,7 +6,7 @@ var health : int = 500
 
 var money : int  = 3
 
-var rolls : int = 3
+var rolls : int = 99
 
 @export var inventory : Array[Item] = []
 

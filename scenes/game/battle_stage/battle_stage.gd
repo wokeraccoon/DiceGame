@@ -1,8 +1,6 @@
 class_name BattleStage
 extends Node3D
 
-signal battle_stage_ready
-
 @onready var enemy_animation_player: AnimationPlayer = $EnemyAnimationPlayer
 @onready var player_animation_player: AnimationPlayer = $PlayerAnimationPlayer
 @onready var enemy_sprite: Sprite3D = %EnemySprite
@@ -19,18 +17,20 @@ enum BattleStates {
 
 var battle_state : BattleStates = BattleStates.INTRO
 
+
+signal player_turn
+signal enemy_turn
+
 func set_enemy_sprite(texture : Texture2D):
 	enemy_sprite.texture = texture
+
+func _ready() -> void:
+	enemy_animation_player.play("ENEMY_IDLE")
+	player_animation_player.play("PLAYER_INTRO")
 
 func _process(delta: float) -> void:
 	
 	match battle_state:
-		BattleStates.INTRO:
-			if !enemy_animation_player.is_playing():
-				enemy_animation_player.play("ENEMY_IDLE")
-			
-			if !player_animation_player.is_playing():
-				player_animation_player.play("PLAYER_INTRO")
 		BattleStates.WAIT_FOR_PLAYER:
 			if !enemy_animation_player.is_playing():
 				enemy_animation_player.play("ENEMY_IDLE")
@@ -53,8 +53,9 @@ func hit_enemy() -> void:
 		enemy_animation_player.stop()
 		enemy_animation_player.play("ENEMY_HIT")
 		await get_tree().create_timer(1).timeout
-		#player_animation_player.play("PLAYER_ZOOM_OUT")
+		
 		battle_state = BattleStates.WAIT_FOR_ENEMY
+		enemy_turn.emit()
 		
 
 func hit_player() -> void:
