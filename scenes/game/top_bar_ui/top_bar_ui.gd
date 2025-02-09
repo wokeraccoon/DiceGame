@@ -7,6 +7,10 @@ extends MarginContainer
 
 signal options_menu_requested
 
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("pause_game"):
+		options_menu_requested.emit()
+
 func _on_options_button_pressed() -> void:
 	options_menu_requested.emit()
 

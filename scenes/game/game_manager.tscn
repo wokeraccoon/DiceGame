@@ -52,19 +52,13 @@ metadata/_edit_lock_ = true
 
 [node name="SubViewport" type="SubViewport" parent="BattleScreen/DungeonScreen/SubViewportContainer"]
 handle_input_locally = false
-size = Vector2i(320, 180)
+size = Vector2i(480, 270)
 render_target_update_mode = 4
 
 [node name="BattleStage" parent="BattleScreen/DungeonScreen/SubViewportContainer/SubViewport" instance=ExtResource("3_i3nyo")]
 unique_name_in_owner = true
 
-[node name="Vignette" parent="BattleScreen/DungeonScreen" instance=ExtResource("4_o5hsk")]
-layout_mode = 0
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-grow_horizontal = 1
-grow_vertical = 1
+[node name="Vignette" parent="BattleScreen" instance=ExtResource("4_o5hsk")]
 
 [node name="PlayerDiceUI" parent="BattleScreen" instance=ExtResource("4_g0gdj")]
 unique_name_in_owner = true

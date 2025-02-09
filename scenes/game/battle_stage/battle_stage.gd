@@ -4,20 +4,13 @@ extends Node3D
 @onready var enemy_animation_player: AnimationPlayer = $EnemyAnimationPlayer
 @onready var player_animation_player: AnimationPlayer = $PlayerAnimationPlayer
 @onready var enemy_sprite: Sprite3D = %EnemySprite
+@onready var damage_vignette: TextureRect = $DamageVignette
 
 signal battle_ready
 signal player_attacked
 signal enemy_attacked
 signal enemy_died
 signal player_died
-
-func _process(delta: float) -> void:
-	
-	if Input.is_action_just_pressed("ui_cancel"):
-		player_dead()
-
-func _ready() -> void:
-	player_animation_player.play("PLAYER_IDLE")
 
 func set_enemy_sprite(texture : Texture2D):
 	enemy_sprite.texture = texture
