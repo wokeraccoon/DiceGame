@@ -6,6 +6,7 @@ extends Node3D
 @onready var enemy_sprite: Sprite3D = %EnemySprite
 @onready var damage_vignette: TextureRect = $DamageVignette
 
+
 signal battle_ready
 signal player_attacked
 signal enemy_attacked
@@ -18,6 +19,8 @@ func set_enemy_sprite(texture : Texture2D):
 func start_intro() -> void:
 	enemy_animation_player.play("ENEMY_IDLE")
 	player_animation_player.play("PLAYER_INTRO")
+	await player_animation_player.animation_finished
+	battle_ready.emit()
 
 func player_turn() -> void:
 	enemy_animation_player.play("ENEMY_IDLE")

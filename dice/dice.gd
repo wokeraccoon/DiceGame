@@ -51,7 +51,7 @@ func _ready() -> void:
 	
 	animation_player.play("DICE_INTRO")
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	
 	match dice_state:
 		
