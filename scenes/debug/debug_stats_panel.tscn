@@ -19,16 +19,16 @@ offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+[node name="OSStatsBox" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="ColorRect" type="ColorRect" parent="VBoxContainer/MarginContainer"]
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/OSStatsBox"]
 layout_mode = 2
 mouse_filter = 2
 color = Color(0.245018, 0.245018, 0.245018, 1)
 
-[node name="SpecsLabel" type="Label" parent="VBoxContainer/MarginContainer"]
+[node name="SpecsLabel" type="Label" parent="VBoxContainer/OSStatsBox"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
