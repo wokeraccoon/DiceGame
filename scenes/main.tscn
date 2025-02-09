@@ -17,3 +17,4 @@ layer = 3
 layer = 5
 
 [node name="DebugStatsPanel" parent="DebugLayer" instance=ExtResource("2_0wfyh")]
+visible = false

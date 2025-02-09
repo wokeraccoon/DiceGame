@@ -5,7 +5,7 @@ var max_health : int = 100
 
 var health : int = 100
 
-var dice_ammount : int = 2
+var dice_ammount : int = 5
 
 @export var inventory : Array[Item] = []
 @export var enemy_resource : Enemy

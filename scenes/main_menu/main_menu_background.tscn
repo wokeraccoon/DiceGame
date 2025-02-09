@@ -116,13 +116,13 @@ transitions = ["Start", "DEFAULT", SubResource("AnimationNodeStateMachineTransit
 [node name="DicePivot" type="Marker3D" parent="."]
 
 [node name="Dice1" type="MeshInstance3D" parent="DicePivot"]
-transform = Transform3D(-0.659739, -0.75, 0.0473672, -0.478766, 0.370891, -0.795753, 0.579247, -0.547668, -0.603766, -0.3, 0, 0)
+transform = Transform3D(-0.65974, -0.75, 0.0473673, -0.478766, 0.370891, -0.795753, 0.579246, -0.547668, -0.603766, -0.3, 0, 0)
 mesh = SubResource("BoxMesh_vywvl")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_qoh75")
 
 [node name="Dice2" type="MeshInstance3D" parent="DicePivot"]
-transform = Transform3D(0.353553, 0.866025, 0.353553, -0.612372, 0.5, -0.612373, -0.707107, 2.98023e-08, 0.707107, 0.9, 0, -1)
+transform = Transform3D(0.353553, 0.866025, 0.353554, -0.612372, 0.5, -0.612373, -0.707107, -2.68221e-07, 0.707107, 0.9, 0, -1)
 mesh = SubResource("BoxMesh_vywvl")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_qoh75")

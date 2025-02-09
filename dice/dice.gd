@@ -69,7 +69,7 @@ func _process(delta: float) -> void:
 		dice_button.disabled = false
 
 func start_roll_dice() -> void:
-	roll_dice_timer.start(randf_range(2,3))
+	roll_dice_timer.start(randf_range(1,2))
 	
 	if dice_state != DiceStates.LOCK:
 		animation_player.stop()

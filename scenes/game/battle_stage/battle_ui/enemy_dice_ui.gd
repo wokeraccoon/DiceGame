@@ -13,9 +13,11 @@ var dice_rolled : int = 0
 
 signal dice_roll_finished(dice_values : Dictionary[String,int])
 
-
-func roll_dice(dice_ammount : int ) -> void:
+func set_dice_ammount(dice_ammount : int) -> void:
 	max_dice_ammount = dice_ammount
+
+func roll_dice() -> void:
+	
 	if enemy_dice.is_empty():
 		for i in max_dice_ammount:
 			var dice : Dice = DICE.instantiate()

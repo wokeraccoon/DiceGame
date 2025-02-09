@@ -11,5 +11,5 @@ short_description = "The default enemy"
 dice_ammount = 2
 enemy_sprite = ExtResource("2_72rr7")
 default_items = Array[ExtResource("1_2qum4")]([])
-base_health = 3000
+base_health = 1000
 metadata/_custom_type_script = ExtResource("1_aj32u")

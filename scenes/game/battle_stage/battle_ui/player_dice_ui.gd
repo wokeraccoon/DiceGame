@@ -96,9 +96,9 @@ func set_attack_score_label(score : int) -> void:
 	attack_score_label.text = str(score)
 
 func _on_roll_button_pressed() -> void:
-	roll_dice()
+	_roll_dice()
 
-func roll_dice(initial_roll : bool = false) -> void:
+func _roll_dice(initial_roll : bool = false) -> void:
 	dice_rolled = 0
 	if !initial_roll:
 		set_rolls_left(rolls_left - 1)
@@ -120,7 +120,7 @@ func roll_dice(initial_roll : bool = false) -> void:
 		#if initial_roll:
 			#dice.reset_dice()
 		#
-		#dice.start_roll_dice()
+		#dice.start__roll_dice()
 	
 	roll_button.disabled = true
 	attack_button.disabled = true
@@ -128,7 +128,7 @@ func roll_dice(initial_roll : bool = false) -> void:
 func reset_player_UI(rolls : int) -> void:
 	show()
 	set_rolls_left(rolls)
-	roll_dice(true)
+	_roll_dice(true)
 
 func _on_attack_button_pressed() -> void:
 	hide()

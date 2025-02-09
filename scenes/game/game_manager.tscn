@@ -94,8 +94,11 @@ grow_vertical = 2
 [node name="TopBarUI" parent="InfoBar" instance=ExtResource("6_u5ytd")]
 unique_name_in_owner = true
 
-[connection signal="enemy_turn" from="BattleScreen/DungeonScreen/SubViewportContainer/SubViewport/BattleStage" to="." method="_on_battle_stage_enemy_turn"]
-[connection signal="player_turn" from="BattleScreen/DungeonScreen/SubViewportContainer/SubViewport/BattleStage" to="." method="_on_battle_stage_player_turn"]
+[connection signal="battle_ready" from="BattleScreen/DungeonScreen/SubViewportContainer/SubViewport/BattleStage" to="." method="_on_battle_stage_battle_ready"]
+[connection signal="enemy_attacked" from="BattleScreen/DungeonScreen/SubViewportContainer/SubViewport/BattleStage" to="." method="_on_battle_stage_enemy_attacked"]
+[connection signal="enemy_died" from="BattleScreen/DungeonScreen/SubViewportContainer/SubViewport/BattleStage" to="." method="_on_battle_stage_enemy_died"]
+[connection signal="player_attacked" from="BattleScreen/DungeonScreen/SubViewportContainer/SubViewport/BattleStage" to="." method="_on_battle_stage_player_attacked"]
+[connection signal="player_died" from="BattleScreen/DungeonScreen/SubViewportContainer/SubViewport/BattleStage" to="." method="_on_battle_stage_player_died"]
 [connection signal="dice_roll_finished" from="BattleScreen/PlayerDiceUI" to="." method="_on_player_dice_ui_dice_roll_finished"]
 [connection signal="player_attack" from="BattleScreen/PlayerDiceUI" to="." method="_on_player_dice_ui_player_attack"]
 [connection signal="dice_roll_finished" from="BattleScreen/EnemyDiceUI" to="." method="_on_enemy_dice_ui_dice_roll_finished"]
