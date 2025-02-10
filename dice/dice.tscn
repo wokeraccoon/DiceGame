@@ -268,6 +268,7 @@ anchors_preset = 0
 script = ExtResource("1_desa2")
 dice_array_textures = Array[Texture2D]([ExtResource("2_2tv1o"), ExtResource("3_5157l"), ExtResource("4_w0qrj"), ExtResource("5_65ktn"), ExtResource("6_60uon"), ExtResource("7_x8mqb")])
 alt_dice_array_textures = Array[Texture2D]([ExtResource("8_burml"), ExtResource("9_6s3cu"), ExtResource("10_dw3ln"), ExtResource("11_5lqs7"), ExtResource("12_x7m6l"), ExtResource("13_vt45r")])
+dice_value = 2
 
 [node name="DiceTexture" type="TextureRect" parent="."]
 unique_name_in_owner = true
@@ -281,7 +282,7 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(48, 48)
 mouse_filter = 2
-texture = ExtResource("2_2tv1o")
+texture = ExtResource("3_5157l")
 
 [node name="DiceButton" type="Button" parent="DiceTexture"]
 unique_name_in_owner = true
@@ -304,7 +305,5 @@ toggle_mode = true
 libraries = {
 &"": SubResource("AnimationLibrary_5157l")
 }
-
-[node name="Camera2D" type="Camera2D" parent="."]
 
 [connection signal="pressed" from="DiceTexture/DiceButton" to="." method="_on_dice_button_pressed"]

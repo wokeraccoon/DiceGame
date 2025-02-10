@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=16 format=3 uid="uid://df1l4akfmabug"]
+[gd_resource type="Theme" load_steps=20 format=3 uid="uid://df1l4akfmabug"]
 
 [ext_resource type="Texture2D" uid="uid://bayb8nqmox68b" path="res://gui_assets/button/disabled_button.png" id="1_81tqi"]
 [ext_resource type="Texture2D" uid="uid://dcmfjc7d4ggjv" path="res://gui_assets/button/hover_button.png" id="2_ujgf4"]
@@ -74,6 +74,30 @@ texture_margin_top = 8.0
 texture_margin_right = 8.0
 texture_margin_bottom = 8.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6ikhj"]
+bg_color = Color(0.607843, 0.670588, 0.698039, 1)
+expand_margin_top = 8.0
+expand_margin_bottom = 8.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_odgbc"]
+bg_color = Color(0.780392, 0.862745, 0.815686, 1)
+expand_margin_top = 8.0
+expand_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ype4b"]
+bg_color = Color(1, 1, 1, 1)
+expand_margin_top = 8.0
+expand_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_snmd3"]
+bg_color = Color(0.384314, 0.333333, 0.396078, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.384314, 0.333333, 0.396078, 1)
+
 [resource]
 Button/colors/font_color = Color(0.243137, 0.207843, 0.27451, 1)
 Button/colors/font_disabled_color = Color(0.498039, 0.439216, 0.541176, 1)
@@ -90,3 +114,7 @@ Button/styles/pressed = SubResource("StyleBoxTexture_3sgq2")
 Panel/styles/panel = SubResource("StyleBoxTexture_38a42")
 ProgressBar/styles/background = SubResource("StyleBoxTexture_l53f6")
 ProgressBar/styles/fill = SubResource("StyleBoxTexture_ph01c")
+VScrollBar/styles/grabber = SubResource("StyleBoxFlat_6ikhj")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_odgbc")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_ype4b")
+VScrollBar/styles/scroll = SubResource("StyleBoxFlat_snmd3")

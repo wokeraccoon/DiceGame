@@ -15,7 +15,8 @@ enum DiceStates {
 	ROLL,
 	LOCK,
 	UNLOCK,
-	OUTRO
+	OUTRO,
+	DECORATIVE
 }
 
 @export var dice_state : DiceStates = DiceStates.INTRO
@@ -28,12 +29,20 @@ enum DiceOwners {
 
 @export var dice_owner : DiceOwners = DiceOwners.PLAYER
 
-var dice_value : int = 1
+@export_range(1,6) var dice_value : int = 1
+@export var is_decorative : bool = false
 
 signal roll_complete
 
 func _ready() -> void:
-	_switch_state(DiceStates.INTRO)
+	if Engine.is_editor_hint() == false:
+		
+		if !is_decorative:
+			set_number()
+			_switch_state(DiceStates.INTRO)
+		else:
+			set_number()
+			_switch_state(DiceStates.DECORATIVE)
 
 func _switch_state(state : DiceStates) -> void:
 	
@@ -86,7 +95,16 @@ func _switch_state(state : DiceStates) -> void:
 			animation_player.play("DICE_UNLOCK")
 			await animation_player.animation_finished
 			_switch_state(DiceStates.IDLE)
-			
+		
+		DiceStates.DECORATIVE:
+			dice_button.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			animation_player.play("DICE_IDLE")
+
+func set_number() -> void:
+	if use_alt_dice:
+		dice_texture.texture = alt_dice_array_textures[dice_value - 1]
+	else:
+		dice_texture.texture = dice_array_textures[dice_value - 1]
 
 func start_roll_dice() -> void:
 	_switch_state(DiceStates.ROLL)

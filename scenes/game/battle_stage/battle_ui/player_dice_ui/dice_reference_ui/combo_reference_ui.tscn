@@ -1,0 +1,545 @@
+[gd_scene load_steps=4 format=3 uid="uid://di75elvh0b7x8"]
+
+[ext_resource type="StyleBox" uid="uid://cicxvr8nl2f60" path="res://gui_assets/panel_alt.tres" id="1_ms7yw"]
+[ext_resource type="Script" uid="uid://b6u20o1d5fctp" path="res://scenes/game/battle_stage/battle_ui/player_dice_ui/dice_reference_ui/combo_reference_ui.gd" id="1_y5o1d"]
+[ext_resource type="PackedScene" uid="uid://bpa5hb2vk5kyk" path="res://dice/dice.tscn" id="3_30ndq"]
+
+[node name="ComboReferenceUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_y5o1d")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.18, 0.133, 0.184, 0.8)
+metadata/_edit_lock_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(768, 640)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Panel" type="Panel" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Dice Combos"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Panel" type="Panel" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("1_ms7yw")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer"]
+layout_mode = 2
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_right = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Singles (x5)"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "When no combo can be made, all dice are added together"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(512, 64)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 128
+alignment = 1
+
+[node name="Dice" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("3_30ndq")]
+layout_mode = 2
+dice_value = 6
+is_decorative = true
+
+[node name="Dice2" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("3_30ndq")]
+layout_mode = 2
+dice_value = 4
+is_decorative = true
+
+[node name="Dice3" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("3_30ndq")]
+layout_mode = 2
+dice_value = 3
+is_decorative = true
+
+[node name="Dice4" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("3_30ndq")]
+layout_mode = 2
+dice_value = 5
+is_decorative = true
+
+[node name="Dice5" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("3_30ndq")]
+layout_mode = 2
+dice_value = 1
+is_decorative = true
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+color = Color(0.243137, 0.207843, 0.27451, 1)
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Pair (x10)"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Two of the same dice"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(512, 64)
+layout_mode = 2
+theme_override_constants/separation = 128
+alignment = 1
+
+[node name="Dice2" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer" instance=ExtResource("3_30ndq")]
+layout_mode = 2
+is_decorative = true
+
+[node name="Dice3" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer" instance=ExtResource("3_30ndq")]
+layout_mode = 2
+is_decorative = true
+
+[node name="ColorRect2" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+color = Color(0.243137, 0.207843, 0.27451, 1)
+
+[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer3"]
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer3/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Two Pair (x15)"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer3/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Two pairs with the same dice"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer3/VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer3/VBoxContainer"]
+custom_minimum_size = Vector2(512, 64)
+layout_mode = 2
+theme_override_constants/separation = 128
+alignment = 1
+
+[node name="Dice2" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer3/VBoxContainer/HBoxContainer" instance=ExtResource("3_30ndq")]
+layout_mode = 2
+is_decorative = true
+
+[node name="Dice3" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer3/VBoxContainer/HBoxContainer" instance=ExtResource("3_30ndq")]
+layout_mode = 2
+is_decorative = true
+
+[node name="Dice4" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer3/VBoxContainer/HBoxContainer" instance=ExtResource("3_30ndq")]
+layout_mode = 2
+dice_value = 4
+is_decorative = true
+
+[node name="Dice5" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer3/VBoxContainer/HBoxContainer" instance=ExtResource("3_30ndq")]
+layout_mode = 2
+dice_value = 4
+is_decorative = true
+
+[node name="ColorRect3" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+color = Color(0.243137, 0.207843, 0.27451, 1)
+
+[node name="MarginContainer4" type="MarginContainer" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer4"]
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer4/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Three of a kind (x25)"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer4/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Three of the same dice"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer4/VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer4/VBoxContainer"]
+custom_minimum_size = Vector2(512, 64)
+layout_mode = 2
+theme_override_constants/separation = 128
+alignment = 1
+
+[node name="Dice2" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer4/VBoxContainer/HBoxContainer" instance=ExtResource("3_30ndq")]
+layout_mode = 2
+dice_value = 3
+is_decorative = true
+
+[node name="Dice3" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer4/VBoxContainer/HBoxContainer" instance=ExtResource("3_30ndq")]
+layout_mode = 2
+dice_value = 3
+is_decorative = true
+
+[node name="Dice4" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer4/VBoxContainer/HBoxContainer" instance=ExtResource("3_30ndq")]
+layout_mode = 2
+dice_value = 3
+is_decorative = true
+
+[node name="ColorRect4" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+color = Color(0.243137, 0.207843, 0.27451, 1)
+
+[node name="MarginContainer5" type="MarginContainer" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer5"]
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer5/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Four of a kind (x35)"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer5/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Four of the same dice"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer5/VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer5/VBoxContainer"]
+custom_minimum_size = Vector2(512, 64)
+layout_mode = 2
+theme_override_constants/separation = 128
+alignment = 1
+
+[node name="Dice2" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer5/VBoxContainer/HBoxContainer" instance=ExtResource("3_30ndq")]
+layout_mode = 2
+dice_value = 4
+is_decorative = true
+
+[node name="Dice3" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer5/VBoxContainer/HBoxContainer" instance=ExtResource("3_30ndq")]
+layout_mode = 2
+dice_value = 4
+is_decorative = true
+
+[node name="Dice4" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer5/VBoxContainer/HBoxContainer" instance=ExtResource("3_30ndq")]
+layout_mode = 2
+dice_value = 4
+is_decorative = true
+
+[node name="Dice5" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer5/VBoxContainer/HBoxContainer" instance=ExtResource("3_30ndq")]
+layout_mode = 2
+dice_value = 4
+is_decorative = true
+
+[node name="ColorRect5" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+color = Color(0.243137, 0.207843, 0.27451, 1)
+
+[node name="MarginContainer6" type="MarginContainer" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer6"]
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer6/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Full House (x30)"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer6/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "A Three of a kind and a Pair together"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer6/VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer6/VBoxContainer"]
+custom_minimum_size = Vector2(512, 64)
+layout_mode = 2
+theme_override_constants/separation = 128
+alignment = 1
+
+[node name="Dice2" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer6/VBoxContainer/HBoxContainer" instance=ExtResource("3_30ndq")]
+layout_mode = 2
+dice_value = 5
+is_decorative = true
+
+[node name="Dice3" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer6/VBoxContainer/HBoxContainer" instance=ExtResource("3_30ndq")]
+layout_mode = 2
+dice_value = 5
+is_decorative = true
+
+[node name="Dice4" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer6/VBoxContainer/HBoxContainer" instance=ExtResource("3_30ndq")]
+layout_mode = 2
+dice_value = 5
+is_decorative = true
+
+[node name="Dice5" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer6/VBoxContainer/HBoxContainer" instance=ExtResource("3_30ndq")]
+layout_mode = 2
+dice_value = 6
+is_decorative = true
+
+[node name="Dice6" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer6/VBoxContainer/HBoxContainer" instance=ExtResource("3_30ndq")]
+layout_mode = 2
+dice_value = 6
+is_decorative = true
+
+[node name="ColorRect6" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+color = Color(0.243137, 0.207843, 0.27451, 1)
+
+[node name="MarginContainer7" type="MarginContainer" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer7"]
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer7/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Straight (x50)"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer7/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Five dice in a row"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer7/VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer7/VBoxContainer"]
+custom_minimum_size = Vector2(512, 64)
+layout_mode = 2
+theme_override_constants/separation = 128
+alignment = 1
+
+[node name="Dice2" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer7/VBoxContainer/HBoxContainer" instance=ExtResource("3_30ndq")]
+layout_mode = 2
+dice_value = 1
+is_decorative = true
+
+[node name="Dice3" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer7/VBoxContainer/HBoxContainer" instance=ExtResource("3_30ndq")]
+layout_mode = 2
+is_decorative = true
+
+[node name="Dice4" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer7/VBoxContainer/HBoxContainer" instance=ExtResource("3_30ndq")]
+layout_mode = 2
+dice_value = 3
+is_decorative = true
+
+[node name="Dice5" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer7/VBoxContainer/HBoxContainer" instance=ExtResource("3_30ndq")]
+layout_mode = 2
+dice_value = 4
+is_decorative = true
+
+[node name="Dice6" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer7/VBoxContainer/HBoxContainer" instance=ExtResource("3_30ndq")]
+layout_mode = 2
+dice_value = 5
+is_decorative = true
+
+[node name="ColorRect7" type="ColorRect" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+color = Color(0.243137, 0.207843, 0.27451, 1)
+
+[node name="MarginContainer8" type="MarginContainer" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer8"]
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer8/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Yatch! (x100)"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer8/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "All dice the same number!"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer8/VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer8/VBoxContainer"]
+custom_minimum_size = Vector2(512, 64)
+layout_mode = 2
+theme_override_constants/separation = 128
+alignment = 1
+
+[node name="Dice2" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer8/VBoxContainer/HBoxContainer" instance=ExtResource("3_30ndq")]
+layout_mode = 2
+dice_value = 6
+is_decorative = true
+
+[node name="Dice3" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer8/VBoxContainer/HBoxContainer" instance=ExtResource("3_30ndq")]
+layout_mode = 2
+dice_value = 6
+is_decorative = true
+
+[node name="Dice4" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer8/VBoxContainer/HBoxContainer" instance=ExtResource("3_30ndq")]
+layout_mode = 2
+dice_value = 6
+is_decorative = true
+
+[node name="Dice5" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer8/VBoxContainer/HBoxContainer" instance=ExtResource("3_30ndq")]
+layout_mode = 2
+dice_value = 6
+is_decorative = true
+
+[node name="Dice6" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer8/VBoxContainer/HBoxContainer" instance=ExtResource("3_30ndq")]
+layout_mode = 2
+dice_value = 6
+is_decorative = true
+
+[node name="BackButton" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Close"
+
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://tliv023b8t2y"]
+[gd_scene load_steps=6 format=3 uid="uid://tliv023b8t2y"]
 
-[ext_resource type="Script" uid="uid://c8el58cqssgax" path="res://scenes/game/battle_stage/battle_ui/player_dice_ui.gd" id="1_3dxad"]
+[ext_resource type="Script" uid="uid://c8el58cqssgax" path="res://scenes/game/battle_stage/battle_ui/player_dice_ui/player_dice_ui.gd" id="1_3dxad"]
 [ext_resource type="Theme" uid="uid://df1l4akfmabug" path="res://gui_assets/game_theme.tres" id="1_d8wp3"]
+[ext_resource type="PackedScene" uid="uid://di75elvh0b7x8" path="res://scenes/game/battle_stage/battle_ui/player_dice_ui/dice_reference_ui/combo_reference_ui.tscn" id="4_fkdcp"]
 [ext_resource type="Texture2D" uid="uid://djxqfcftc5p30" path="res://gui_assets/panel_background_dark.png" id="4_p55k8"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sjw43"]
@@ -43,17 +44,34 @@ alignment = 2
 [node name="ScoringArea" type="HBoxContainer" parent="BottomAreaUi/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 4
 alignment = 1
 
 [node name="DiceHandPanel" type="MarginContainer" parent="BottomAreaUi/VBoxContainer/ScoringArea"]
 layout_mode = 2
+size_flags_horizontal = 4
 
 [node name="Panel" type="Panel" parent="BottomAreaUi/VBoxContainer/ScoringArea/DiceHandPanel"]
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="BottomAreaUi/VBoxContainer/ScoringArea/DiceHandPanel"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="BottomAreaUi/VBoxContainer/ScoringArea/DiceHandPanel/HBoxContainer"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="ComboReferenceButton" type="Button" parent="BottomAreaUi/VBoxContainer/ScoringArea/DiceHandPanel/HBoxContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Combo
+Reference"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="BottomAreaUi/VBoxContainer/ScoringArea/DiceHandPanel/HBoxContainer"]
 layout_mode = 2
@@ -160,6 +178,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="MarginContainer3" type="MarginContainer" parent="BottomAreaUi/VBoxContainer/ScoringArea/DiceHandPanel/HBoxContainer"]
+custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
@@ -315,5 +334,13 @@ layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="ComboReferenceUI" parent="CanvasLayer" instance=ExtResource("4_fkdcp")]
+unique_name_in_owner = true
+visible = false
+
+[connection signal="pressed" from="BottomAreaUi/VBoxContainer/ScoringArea/DiceHandPanel/HBoxContainer/MarginContainer/ComboReferenceButton" to="." method="_on_combo_reference_button_pressed"]
 [connection signal="pressed" from="BottomAreaUi/VBoxContainer/DiceArea/RollButton" to="." method="_on_roll_button_pressed"]
 [connection signal="pressed" from="BottomAreaUi/VBoxContainer/DiceArea/AttackButton" to="." method="_on_attack_button_pressed"]

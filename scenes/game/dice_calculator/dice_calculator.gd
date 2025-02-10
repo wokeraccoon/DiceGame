@@ -18,7 +18,7 @@ var dice_combos_scores : Dictionary[DiceComboNames,int] = {
 	DiceComboNames.TWO_PAIR : 15,
 	DiceComboNames.THREE_OF_A_KIND : 25,
 	DiceComboNames.FOUR_OF_A_KIND : 35,
-	DiceComboNames.FULL_HOUSE : 25,
+	DiceComboNames.FULL_HOUSE : 30,
 	DiceComboNames.STRAIGHT : 50,
 	DiceComboNames.YATCH : 100
 }

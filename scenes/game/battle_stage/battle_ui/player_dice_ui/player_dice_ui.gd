@@ -12,6 +12,7 @@ const DICE: PackedScene = preload("res://dice/dice.tscn")
 @onready var rolls_left_box: MarginContainer = $BottomAreaUi/VBoxContainer/DiceArea/RollsLeftBox
 @onready var rolls_left_label: Label = %RollsLeftLabel
 @onready var dice_hand_label: RichTextLabel = %DiceHandLabel
+@onready var combo_reference_ui: ComboReferenceUI = %ComboReferenceUI
 
 @export var player_dice : Array[Dice] = []
 
@@ -126,3 +127,7 @@ func _on_attack_button_pressed() -> void:
 	hide()
 	
 	player_attack.emit()
+
+
+func _on_combo_reference_button_pressed() -> void:
+	combo_reference_ui.show()
