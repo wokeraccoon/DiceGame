@@ -1,8 +1,10 @@
-[gd_scene load_steps=25 format=3 uid="uid://bpa5hb2vk5kyk"]
+[gd_scene load_steps=32 format=3 uid="uid://bpa5hb2vk5kyk"]
 
 [ext_resource type="Script" uid="uid://ghp56d1pp8oe" path="res://dice/dice.gd" id="1_desa2"]
 [ext_resource type="Texture2D" uid="uid://cj28p46kn3610" path="res://dice/assets/dice_normal/dice1.png" id="2_2tv1o"]
 [ext_resource type="Texture2D" uid="uid://bpf667y0k8xmh" path="res://dice/assets/dice_normal/dice2.png" id="3_5157l"]
+[ext_resource type="Shader" uid="uid://b8n4r13yvbsxx" path="res://dice/assets/pulse.gdshader" id="3_mq3jm"]
+[ext_resource type="Texture2D" uid="uid://bwcvmjk2kph0h" path="res://dice/assets/dice_unlocked.png" id="3_xw28x"]
 [ext_resource type="Texture2D" uid="uid://dhe15gnu4n4s5" path="res://dice/assets/dice_normal/dice3.png" id="4_w0qrj"]
 [ext_resource type="Texture2D" uid="uid://coaxhdwqewls6" path="res://dice/assets/dice_normal/dice4.png" id="5_65ktn"]
 [ext_resource type="Texture2D" uid="uid://cltm4gs0k8mko" path="res://dice/assets/dice_normal/dice5.png" id="6_60uon"]
@@ -14,10 +16,39 @@
 [ext_resource type="Texture2D" uid="uid://c8iv7eio5b7l4" path="res://dice/assets/dice_alt/dice_alt4.png" id="11_5lqs7"]
 [ext_resource type="Texture2D" uid="uid://d1kaldjvh3i6l" path="res://dice/assets/dice_alt/dice_alt5.png" id="12_x7m6l"]
 [ext_resource type="Texture2D" uid="uid://42f013m5yv4f" path="res://dice/assets/dice_alt/dice_alt6.png" id="13_vt45r"]
-[ext_resource type="Shader" uid="uid://b8n4r13yvbsxx" path="res://dice/dice.gdshader" id="14_6s3cu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dw3ln"]
-shader = ExtResource("14_6s3cu")
+shader = ExtResource("3_mq3jm")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mq3jm"]
+bg_color = Color(1, 1, 1, 0)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 0.75)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 8.0
+expand_margin_top = 8.0
+expand_margin_right = 8.0
+expand_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dw3ln"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mq3jm"]
+texture = ExtResource("3_xw28x")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ws0no"]
+texture = ExtResource("8_5157l")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2tv1o"]
+texture = ExtResource("8_5157l")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5157l"]
 
 [sub_resource type="Animation" id="Animation_2tv1o"]
 resource_name = "DICE_IDLE"
@@ -63,32 +94,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(1.5, 1.5), Vector2(1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:dice_state")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.4),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.41),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"start_roll_dice"
-}]
 }
 
 [sub_resource type="Animation" id="Animation_65ktn"]
@@ -152,7 +157,6 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_w0qrj"]
 resource_name = "DICE_ROLL"
 length = 0.2
-loop_mode = 1
 step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -161,10 +165,10 @@ tracks/0/path = NodePath("DiceTexture:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-48, -48), Vector2(-50, -50), Vector2(-48, -50), Vector2(-46, -48), Vector2(-48, -48), Vector2(-50, -50), Vector2(-48, -50), Vector2(-46, -48), Vector2(-46, -46)]
+"values": [Vector2(-48, -48), Vector2(-50, -50), Vector2(-48, -50), Vector2(-46, -48), Vector2(-48, -48)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -173,10 +177,10 @@ tracks/1/path = NodePath("DiceTexture:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [0.0872665, -0.0872665, 0.0872665, -0.0872665, 0.0872665]
+"values": [0.0872665, -0.0872665, 0.0872665]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -189,20 +193,6 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(1, 1)]
-}
-tracks/3/type = "method"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0.19),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"_set_random_number"
-}]
 }
 
 [sub_resource type="Animation" id="Animation_60uon"]
@@ -220,18 +210,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(0.9, 0.9), Vector2(1.1, 1.1), Vector2(1, 1), Vector2(1.1, 1.1), Vector2(1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:dice_state")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.09),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
 }
 
 [sub_resource type="Animation" id="Animation_5157l"]
@@ -272,18 +250,6 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(-48, -48)]
 }
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".:dice_state")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5157l"]
 _data = {
@@ -317,42 +283,28 @@ pivot_offset = Vector2(48, 48)
 mouse_filter = 2
 texture = ExtResource("2_2tv1o")
 
-[node name="LockIcon" type="TextureRect" parent="DiceTexture"]
-unique_name_in_owner = true
-self_modulate = Color(1, 1, 1, 0.503)
-material = SubResource("ShaderMaterial_dw3ln")
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-offset_right = 96.0
-offset_bottom = 96.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(48, 48)
-mouse_filter = 2
-texture = ExtResource("8_5157l")
-
 [node name="DiceButton" type="Button" parent="DiceTexture"]
 unique_name_in_owner = true
+material = SubResource("ShaderMaterial_dw3ln")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
-flat = true
+theme_override_styles/focus = SubResource("StyleBoxFlat_mq3jm")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_dw3ln")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_mq3jm")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ws0no")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_2tv1o")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_5157l")
+toggle_mode = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_5157l")
 }
 
-[node name="RollDiceTimer" type="Timer" parent="."]
-one_shot = true
+[node name="Camera2D" type="Camera2D" parent="."]
 
-[connection signal="button_down" from="DiceTexture/DiceButton" to="." method="_on_dice_button_button_down"]
-[connection signal="focus_entered" from="DiceTexture/DiceButton" to="." method="_on_dice_button_focus_entered"]
-[connection signal="focus_exited" from="DiceTexture/DiceButton" to="." method="_on_dice_button_focus_exited"]
-[connection signal="mouse_entered" from="DiceTexture/DiceButton" to="." method="_on_dice_button_mouse_entered"]
-[connection signal="mouse_exited" from="DiceTexture/DiceButton" to="." method="_on_dice_button_mouse_exited"]
-[connection signal="timeout" from="RollDiceTimer" to="." method="_on_roll_dice_timer_timeout"]
+[connection signal="pressed" from="DiceTexture/DiceButton" to="." method="_on_dice_button_pressed"]

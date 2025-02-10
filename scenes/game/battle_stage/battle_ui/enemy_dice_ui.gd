@@ -22,9 +22,9 @@ func roll_dice() -> void:
 		for i in max_dice_ammount:
 			var dice : Dice = DICE.instantiate()
 			enemy_dice_holder.add_child(dice)
-			dice.player_can_interact = false
 			dice.connect("roll_complete",on_dice_roll_complete)
 			enemy_dice.append(dice)
+			dice.dice_owner = Dice.DiceOwners.ENEMY
 	else:
 		for dice : Dice in enemy_dice:
 			dice.start_roll_dice()

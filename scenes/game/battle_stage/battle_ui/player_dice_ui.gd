@@ -39,6 +39,7 @@ func _ready() -> void:
 			player_dice_holder.add_child(dice)
 			dice.connect("roll_complete",on_dice_roll_complete)
 			player_dice.append(dice)
+			dice.dice_owner = Dice.DiceOwners.PLAYER
 	
 
 func on_dice_roll_complete() -> void:
@@ -59,9 +60,6 @@ func on_dice_roll_complete() -> void:
 			
 			total_dice_score += player_dice[value].dice_value
 		total_dice_score_label.text = str(total_dice_score)
-		
-		for dice : Dice in player_dice:
-			dice.player_can_interact = true
 		
 		dice_roll_finished.emit(dice_values)
 
@@ -105,10 +103,9 @@ func _roll_dice(initial_roll : bool = false) -> void:
 		
 	for dice : Dice in player_dice:
 		if initial_roll:
-			dice._ready()
+			dice.restart_dice()
 		else:
 			dice.start_roll_dice()
-			dice.player_can_interact = false
 		
 	set_attack_score_label(0)
 	total_dice_score = 0
@@ -116,11 +113,6 @@ func _roll_dice(initial_roll : bool = false) -> void:
 	
 	dice_hand_label.text = "[shake rate=20.0 level=5 connected=1][font_size=48]Rolling...[/font_size][/shake]"
 	
-	#for dice : Dice in player_dice:
-		#if initial_roll:
-			#dice.reset_dice()
-		#
-		#dice.start__roll_dice()
 	
 	roll_button.disabled = true
 	attack_button.disabled = true

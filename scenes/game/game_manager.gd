@@ -41,6 +41,8 @@ func _ready() -> void:
 	
 func _change_state(new_state : GameStates) -> void:
 	
+	game_state = new_state
+	
 	match new_state:
 		GameStates.START:
 			battle_stage.start_intro()

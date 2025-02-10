@@ -1,15 +1,8 @@
 class_name Dice
 extends Control
 
-const DICE_UNLOCKED_TEXTURE = preload("res://dice/assets/dice_unlocked.png")
-const DICE_LOCKED_TEXTURE = preload("res://dice/assets/dice_locked.png")
-
-const FLOATING_TEXT : PackedScene = preload("res://gui_assets/floating_text/floating_text.tscn")
 
 @onready var dice_texture: TextureRect = $DiceTexture
-
-@onready var lock_icon: TextureRect = %LockIcon
-@onready var roll_dice_timer: Timer = $RollDiceTimer
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var dice_button: Button = %DiceButton
 
@@ -21,112 +14,89 @@ enum DiceStates {
 	IDLE,
 	ROLL,
 	LOCK,
+	UNLOCK,
 	OUTRO
 }
 
 @export var dice_state : DiceStates = DiceStates.INTRO
 @export var use_alt_dice : bool = false
 
-@export var player_can_interact : bool = true
+enum DiceOwners {
+	ENEMY,
+	PLAYER
+}
+
+@export var dice_owner : DiceOwners = DiceOwners.PLAYER
 
 var dice_value : int = 1
 
 signal roll_complete
 
 func _ready() -> void:
-	lock_icon.hide()
-	
-	if use_alt_dice:
-		dice_texture.texture = alt_dice_array_textures[dice_value - 1]
-	else:
-		dice_texture.texture = dice_array_textures[dice_value - 1]
-	
-	dice_state = DiceStates.INTRO
-	
-	if !player_can_interact:
-		dice_button.focus_mode = Control.FOCUS_NONE
-		dice_button.disabled = true
-	else:
-		dice_button.disabled = false
-	
-	animation_player.play("DICE_INTRO")
+	_switch_state(DiceStates.INTRO)
 
-func _process(_delta: float) -> void:
+func _switch_state(state : DiceStates) -> void:
 	
-	match dice_state:
-		
-		DiceStates.IDLE:
-			if !animation_player.is_playing():
-				animation_player.play("DICE_IDLE")
+	dice_state = state
+	
+	match state:
+		DiceStates.INTRO:
+			dice_button.button_pressed = false
+			dice_button.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			animation_player.play("DICE_INTRO")
+			await animation_player.animation_finished
+			_switch_state(DiceStates.ROLL)
+			
 			
 		DiceStates.ROLL:
-			if !animation_player.is_playing():
-				animation_player.play("DICE_ROLL")
-				
-	if !roll_dice_timer.is_stopped() and player_can_interact:
-		dice_button.disabled = true
-	else:
-		dice_button.disabled = false
+			dice_button.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			
+			if !dice_button.button_pressed:
+				for i in randi_range(5,10):
+					animation_player.play("DICE_ROLL")
+					
+					dice_value = randi_range(1,6)
+					if use_alt_dice:
+						dice_texture.texture = alt_dice_array_textures[dice_value - 1]
+					else:
+						dice_texture.texture = dice_array_textures[dice_value - 1]
+					await animation_player.animation_finished
+			else:
+				await get_tree().create_timer(randi_range(1,2)).timeout
+			roll_complete.emit()
+			_switch_state(DiceStates.IDLE)
+			
+		DiceStates.IDLE:
+			if dice_owner ==  DiceOwners.PLAYER:
+				dice_button.mouse_filter = Control.MOUSE_FILTER_STOP
+			else:
+				dice_button.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			
+			if !dice_button.button_pressed:
+				animation_player.play("DICE_IDLE")
+			
+		DiceStates.LOCK:
+			dice_button.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			animation_player.play("DICE_LOCK")
+			await animation_player.animation_finished
+			_switch_state(DiceStates.IDLE)
+
+		DiceStates.UNLOCK:
+			dice_button.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			animation_player.play("DICE_UNLOCK")
+			await animation_player.animation_finished
+			_switch_state(DiceStates.IDLE)
+			
 
 func start_roll_dice() -> void:
-	roll_dice_timer.start(randf_range(1,2))
-	
-	if dice_state != DiceStates.LOCK:
-		animation_player.stop()
-		dice_state = DiceStates.ROLL
+	_switch_state(DiceStates.ROLL)
 
-func _set_random_number() -> void:
-	dice_value = randi_range(1,6)
+func restart_dice() -> void:
+	_switch_state(DiceStates.INTRO)
+
+func _on_dice_button_pressed() -> void:
 	
-	if use_alt_dice:
-		dice_texture.texture = alt_dice_array_textures[dice_value - 1]
+	if dice_button.button_pressed:
+		_switch_state(DiceStates.LOCK)
 	else:
-		dice_texture.texture = dice_array_textures[dice_value - 1]
-
-func _on_dice_button_mouse_entered() -> void:
-	if !dice_button.disabled and player_can_interact:
-		if dice_state == DiceStates.IDLE:
-			lock_icon.show()
-		elif dice_state == DiceStates.LOCK:
-			lock_icon.texture = DICE_UNLOCKED_TEXTURE
-
-func _on_dice_button_mouse_exited() -> void:
-	if !dice_button.disabled and player_can_interact:
-		if dice_state == DiceStates.IDLE:
-			lock_icon.hide()
-		elif dice_state == DiceStates.LOCK:
-			lock_icon.texture = DICE_LOCKED_TEXTURE
-
-func _on_dice_button_button_down() -> void:
-	if !dice_button.disabled and player_can_interact:
-		if dice_state == DiceStates.IDLE:
-			animation_player.play("DICE_LOCK")
-		elif dice_state == DiceStates.LOCK:
-			animation_player.play("DICE_UNLOCK")
-
-func reset_dice() -> void:
-	_ready() 
-
-func _on_dice_button_focus_entered() -> void:
-	if !dice_button.disabled and player_can_interact:
-		if dice_state == DiceStates.IDLE:
-			lock_icon.show()
-		elif dice_state == DiceStates.LOCK:
-			lock_icon.texture = DICE_UNLOCKED_TEXTURE
-
-
-func _on_dice_button_focus_exited() -> void:
-	if !dice_button.disabled and player_can_interact:
-		if dice_state == DiceStates.IDLE:
-			lock_icon.hide()
-		elif dice_state == DiceStates.LOCK:
-			lock_icon.texture = DICE_LOCKED_TEXTURE
-
-
-func _on_roll_dice_timer_timeout() -> void:
-	animation_player.stop()
-	if dice_state != DiceStates.LOCK:
-		dice_state = DiceStates.IDLE
-	roll_complete.emit()
-
- 
+		_switch_state(DiceStates.UNLOCK)
