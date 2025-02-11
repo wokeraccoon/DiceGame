@@ -1,12 +1,9 @@
-[gd_scene load_steps=24 format=3 uid="uid://dkx41chdlblvm"]
+[gd_scene load_steps=23 format=3 uid="uid://dkx41chdlblvm"]
 
 [ext_resource type="Script" uid="uid://bofqdlnkp8a1t" path="res://scenes/game/battle_stage/battle_stage.gd" id="1_1ybse"]
 [ext_resource type="Material" uid="uid://blyf6qcep6rvq" path="res://scenes/game/dungeon_assets/dungeon_wall_mat.tres" id="2_1ybse"]
 [ext_resource type="Material" uid="uid://biat7o7g74y4c" path="res://scenes/game/dungeon_assets/dungeon_floor_mat.tres" id="3_5fcvq"]
 [ext_resource type="Texture2D" uid="uid://cthdjn64hfl7r" path="res://icon.svg" id="3_u1udp"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_4xn4m"]
-size = Vector3(4, 8, 6)
 
 [sub_resource type="Environment" id="Environment_2em46"]
 fog_enabled = true
@@ -302,7 +299,7 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 1.07, 0.025802, -9, -0.69, 0.0578804, 0.25, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 1.07, 0.025802, -15.875, -0.69, 0.0578804, 0.25, 0),
 "times": PackedFloat32Array(0, 1)
 }
 
@@ -417,10 +414,10 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 use_collision = true
 
-[node name="RoomPieces" type="CSGMesh3D" parent="DungeonMesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+[node name="CSGBox3D3" type="CSGBox3D" parent="DungeonMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.95117)
 flip_faces = true
-mesh = SubResource("BoxMesh_4xn4m")
+size = Vector3(4, 8, 17.9023)
 material = ExtResource("2_1ybse")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="DungeonMesh"]
@@ -429,6 +426,11 @@ operation = 2
 flip_faces = true
 size = Vector3(32, 0.135693, 32)
 material = ExtResource("3_5fcvq")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="DungeonMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0869141, 0.246887, -16.6261)
+operation = 2
+size = Vector3(5.30078, 9.52014, 1.57764)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_2em46")
@@ -445,7 +447,6 @@ transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0, 0.1, -2.5)
 [node name="EnemySprite" type="Sprite3D" parent="EnemySpot"]
 unique_name_in_owner = true
 pixel_size = 0.05
-shaded = true
 texture_filter = 2
 texture = ExtResource("3_u1udp")
 
