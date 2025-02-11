@@ -61,7 +61,7 @@ func _switch_state(state : DiceStates) -> void:
 			dice_button.mouse_filter = Control.MOUSE_FILTER_IGNORE
 			
 			if !dice_button.button_pressed:
-				for i in randi_range(5,10):
+				for i in randi_range(8,10):
 					animation_player.play("DICE_ROLL")
 					
 					dice_value = randi_range(1,6)
