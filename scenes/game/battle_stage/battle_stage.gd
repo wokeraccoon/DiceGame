@@ -30,8 +30,14 @@ func player_attack() -> void:
 	player_animation_player.play("PLAYER_ZOOM_IN")
 	await player_animation_player.animation_finished
 	await get_tree().create_timer(0.5).timeout
-	enemy_animation_player.play("ENEMY_HIT")
+	enemy_animation_player.play("RESET")
 	await enemy_animation_player.animation_finished
+	for i in randi_range(10,15):
+		enemy_sprite.offset.x = randf_range(-2,2)
+		enemy_sprite.offset.y = randf_range(-2,2)
+		await get_tree().create_timer(0.025).timeout
+	enemy_sprite.offset = Vector2.ZERO
+	
 	await get_tree().create_timer(0.5).timeout
 	enemy_animation_player.play("ENEMY_IDLE")
 	player_attacked.emit()
@@ -40,6 +46,8 @@ func enemy_attack() -> void:
 	player_animation_player.play("PLAYER_ZOOM_OUT")
 	await player_animation_player.animation_finished
 	await get_tree().create_timer(0.5).timeout
+	enemy_animation_player.play("RESET")
+	await enemy_animation_player.animation_finished
 	enemy_animation_player.play("ENEMY_ATTACK")
 	await player_animation_player.animation_finished
 	player_animation_player.play("PLAYER_IDLE")
