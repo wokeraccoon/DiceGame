@@ -99,6 +99,7 @@ func _switch_state(state : DiceStates) -> void:
 		DiceStates.DECORATIVE:
 			dice_button.mouse_filter = Control.MOUSE_FILTER_IGNORE
 			animation_player.play("DICE_IDLE")
+			dice_button.focus_mode = Control.FOCUS_NONE
 
 func set_number() -> void:
 	if use_alt_dice:

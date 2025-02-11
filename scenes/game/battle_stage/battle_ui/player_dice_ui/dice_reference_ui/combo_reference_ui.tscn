@@ -78,8 +78,9 @@ theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer"]
+unique_name_in_owner = true
 layout_mode = 2
-follow_focus = true
+draw_focus_border = true
 horizontal_scroll_mode = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MarginContainer/VBoxContainer/MarginContainer/MarginContainer/ScrollContainer"]
@@ -542,4 +543,5 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "Close"
 
+[connection signal="draw" from="." to="." method="_on_draw"]
 [connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
