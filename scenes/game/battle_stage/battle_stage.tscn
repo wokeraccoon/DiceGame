@@ -1,16 +1,11 @@
 [gd_scene load_steps=24 format=3 uid="uid://dkx41chdlblvm"]
 
 [ext_resource type="Script" uid="uid://bofqdlnkp8a1t" path="res://scenes/game/battle_stage/battle_stage.gd" id="1_1ybse"]
-[ext_resource type="Texture2D" uid="uid://cnl8dub7a5egv" path="res://scenes/game/battle_stage/wall_texture.png" id="2_5fcvq"]
+[ext_resource type="Material" uid="uid://blyf6qcep6rvq" path="res://scenes/game/dungeon_assets/dungeon_wall_mat.tres" id="2_1ybse"]
+[ext_resource type="Material" uid="uid://biat7o7g74y4c" path="res://scenes/game/dungeon_assets/dungeon_floor_mat.tres" id="3_5fcvq"]
 [ext_resource type="Texture2D" uid="uid://cthdjn64hfl7r" path="res://icon.svg" id="3_u1udp"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yylj5"]
-albedo_texture = ExtResource("2_5fcvq")
-uv1_triplanar = true
-texture_filter = 0
-
 [sub_resource type="BoxMesh" id="BoxMesh_4xn4m"]
-material = SubResource("StandardMaterial3D_yylj5")
 size = Vector3(4, 8, 6)
 
 [sub_resource type="Environment" id="Environment_2em46"]
@@ -426,6 +421,14 @@ use_collision = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
 flip_faces = true
 mesh = SubResource("BoxMesh_4xn4m")
+material = ExtResource("2_1ybse")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="DungeonMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.00143, 0)
+operation = 2
+flip_faces = true
+size = Vector3(32, 0.135693, 32)
+material = ExtResource("3_5fcvq")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_2em46")

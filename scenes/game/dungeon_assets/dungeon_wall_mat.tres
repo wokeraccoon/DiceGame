@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://blyf6qcep6rvq"]
+
+[ext_resource type="Texture2D" uid="uid://cnl8dub7a5egv" path="res://scenes/game/dungeon_assets/wall_texture.png" id="1_ygx1b"]
+
+[resource]
+albedo_texture = ExtResource("1_ygx1b")
+uv1_triplanar = true
+texture_filter = 0
