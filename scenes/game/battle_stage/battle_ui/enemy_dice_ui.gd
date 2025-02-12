@@ -25,9 +25,10 @@ func roll_dice() -> void:
 			dice.connect("roll_complete",on_dice_roll_complete)
 			enemy_dice.append(dice)
 			dice.dice_owner = Dice.DiceOwners.ENEMY
+			dice.restart_dice()
 	else:
 		for dice : Dice in enemy_dice:
-			dice.start_roll_dice()
+			dice.restart_dice()
 	
 	enemy_attack_score_label.text = "[shake rate=25.0 level=5 connected=0][font_size=64]Enemy is rolling...[/font_size][/shake]"
 
