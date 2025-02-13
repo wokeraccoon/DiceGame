@@ -101,9 +101,13 @@ func _roll_dice(initial_roll : bool = false) -> void:
 	dice_rolled = 0
 	if !initial_roll:
 		set_rolls_left(rolls_left - 1)
+		for dice : Dice in player_dice:
+			dice.start_roll_dice()
+	else:
+		for dice : Dice in player_dice:
+			dice.restart_dice()
 		
-	for dice : Dice in player_dice:
-		dice.start_roll_dice()
+	
 		
 	set_attack_score_label(0)
 	total_dice_score = 0
