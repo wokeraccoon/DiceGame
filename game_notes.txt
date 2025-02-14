@@ -1,67 +1,86 @@
 Game name: Dice Game
 
-#TODO List for first release
+#TODO List
 
--finish battle system
--create a basic enemy
+-finish battle system *DONE*
+-create a basic enemy *DONE*
+-finish exploring/traversing system
+-add a shop keeper
+-add some enemies
 -add some items for testing balance
 -improve controller support
 
--Items:
- -Common:
-  -Weak shield: reduces incoming damage by 25%
-  -Bottle of pills: 25+ health points after enemy's attack
-  -Prospector's hat: Makes a random dice into a golden dice on each battle
-  -Bottle of Poison: 15+ damage on enemy. Increases by  5+ on every attack
-  -Wizard hat: 5-10+ dice total score
-  -Revolver: 1 in 6 chance to 2x dice total 
-  -Membership Card: Gives a food consumable after every fight. -$5 after each fight.
+- IDEAS FOR ITEMS/CONSUMABLES/DICE -
 
- -Uncommon:
-  -Short shotgun: 50-100+ damage
-  -Property card: $10 gold after each battle
-  -Rocket fuel: 10+ dice combo score
-  -Banana peel: 1 in 4 chance for enemy to miss attack
-  -Witch hat: 5-10+ dice combo mult
-  -Dragon scales: makes one of the enemy's dice into an fire dice
-  -Comet debris: males one of the enemy's dice into an ice dice
-  -Astronaut's helmet: 1+ roll
+	-Items:
+	 -Common:
+	  -Weak shield: reduces incoming damage by 25%
+	  -Bottle of pills: 25+ health points after enemy's attack
+	  -Prospector's hat: Makes a random dice into a golden dice on each battle
+	  -Bottle of Poison: 15+ damage on enemy. Increases by  5+ on every attack
+	  -Wizard hat: 5-10+ dice total score
+	  -Revolver: 1 in 6 chance to 2x dice total
+	  -Membership Card: Gives a food consumable after every fight. -$5 after each fight.
 
- -Rare items:
-  -Gun that kills the past (Enter The Gungeon): On death, resets battle to the begining with the same seed. Can only be used once.
-  -Polychrome Joker (Balatro): 4+ dice total, 1.5x mult
-  -Platinum Chip (Fallout New Vegas): Makes all dice into casino dice (Does not overrides negative dice effects)
-  -Richard (Hotline Miami): All attacks give 4x damage
-  -Icon.svg (Godot): Makes a random dice into a 4D dice on each battle
+	 -Uncommon:
+	  -Short shotgun: 50-100+ damage
+	  -Property card: $10 gold after each battle
+	  -Rocket fuel: 10+ dice combo score
+	  -Banana peel: 1 in 4 chance for enemy to miss attack
+	  -Witch hat: 5-10+ dice combo mult
+	  -Dragon scales: makes one of the enemy's dice into an fire dice
+	  -Comet debris: males one of the enemy's dice into an ice dice
+	  -Astronaut's helmet: 1+ roll
 
- -Weird items (with side effects):
-  -Ceremonial Dagger: 2x damage on enemy, get damage on self after attacks
-  -Infected USB drive: 80% chance of doubling earned money after battle, 20% chance of dividing total money in half
-  -Infected USB Drive: 50% chance to double money, 50% chance to divide money in half
-  -Infected USB Drive: 50% chance to double money, 50% chance to divide money in half
+	 -Rare items:
+	  -Gun that kills the past (Enter The Gungeon): On death, resets battle to the begining with the same seed. Can only be used once.
+	  -Polychrome Joker (Balatro): 4+ dice total, 1.5x mult
+	  -Platinum Chip (Fallout New Vegas): Makes all dice into casino dice (Does not overrides negative dice effects)
+	  -Richard (Hotline Miami): All attacks give 4x damage
+	  -Icon.svg (Godot): Makes a random dice into a 4D dice on each battle
 
- -Consumables:
-  -Stew: 50+ health
-  -Substenance bar: 25+ max health
-  -Healing potion: 25+ health on every turn until end of battle.
-  -Edible gold leaf: select a dice to make into a gold dice
-  -Gum: select a dice to make into a weigthed dice
-  -Bottle of XXX: Select a dice to make into a casino dice
-  -Expired medicine: 50% chance to fully heal, 50% chance to divide health in half
-  -$1.50 Hotdog: +100 health
+	 -Weird items (with side effects):
+	  -Ceremonial Dagger: 2x damage on enemy, get damage on self after attacks
+	  -Infected USB drive: 80% chance of doubling earned money after battle, 20% chance of dividing total money in half
+	  -Infected USB Drive: 50% chance to double money, 50% chance to divide money in half
+	  -Infected USB Drive: 50% chance to double money, 50% chance to divide money in half
 
--Dice effects (negative):
- -Negative dice: initally locked. Locks all other dice when unlocked
- -Ice dice: only shows even numbers (2,4,6)
- -Fire dice: only shows odd numbers (1,3,5)
- -Wee dice: can only have numbers 1-3
- -Ivory dice: Takes HP when used in a dice combo
- -Stone dice: Can't be unlocked
- -Clay dice: Can't be locked
+	 -Consumables:
+	  -Stew: 50+ health
+	  -Substenance bar: 25+ max health
+	  -Healing potion: 25+ health on every turn until end of battle.
+	  -Edible gold leaf: select a dice to make into a gold dice
+	  -Gum: select a dice to make into a weigthed dice
+	  -Bottle of XXX: Select a dice to make into a casino dice
+	  -Expired medicine: 50% chance to fully heal, 50% chance to divide health in half
+	  -$1.50 Hotdog: +100 health
 
--Dice effects (positive):
- -Casino dice: 2x value when used in dice combo
- -Wooden dice: heals when used in dice combo
- -Gold dice: gives cash when used in dice combo
- -Weigthed dice: Always lands on the same number. Number changes on every fight.
- -4D dice: random chance of providing 1x to 8x value to attack score 
+	-Dice effects (negative):
+	 -Negative dice: initally locked. Locks all other dice when unlocked
+	 -Ice dice: only shows even numbers (2,4,6)
+	 -Fire dice: only shows odd numbers (1,3,5)
+	 -Wee dice: can only have numbers 1-3
+	 -Ivory dice: Takes HP when used in a dice combo
+	 -Stone dice: Can't be unlocked
+	 -Clay dice: Can't be locked
+
+	-Dice effects (positive):
+	 -Casino dice: 2x value when used in dice combo
+	 -Wooden dice: heals when used in dice combo
+	 -Gold dice: gives cash when used in dice combo
+	 -Weigthed dice: Always lands on the same number. Number changes on every fight.
+	 -4D dice: random chance of providing 1x to 8x value to attack score
+
+- CREDITS -
+
+ - TOOLS/PLUGINS USED:
+ 	- Godot Engine
+    - Aseprite
+
+ - ASSETS NOT CREATED BY ME:
+ 	- "m3x6" font by Daniel Linssen
+  	- "Resurrect 64" palette by Kerrie Lake
+    - wokeraccoon logo by Tyr Kilcat
+
+    - Sound Effects
+     -"Dice Set A.m4a", "Dice Set B.m4a" and "Dice C.m4a: by Phorgador. License: Attribution 4.0. Link: https://freesound.org/people/Phorgador/
