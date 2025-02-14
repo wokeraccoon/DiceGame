@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b6hkp7ydpotqs"]
+[gd_scene load_steps=14 format=3 uid="uid://b6hkp7ydpotqs"]
 
 [ext_resource type="Script" uid="uid://v54vb110se7y" path="res://scenes/game/game_manager.gd" id="1_x6pty"]
 [ext_resource type="PackedScene" uid="uid://b2rt1670ts75n" path="res://scenes/game/dice_calculator/dice_calculator.tscn" id="2_ghnn3"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bt7hu8n4rfque" path="res://gui_assets/vignette.tscn" id="4_o5hsk"]
 [ext_resource type="PackedScene" uid="uid://cdbe3ylrhpbku" path="res://scenes/game/enemy_manager/enemy_manager.tscn" id="4_wap17"]
 [ext_resource type="Resource" uid="uid://bla561aa14rfg" path="res://enemies/icon.tres" id="5_0vd8f"]
+[ext_resource type="Script" uid="uid://cfq66dvtr34an" path="res://scenes/game/battle_manager.gd" id="6_iorb4"]
 [ext_resource type="PackedScene" uid="uid://cv7a1erym7ml7" path="res://scenes/game/top_bar_ui/top_bar_ui.tscn" id="6_u5ytd"]
 [ext_resource type="PackedScene" uid="uid://dsqqw522ht8gh" path="res://scenes/game/battle_stage/battle_ui/enemy_info_ui.tscn" id="7_ok4xb"]
 [ext_resource type="PackedScene" uid="uid://o0mlkxh53i6j" path="res://scenes/game/battle_stage/battle_ui/enemy_dice_ui.tscn" id="10_0vd8f"]
@@ -17,13 +18,20 @@
 script = ExtResource("1_x6pty")
 
 [node name="DiceCalculator" parent="." instance=ExtResource("2_ghnn3")]
+unique_name_in_owner = true
 
 [node name="PlayerManager" parent="." instance=ExtResource("3_o5hsk")]
+unique_name_in_owner = true
 
 [node name="EnemyManager" parent="." instance=ExtResource("4_wap17")]
+unique_name_in_owner = true
 enemy_resource = ExtResource("5_0vd8f")
 
 [node name="BattleScreen" type="CanvasLayer" parent="."]
+
+[node name="BattleManager" type="Node" parent="BattleScreen"]
+unique_name_in_owner = true
+script = ExtResource("6_iorb4")
 
 [node name="DungeonScreen" type="Control" parent="BattleScreen"]
 custom_minimum_size = Vector2(480, 480)
@@ -96,11 +104,11 @@ visible = false
 
 [node name="InventoryMenu" type="CanvasLayer" parent="."]
 
-[connection signal="battle_ready" from="BattleScreen/DungeonScreen/SubViewportContainer/SubViewport/BattleStage" to="." method="_on_battle_stage_battle_ready"]
-[connection signal="enemy_attacked" from="BattleScreen/DungeonScreen/SubViewportContainer/SubViewport/BattleStage" to="." method="_on_battle_stage_enemy_attacked"]
-[connection signal="enemy_died" from="BattleScreen/DungeonScreen/SubViewportContainer/SubViewport/BattleStage" to="." method="_on_battle_stage_enemy_died"]
-[connection signal="player_attacked" from="BattleScreen/DungeonScreen/SubViewportContainer/SubViewport/BattleStage" to="." method="_on_battle_stage_player_attacked"]
-[connection signal="player_died" from="BattleScreen/DungeonScreen/SubViewportContainer/SubViewport/BattleStage" to="." method="_on_battle_stage_player_died"]
-[connection signal="dice_roll_finished" from="BattleScreen/PlayerDiceUI" to="." method="_on_player_dice_ui_dice_roll_finished"]
-[connection signal="player_attack" from="BattleScreen/PlayerDiceUI" to="." method="_on_player_dice_ui_player_attack"]
-[connection signal="dice_roll_finished" from="BattleScreen/EnemyDiceUI" to="." method="_on_enemy_dice_ui_dice_roll_finished"]
+[connection signal="battle_ready" from="BattleScreen/DungeonScreen/SubViewportContainer/SubViewport/BattleStage" to="BattleScreen/BattleManager" method="_on_battle_stage_battle_ready"]
+[connection signal="enemy_attacked" from="BattleScreen/DungeonScreen/SubViewportContainer/SubViewport/BattleStage" to="BattleScreen/BattleManager" method="_on_battle_stage_enemy_attacked"]
+[connection signal="enemy_died" from="BattleScreen/DungeonScreen/SubViewportContainer/SubViewport/BattleStage" to="BattleScreen/BattleManager" method="_on_battle_stage_enemy_died"]
+[connection signal="player_attacked" from="BattleScreen/DungeonScreen/SubViewportContainer/SubViewport/BattleStage" to="BattleScreen/BattleManager" method="_on_battle_stage_player_attacked"]
+[connection signal="player_died" from="BattleScreen/DungeonScreen/SubViewportContainer/SubViewport/BattleStage" to="BattleScreen/BattleManager" method="_on_battle_stage_player_died"]
+[connection signal="dice_roll_finished" from="BattleScreen/PlayerDiceUI" to="BattleScreen/BattleManager" method="_on_player_dice_ui_dice_roll_finished"]
+[connection signal="player_attack" from="BattleScreen/PlayerDiceUI" to="BattleScreen/BattleManager" method="_on_player_dice_ui_player_attack"]
+[connection signal="dice_roll_finished" from="BattleScreen/EnemyDiceUI" to="BattleScreen/BattleManager" method="_on_enemy_dice_ui_dice_roll_finished"]
