@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://b2rt1670ts75n"]
-
-[ext_resource type="Script" uid="uid://ch7cb4jryjj43" path="res://scenes/game/dice_calculator/dice_calculator.gd" id="1_6cn3r"]
-
-[node name="DiceCalculator" type="Node"]
-script = ExtResource("1_6cn3r")

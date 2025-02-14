@@ -29,7 +29,7 @@ var game_state : GameStates = GameStates.START
 var player_attack_score : int = 0
 var enemy_attack_score : int = 0
 
-
+signal battle_over
 
 func start_battle() -> void:
 	_change_state(GameStates.START)
