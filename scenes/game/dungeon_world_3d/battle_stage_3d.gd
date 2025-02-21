@@ -1,4 +1,4 @@
-class_name BattleStage
+class_name BattleStage3D
 extends Node3D
 
 @onready var enemy_animation_player: AnimationPlayer = $EnemyAnimationPlayer
@@ -8,10 +8,10 @@ extends Node3D
 
 
 signal battle_ready
-signal player_attacked
-signal enemy_attacked
-signal enemy_died
-signal player_died
+signal player_just_attacked
+signal enemy_just_attacked
+signal enemy_dying_animation_finished
+signal player_dying_animation_finished
 
 func set_enemy_sprite(texture : Texture2D):
 	enemy_sprite.texture = texture
@@ -40,7 +40,7 @@ func player_attack() -> void:
 	
 	await get_tree().create_timer(0.5).timeout
 	enemy_animation_player.play("ENEMY_IDLE")
-	player_attacked.emit()
+	player_just_attacked.emit()
 
 func enemy_attack() -> void:
 	player_animation_player.play("PLAYER_ZOOM_OUT")
@@ -51,7 +51,8 @@ func enemy_attack() -> void:
 	enemy_animation_player.play("ENEMY_ATTACK")
 	await player_animation_player.animation_finished
 	player_animation_player.play("PLAYER_IDLE")
-	enemy_attacked.emit()
+	await get_tree().create_timer(1).timeout
+	enemy_just_attacked.emit()
 	
 func enemy_dead() -> void:
 	player_animation_player.play("PLAYER_ZOOM_OUT")
@@ -61,11 +62,11 @@ func enemy_dead() -> void:
 	await get_tree().create_timer(0.25).timeout
 	player_animation_player.play("PLAYER_OUTRO")
 	await player_animation_player.animation_finished
-	enemy_died.emit()
+	enemy_dying_animation_finished.emit()
 	
 
 func player_dead() -> void:
 	enemy_animation_player.play("ENEMY_IDLE")
 	player_animation_player.play("PLAYER_DEATH")
 	await player_animation_player.animation_finished
-	player_died.emit()
+	player_dying_animation_finished.emit()

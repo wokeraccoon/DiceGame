@@ -23,3 +23,6 @@ func set_enemy_health_info(health: int, max_health : int):
 	health_bar_value = health
 	
 	enemy_health_label.text = str(health,"/",max_health)
+	
+	if health_bar_value < 0:
+		health_bar_value = 0

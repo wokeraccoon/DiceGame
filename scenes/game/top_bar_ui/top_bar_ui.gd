@@ -4,6 +4,7 @@ extends MarginContainer
 @onready var options_button: Button = %OptionsButton
 @onready var player_health_label: Label = %PlayerHealthLabel
 @onready var player_money_label: Label = %PlayerMoneyLabel
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 signal options_menu_requested
 
@@ -14,8 +15,20 @@ func _process(_delta: float) -> void:
 func _on_options_button_pressed() -> void:
 	options_menu_requested.emit()
 
-func update_health(health : int, max_health : int):
-	player_health_label.text = str(health,"/",max_health)
+enum HealthUpdates {
+	HEAL,
+	DAMAGE,
+	NONE
+}
+
+func update_health(health : int, max_health : int, update_type : HealthUpdates = HealthUpdates.NONE) -> void:
+	player_health_label.text = str(health) + "/" + str(max_health)
+	animation_player.stop()
 	
-func update_money(money : int):
-	player_money_label.text = str("$",money)
+	match update_type:
+		HealthUpdates.HEAL:
+			animation_player.play("HEALTH_HEALING")
+		HealthUpdates.DAMAGE:
+			animation_player.play("HEALTH_DAMAGE")
+		HealthUpdates.NONE:
+			pass

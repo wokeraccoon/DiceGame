@@ -1,9 +1,9 @@
 [gd_scene load_steps=23 format=3 uid="uid://dkx41chdlblvm"]
 
-[ext_resource type="Script" uid="uid://bofqdlnkp8a1t" path="res://scenes/game/battle_stage/battle_stage.gd" id="1_1ybse"]
-[ext_resource type="Material" uid="uid://blyf6qcep6rvq" path="res://scenes/game/dungeon_assets/dungeon_wall_mat.tres" id="2_1ybse"]
-[ext_resource type="Material" uid="uid://biat7o7g74y4c" path="res://scenes/game/dungeon_assets/dungeon_floor_mat.tres" id="3_5fcvq"]
-[ext_resource type="Texture2D" uid="uid://cthdjn64hfl7r" path="res://icon.svg" id="3_u1udp"]
+[ext_resource type="Script" uid="uid://bofqdlnkp8a1t" path="res://scenes/game/dungeon_world_3d/battle_stage_3d.gd" id="1_vctwu"]
+[ext_resource type="Material" uid="uid://blyf6qcep6rvq" path="res://scenes/game/dungeon_assets/dungeon_wall_mat.tres" id="2_mb4eh"]
+[ext_resource type="Material" uid="uid://biat7o7g74y4c" path="res://scenes/game/dungeon_assets/dungeon_floor_mat.tres" id="3_kapum"]
+[ext_resource type="Texture2D" uid="uid://cthdjn64hfl7r" path="res://icon.svg" id="4_gh2vl"]
 
 [sub_resource type="Environment" id="Environment_2em46"]
 fog_enabled = true
@@ -406,8 +406,8 @@ gradient = SubResource("Gradient_kn6ow")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[node name="BattleStage" type="Node3D"]
-script = ExtResource("1_1ybse")
+[node name="BattleStage3D" type="Node3D"]
+script = ExtResource("1_vctwu")
 
 [node name="DungeonMesh" type="CSGCombiner3D" parent="."]
 unique_name_in_owner = true
@@ -418,14 +418,14 @@ use_collision = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.95117)
 flip_faces = true
 size = Vector3(4, 8, 17.9023)
-material = ExtResource("2_1ybse")
+material = ExtResource("2_mb4eh")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="DungeonMesh"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.00143, 0)
 operation = 2
 flip_faces = true
 size = Vector3(32, 0.135693, 32)
-material = ExtResource("3_5fcvq")
+material = ExtResource("3_kapum")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="DungeonMesh"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0869141, 0.246887, -16.6261)
@@ -448,7 +448,7 @@ transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0, 0.1, -2.5)
 unique_name_in_owner = true
 pixel_size = 0.05
 texture_filter = 2
-texture = ExtResource("3_u1udp")
+texture = ExtResource("4_gh2vl")
 
 [node name="EnemyAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

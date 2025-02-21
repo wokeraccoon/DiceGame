@@ -9,9 +9,9 @@ extends Node2D
 
 @onready var top_bar_ui: TopBarUI = %TopBarUI
 
-@onready var battle_screen : CanvasLayer = %BattleScreen
+@onready var battle_ui_layer : CanvasLayer = %BattleUILayer
 
-enum StageStates {
+enum ManagerStates {
 	START_STAGE,
 	CHOOSE_PATH,
 	BATTLE,
@@ -22,6 +22,18 @@ enum StageStates {
 	COMPLETED_STAGE
 }
 
+var manager_state : ManagerStates = ManagerStates.START_STAGE
 
 func _ready() -> void:
-	pass
+	_switch_state(ManagerStates.START_STAGE)
+
+func _switch_state(new_state : ManagerStates) -> void:
+	
+	manager_state = new_state
+	
+	match manager_state:
+		ManagerStates.START_STAGE:
+			battle_ui_layer.show()
+			battle_manager.start_battle()
+		
+	
