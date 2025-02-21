@@ -75,12 +75,12 @@ Game name: Dice Game
 
  - TOOLS/PLUGINS USED:
  	- Godot Engine
-    - Aseprite
+	- Aseprite
 
  - ASSETS NOT CREATED BY ME:
  	- "m3x6" font by Daniel Linssen
   	- "Resurrect 64" palette by Kerrie Lake
-    - wokeraccoon logo by Tyr Kilcat
+	- wokeraccoon logo by Tyr Kilcat
 
-    - Sound Effects
-     -"Dice Set A.m4a", "Dice Set B.m4a" and "Dice C.m4a: by Phorgador. License: Attribution 4.0. Link: https://freesound.org/people/Phorgador/
+	- Sound Effects
+	 -"Dice Set A.m4a", "Dice Set B.m4a" and "Dice C.m4a: by Phorgador. License: Attribution 4.0. Link: https://freesound.org/people/Phorgador/
