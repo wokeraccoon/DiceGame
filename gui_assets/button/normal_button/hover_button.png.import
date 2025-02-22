@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://doy4fegkhfgwm"
-path="res://.godot/imported/panel_background.png-092df3cb30bcef86d0c9f56027ba32f3.ctex"
+uid="uid://dcmfjc7d4ggjv"
+path="res://.godot/imported/hover_button.png-8e71b14a0a7579d317dcfc57e808f3a6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://gui_assets/panel_background.png"
-dest_files=["res://.godot/imported/panel_background.png-092df3cb30bcef86d0c9f56027ba32f3.ctex"]
+source_file="res://gui_assets/button/normal_button/hover_button.png"
+dest_files=["res://.godot/imported/hover_button.png-8e71b14a0a7579d317dcfc57e808f3a6.ctex"]
 
 [params]
 
@@ -31,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://di75elvh0b7x8"]
 
-[ext_resource type="StyleBox" uid="uid://cicxvr8nl2f60" path="res://gui_assets/panel_alt.tres" id="1_ms7yw"]
+[ext_resource type="StyleBox" uid="uid://cicxvr8nl2f60" path="res://gui_assets/panel/panel_alt.tres" id="1_ms7yw"]
 [ext_resource type="Script" uid="uid://b6u20o1d5fctp" path="res://scenes/game/battle_stage/battle_ui/player_dice_ui/dice_reference_ui/combo_reference_ui.gd" id="1_y5o1d"]
 [ext_resource type="PackedScene" uid="uid://bpa5hb2vk5kyk" path="res://dice/dice.tscn" id="3_30ndq"]
 

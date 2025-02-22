@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cvv6y4jh00lll"
-path="res://.godot/imported/map_icons.png-64540fcf026dddd0477e4c80fcccddda.ctex"
+uid="uid://bo3hsk4em3mdf"
+path="res://.godot/imported/selected_option.png-4031f067a836209b409814cfd58b3ebe.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/game/traversing_menu/map_icons.png"
-dest_files=["res://.godot/imported/map_icons.png-64540fcf026dddd0477e4c80fcccddda.ctex"]
+source_file="res://scenes/game/map_ui/map_button/selected_option.png"
+dest_files=["res://.godot/imported/selected_option.png-4031f067a836209b409814cfd58b3ebe.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dxjf324xxne20"
-path="res://.godot/imported/normal_button.png-1a6dcefb75afded1cfadcabd0c09278c.ctex"
+uid="uid://djxqfcftc5p30"
+path="res://.godot/imported/panel_background_dark.png-6805816ae1aaebd0317dfb35bb1f579f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://gui_assets/button/normal_button.png"
-dest_files=["res://.godot/imported/normal_button.png-1a6dcefb75afded1cfadcabd0c09278c.ctex"]
+source_file="res://gui_assets/panel/panel_background_dark.png"
+dest_files=["res://.godot/imported/panel_background_dark.png-6805816ae1aaebd0317dfb35bb1f579f.ctex"]
 
 [params]
 
@@ -31,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

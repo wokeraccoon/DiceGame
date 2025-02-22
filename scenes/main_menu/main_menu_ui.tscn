@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cxccrwe47j83a" path="res://scenes/main_menu/main_menu_background.tscn" id="2_lhs03"]
 [ext_resource type="PackedScene" uid="uid://bt7hu8n4rfque" path="res://gui_assets/vignette.tscn" id="3_rfupy"]
 [ext_resource type="Texture2D" uid="uid://c2rulvjndiu8m" path="res://gui_assets/wokeraccoon-logo.png" id="4_lhs03"]
-[ext_resource type="StyleBox" uid="uid://cicxvr8nl2f60" path="res://gui_assets/panel_alt.tres" id="4_rfupy"]
+[ext_resource type="StyleBox" uid="uid://cicxvr8nl2f60" path="res://gui_assets/panel/panel_alt.tres" id="4_rfupy"]
 
 [sub_resource type="Animation" id="Animation_ob46e"]
 resource_name = "INTRO"

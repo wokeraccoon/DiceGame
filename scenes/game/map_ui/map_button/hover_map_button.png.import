@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dcmfjc7d4ggjv"
-path="res://.godot/imported/hover_button.png-b125e6e254d5e803e48c993e117d41c9.ctex"
+uid="uid://brs6r6ji2jufu"
+path="res://.godot/imported/hover_map_button.png-9132ff4889085e383b69a1c29dbeb615.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://gui_assets/button/hover_button.png"
-dest_files=["res://.godot/imported/hover_button.png-b125e6e254d5e803e48c993e117d41c9.ctex"]
+source_file="res://scenes/game/map_ui/map_button/hover_map_button.png"
+dest_files=["res://.godot/imported/hover_map_button.png-9132ff4889085e383b69a1c29dbeb615.ctex"]
 
 [params]
 
@@ -31,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

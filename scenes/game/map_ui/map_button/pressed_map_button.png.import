@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://3sag2u7rk6e8"
-path="res://.godot/imported/pressed_button.png-11be8b255a0abfb8edc16aca4b3ad16a.ctex"
+uid="uid://bft0ofyi47no1"
+path="res://.godot/imported/pressed_map_button.png-f86080e47130239fa7590d65db52ec95.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://gui_assets/button/pressed_button.png"
-dest_files=["res://.godot/imported/pressed_button.png-11be8b255a0abfb8edc16aca4b3ad16a.ctex"]
+source_file="res://scenes/game/map_ui/map_button/pressed_map_button.png"
+dest_files=["res://.godot/imported/pressed_map_button.png-f86080e47130239fa7590d65db52ec95.ctex"]
 
 [params]
 
@@ -31,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cggkenhrhp6g4" path="res://gui_assets/heart.png" id="1_gl2go"]
 [ext_resource type="Script" uid="uid://cyqm86svhb0ah" path="res://scenes/game/top_bar_ui/top_bar_ui.gd" id="1_xkuxh"]
-[ext_resource type="StyleBox" uid="uid://cicxvr8nl2f60" path="res://gui_assets/panel_alt.tres" id="2_2v6fl"]
+[ext_resource type="StyleBox" uid="uid://cicxvr8nl2f60" path="res://gui_assets/panel/panel_alt.tres" id="2_2v6fl"]
 [ext_resource type="Texture2D" uid="uid://o60prr8yrji" path="res://gui_assets/coin_ui.png" id="2_xkuxh"]
 
 [sub_resource type="Animation" id="Animation_2v6fl"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dot1vnet30eiv"]
 
 [ext_resource type="Texture2D" uid="uid://df3eu3wredvre" path="res://gui_assets/page_indicator.png" id="1_b6v47"]
-[ext_resource type="StyleBox" uid="uid://cicxvr8nl2f60" path="res://gui_assets/panel_alt.tres" id="1_gxim3"]
+[ext_resource type="StyleBox" uid="uid://cicxvr8nl2f60" path="res://gui_assets/panel/panel_alt.tres" id="1_gxim3"]
 
 [node name="RunInfoMenu" type="Control"]
 layout_mode = 3
