@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://tliv023b8t2y"]
 
-[ext_resource type="Script" uid="uid://c8el58cqssgax" path="res://scenes/game/battle_stage/battle_ui/player_dice_ui/player_dice_ui.gd" id="1_3dxad"]
+[ext_resource type="Script" uid="uid://c8el58cqssgax" path="res://scenes/game/managers/battle_manager/battle_stage/battle_ui/player_dice_ui/player_dice_ui.gd" id="1_3dxad"]
 [ext_resource type="Theme" uid="uid://df1l4akfmabug" path="res://gui_assets/game_theme.tres" id="1_d8wp3"]
-[ext_resource type="PackedScene" uid="uid://di75elvh0b7x8" path="res://scenes/game/battle_stage/battle_ui/player_dice_ui/dice_reference_ui/combo_reference_ui.tscn" id="4_fkdcp"]
+[ext_resource type="PackedScene" uid="uid://di75elvh0b7x8" path="res://scenes/game/managers/battle_manager/battle_stage/battle_ui/player_dice_ui/dice_reference_ui/combo_reference_ui.tscn" id="4_fkdcp"]
 [ext_resource type="Texture2D" uid="uid://djxqfcftc5p30" path="res://gui_assets/panel/panel_background_dark.png" id="4_p55k8"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sjw43"]

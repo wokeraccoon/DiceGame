@@ -1,6 +1,6 @@
 [gd_scene load_steps=23 format=3 uid="uid://dkx41chdlblvm"]
 
-[ext_resource type="Script" uid="uid://bofqdlnkp8a1t" path="res://scenes/game/dungeon_world_3d/battle_stage_3d.gd" id="1_vctwu"]
+[ext_resource type="Script" uid="uid://bofqdlnkp8a1t" path="res://scenes/game/managers/battle_manager/battle_stage/dungeon_world_3d/battle_stage_3d.gd" id="1_vctwu"]
 [ext_resource type="Material" uid="uid://blyf6qcep6rvq" path="res://scenes/game/dungeon_assets/dungeon_wall_mat.tres" id="2_mb4eh"]
 [ext_resource type="Material" uid="uid://biat7o7g74y4c" path="res://scenes/game/dungeon_assets/dungeon_floor_mat.tres" id="3_kapum"]
 [ext_resource type="Texture2D" uid="uid://cthdjn64hfl7r" path="res://icon.svg" id="4_gh2vl"]

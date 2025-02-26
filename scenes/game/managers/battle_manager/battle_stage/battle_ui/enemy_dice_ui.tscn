@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://o0mlkxh53i6j"]
 
-[ext_resource type="Script" uid="uid://dt82luyyo7iua" path="res://scenes/game/battle_stage/battle_ui/enemy_dice_ui.gd" id="1_omwut"]
+[ext_resource type="Script" uid="uid://dt82luyyo7iua" path="res://scenes/game/managers/battle_manager/battle_stage/battle_ui/enemy_dice_ui.gd" id="1_omwut"]
 [ext_resource type="StyleBox" uid="uid://cicxvr8nl2f60" path="res://gui_assets/panel/panel_alt.tres" id="3_omwut"]
 
 [node name="EnemyDiceUI" type="Control"]

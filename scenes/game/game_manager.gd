@@ -1,15 +1,15 @@
 class_name GameManager
 extends Node2D
 
+const BATTLE_MANAGER = preload("res://scenes/game/managers/battle_manager/battle_manager.tscn")
+
 @onready var player_manager: PlayerManager = %PlayerManager
 @onready var dice_calculator: DiceCalculator = %DiceCalculator
 
-@onready var enemy_manager: EnemyManager = %EnemyManager
-@onready var battle_manager : BattleManager = %BattleManager
-
 @onready var top_bar_ui: TopBarUI = %TopBarUI
 
-@onready var battle_ui_layer : CanvasLayer = %BattleUILayer
+@onready var battle_ui_layer: CanvasLayer = %BattleUILayer
+var battle_manager : BattleManager
 
 enum ManagerStates {
 	START_STAGE,
@@ -33,7 +33,7 @@ func _switch_state(new_state : ManagerStates) -> void:
 	
 	match manager_state:
 		ManagerStates.START_STAGE:
-			battle_ui_layer.show()
-			battle_manager.start_battle()
-		
-	
+			battle_manager = BATTLE_MANAGER.instantiate()
+			battle_ui_layer.add_child(battle_manager)
+			
+			battle_manager.start_battle(player_manager,dice_calculator)

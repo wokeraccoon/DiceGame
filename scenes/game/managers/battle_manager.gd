@@ -16,33 +16,27 @@ enum BattleStates {
 
 var battle_state : BattleStates = BattleStates.START
 
-@onready var player_manager: PlayerManager = %PlayerManager
-@onready var dice_calculator: DiceCalculator = %DiceCalculator
-@onready var player_dice_ui: PlayerDiceUI = %PlayerDiceUI
-@onready var top_bar_ui: TopBarUI = %TopBarUI
-@onready var enemy_info_ui: EnemyInfoUI = %EnemyInfoUI
+var player_manager: PlayerManager
+var dice_calculator: DiceCalculator
+
 @onready var enemy_manager: EnemyManager = %EnemyManager
+@onready var player_dice_ui: PlayerDiceUI = %PlayerDiceUI
+@onready var enemy_info_ui: EnemyInfoUI = %EnemyInfoUI
 @onready var enemy_damage_text_spawner: Control = %EnemyDamageTextSpawner
 @onready var enemy_dice_ui: EnemyDiceUI = %EnemyDiceUI
-@onready var world_sub_viewport: SubViewport = %WorldSubViewport
+@onready var battle_stage_3d: BattleStage3D = %BattleStage3D
 
 var player_attack_score : int = 0
 var enemy_attack_score : int = 0
 
-const BATTLE_STAGE_3D = preload("res://scenes/game/dungeon_world_3d/battle_stage_3d.tscn")
-var battle_stage_3d: BattleStage3D = null
 
-signal battle_over
+signal player_victory
+signal player_defeat
 
-func start_battle() -> void:
-	battle_stage_3d = BATTLE_STAGE_3D.instantiate()
-	world_sub_viewport.add_child(battle_stage_3d)
-	battle_stage_3d.battle_ready.connect(_on_battle_stage_3d_battle_ready)
-	battle_stage_3d.player_just_attacked.connect(_on_battle_stage_3d_player_just_attacked)
-	battle_stage_3d.enemy_just_attacked.connect(_on_battle_stage_3d_enemy_just_attacked)
-	battle_stage_3d.player_dying_animation_finished.connect(_on_battle_stage_3d_player_dying_animation_finished)
-	battle_stage_3d.enemy_dying_animation_finished.connect(_on_battle_stage_3d_enemy_dying_animation_finished)
-	
+func start_battle(player_manager_instance : PlayerManager, dice_calculator_instance : DiceCalculator) -> void:
+	player_manager = player_manager_instance
+	dice_calculator = dice_calculator_instance
+	player_manager.player_died.connect(_on_player_manager_player_died)
 	_change_state(BattleStates.START)
 	
 
@@ -86,13 +80,11 @@ func _change_state(new_state : BattleStates) -> void:
 			enemy_info_ui.hide()
 			player_dice_ui.hide()
 			enemy_dice_ui.hide()
-			top_bar_ui.hide()
 		BattleStates.PLAYER_LOST:
 			battle_stage_3d.player_dead()
 			enemy_info_ui.hide()
 			player_dice_ui.hide()
 			enemy_dice_ui.hide()
-			top_bar_ui.hide()
 
 func _on_player_dice_ui_dice_roll_finished(dice_values: Dictionary[String,int]) -> void:
 	player_attack_score = 0
@@ -127,16 +119,12 @@ func _on_battle_stage_3d_battle_ready() -> void:
 	_change_state(BattleStates.PLAYER_TURN)
 
 
-func _on_player_manager_player_died() -> void:
-	_change_state(BattleStates.PLAYER_LOST)
-
-
 func _on_battle_stage_3d_enemy_dying_animation_finished() -> void:
-	battle_stage_3d.queue_free()
+	print("enemy_died")
 
 
 func _on_battle_stage_3d_player_dying_animation_finished() -> void:
-	battle_stage_3d.queue_free()
+	print("player_died")
 
 
 func _on_battle_stage_3d_enemy_just_attacked() -> void:
@@ -150,11 +138,16 @@ func _on_battle_stage_3d_player_just_attacked() -> void:
 	var floating_text : FloatingText = FLOATING_TEXT.instantiate()
 	enemy_damage_text_spawner.add_child(floating_text)
 	floating_text.set_floating_text(str(player_attack_score),floating_text.ColorPresets.ENEMY_DAMAGE)
-	enemy_manager.health -= player_attack_score
+	enemy_manager.update_health(-player_attack_score)
+	
 	enemy_info_ui.set_enemy_health_info(enemy_manager.health,enemy_manager.max_health)
-	await get_tree().create_timer(1).timeout
-
-	if enemy_manager.health <= 0:
-		_change_state(BattleStates.ENEMY_LOST)
-	else:
+	
+	if enemy_manager.health > 0:
 		_change_state(BattleStates.ENEMY_TURN)
+
+
+func _on_enemy_manager_enemy_died() -> void:
+	_change_state(BattleStates.ENEMY_LOST)
+
+func _on_player_manager_player_died() -> void:
+	_change_state(BattleStates.PLAYER_LOST)

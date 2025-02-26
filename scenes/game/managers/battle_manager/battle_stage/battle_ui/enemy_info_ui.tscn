@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dsqqw522ht8gh"]
 
-[ext_resource type="Script" uid="uid://e2kax4pil21" path="res://scenes/game/battle_stage/battle_ui/enemy_info_ui.gd" id="1_jbi3i"]
+[ext_resource type="Script" uid="uid://e2kax4pil21" path="res://scenes/game/managers/battle_manager/battle_stage/battle_ui/enemy_info_ui.gd" id="1_jbi3i"]
 
 [node name="EnemyInfoUI" type="Control"]
 layout_mode = 3
