@@ -69,7 +69,7 @@ func _switch_state(state : DiceStates) -> void:
 						dice_texture.texture = dice_array_textures[dice_value - 1]
 			else:
 				await get_tree().create_timer(randi_range(1,2)).timeout
-			print(dice_value)
+
 			roll_complete.emit()
 			_switch_state(DiceStates.IDLE)
 			
