@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://cv7a1erym7ml7"]
+
+[ext_resource type="Script" uid="uid://bfc6ekspyc5n8" path="res://scenes/game/top_bar_ui/options_top_bar_ui.gd" id="1_uj5ng"]
+
+[node name="OptionsTopBarUI" type="MarginContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 64.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+script = ExtResource("1_uj5ng")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="RunInfoButton" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(128, 78)
+layout_mode = 2
+disabled = true
+text = "Run Info"
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="OptionsButton" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(128, 78)
+layout_mode = 2
+text = "Options"
+
+[connection signal="pressed" from="HBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]

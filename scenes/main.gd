@@ -25,7 +25,7 @@ func _new_run() -> void:
 	game = GAME.instantiate()
 	main_layer.add_child(game)
 	
-	game.top_bar_ui.options_menu_requested.connect(_pause_game)
+	game.options_top_bar_ui.options_menu_requested.connect(_pause_game)
 
 func _pause_game() -> void:
 	var options_menu : OptionsMenuUI = OPTIONS_MENU_UI.instantiate()

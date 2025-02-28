@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://3n6chrsn4hd6"]
+
+[ext_resource type="Texture2D" uid="uid://cthdjn64hfl7r" path="res://icon.svg" id="1_aiq42"]
+[ext_resource type="Script" uid="uid://dvdi0ve3q7hmd" path="res://items/poker_chips/poker_chips.gd" id="2_aiq42"]
+
+[resource]
+script = ExtResource("2_aiq42")
+extra_damage_perctent = 10
+item_name = "Poker Chips"
+tagline = "Cash them out!"
+description = "Increases attack by {percent}% [+{percent}% per stack, currently {current_percent}]"
+item_texture = ExtResource("1_aiq42")
+metadata/_custom_type_script = "uid://bmuicu5jd88ev"

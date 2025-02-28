@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://xddgk2vrnfif"]
+
+[ext_resource type="Texture2D" uid="uid://cthdjn64hfl7r" path="res://icon.svg" id="1_exm48"]
+[ext_resource type="Script" uid="uid://b8wdfylwjcumr" path="res://scenes/game/inventory_ui/item_holder/item_holder.gd" id="1_i5nrj"]
+
+[node name="ItemHolder" type="MarginContainer"]
+custom_minimum_size = Vector2(96, 96)
+script = ExtResource("1_i5nrj")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="ItemTexture" type="TextureRect" parent="MarginContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+texture = ExtResource("1_exm48")
