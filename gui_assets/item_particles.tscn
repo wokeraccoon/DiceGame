@@ -12,7 +12,6 @@ colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
 
 [node name="ItemParticles" type="CPUParticles2D"]
 emitting = false
-amount = 16
 texture = ExtResource("1_svvh2")
 one_shot = true
 speed_scale = 1.5

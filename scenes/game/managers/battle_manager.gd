@@ -24,7 +24,6 @@ var dice_calculator: DiceCalculator
 @onready var enemy_damage_text_spawner: Control = %EnemyDamageTextSpawner
 @onready var enemy_dice_ui: EnemyDiceUI = %EnemyDiceUI
 @onready var battle_stage_3d: BattleStage3D = %BattleStage3D
-@onready var item_particles: CPUParticles2D = %ItemParticles
 
 var player_attack_score : int = 0
 var enemy_attack_score : int = 0
@@ -39,6 +38,9 @@ func _ready() -> void:
 func start_battle(player_manager_instance : PlayerManager, dice_calculator_instance : DiceCalculator) -> void:
 	player_manager = player_manager_instance
 	dice_calculator = dice_calculator_instance
+	
+	player_manager.player_died.connect(_on_player_manager_player_died)
+	enemy_manager.enemy_died.connect(_on_enemy_manager_enemy_died)
 	_change_state(BattleStates.START)
 	
 
@@ -151,7 +153,10 @@ func _on_battle_stage_3d_player_just_attacked() -> void:
 
 
 func _on_enemy_manager_enemy_died() -> void:
+	await get_tree().create_timer(1.0).timeout
+	ItemHelper.on_enemy_died.emit()
 	_change_state(BattleStates.ENEMY_LOST)
 
 func _on_player_manager_player_died() -> void:
+	await get_tree().create_timer(1.0).timeout
 	_change_state(BattleStates.PLAYER_LOST)

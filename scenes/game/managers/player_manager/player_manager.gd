@@ -27,7 +27,7 @@ func _ready() -> void:
 	for item : Item in player_items:
 		item.game_manager = get_parent()
 		item.item_owner = Item.Owners.PLAYER
-		item.item_ammount = 99999
+		item.item_ammount = randi_range(1,10)
 		item.on_item_added()
 		
 	

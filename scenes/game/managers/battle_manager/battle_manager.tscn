@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://mjax8ndkjpo"]
+[gd_scene load_steps=9 format=3 uid="uid://mjax8ndkjpo"]
 
 [ext_resource type="Script" uid="uid://cfq66dvtr34an" path="res://scenes/game/managers/battle_manager.gd" id="1_fg1kb"]
 [ext_resource type="PackedScene" uid="uid://tliv023b8t2y" path="res://scenes/game/managers/battle_manager/battle_stage/battle_ui/player_dice_ui/player_dice_ui.tscn" id="2_crwhu"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://dsqqw522ht8gh" path="res://scenes/game/managers/battle_manager/battle_stage/battle_ui/enemy_info_ui.tscn" id="3_p8obw"]
 [ext_resource type="Material" uid="uid://yi12nvml12rs" path="res://gui_assets/shaders/palette_limiter_mat.tres" id="4_2d04w"]
 [ext_resource type="PackedScene" uid="uid://o0mlkxh53i6j" path="res://scenes/game/managers/battle_manager/battle_stage/battle_ui/enemy_dice_ui.tscn" id="4_7e5o1"]
-[ext_resource type="PackedScene" uid="uid://rvuf4gnu3aei" path="res://gui_assets/item_particles.tscn" id="9_s0dta"]
 
 [node name="BattleManager" type="Control"]
 layout_mode = 3
@@ -72,10 +71,6 @@ grow_vertical = 0
 [node name="PlayerDiceUI" parent="." instance=ExtResource("2_crwhu")]
 unique_name_in_owner = true
 layout_mode = 1
-
-[node name="ItemParticles" parent="." instance=ExtResource("9_s0dta")]
-unique_name_in_owner = true
-top_level = true
 
 [connection signal="battle_ready" from="SubViewportContainer/WorldSubViewport/BattleStage3D" to="." method="_on_battle_stage_3d_battle_ready"]
 [connection signal="enemy_dying_animation_finished" from="SubViewportContainer/WorldSubViewport/BattleStage3D" to="." method="_on_battle_stage_3d_enemy_dying_animation_finished"]

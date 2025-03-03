@@ -5,6 +5,8 @@ extends Node2D
 @onready var dice_calculator: DiceCalculator = %DiceCalculator
 @onready var options_top_bar_ui: OptionsTopBarUI = %OptionsTopBarUI
 @onready var battle_manager: BattleManager = %BattleManager
+@onready var item_particles: CPUParticles2D = %ItemParticles
+@onready var inventory_ui: InventoryUI = %InventoryUI
 
 enum ManagerStates {
 	START_STAGE,
@@ -20,6 +22,9 @@ enum ManagerStates {
 var manager_state : ManagerStates = ManagerStates.START_STAGE
 
 func _ready() -> void:
+	ItemHelper.game_manager = self
+	ItemHelper.player_manager = player_manager
+	ItemHelper.inventory_ui = inventory_ui
 	_switch_state(ManagerStates.START_STAGE)
 
 func _switch_state(new_state : ManagerStates) -> void:

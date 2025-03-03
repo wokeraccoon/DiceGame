@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://b6elxq5erhkr7" path="res://scenes/game/inventory_ui/inventory_ui.gd" id="1_62m5a"]
 [ext_resource type="Texture2D" uid="uid://o60prr8yrji" path="res://gui_assets/coin_ui.png" id="2_k3jha"]
 [ext_resource type="Texture2D" uid="uid://cggkenhrhp6g4" path="res://gui_assets/heart.png" id="3_62m5a"]
-[ext_resource type="Texture2D" uid="uid://br1bq0n8j61px" path="res://player_classes/cowboy.png" id="3_ic8us"]
+[ext_resource type="PackedScene" uid="uid://p8a5j4tihr3y" path="res://scenes/game/inventory_ui/class_portrait/class_portrait.tscn" id="3_ic8us"]
 [ext_resource type="Texture2D" uid="uid://bayb8nqmox68b" path="res://gui_assets/button/normal_button/disabled_button.png" id="4_q610w"]
 
 [node name="InventoryUI" type="MarginContainer"]
@@ -68,15 +68,9 @@ clip_children = 1
 custom_minimum_size = Vector2(336, 336)
 layout_mode = 2
 
-[node name="ClassPortrait" type="TextureRect" parent="VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer2/VBoxContainer/Panel"]
+[node name="ClassPortrait" parent="VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer2/VBoxContainer/Panel" instance=ExtResource("3_ic8us")]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_ic8us")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer2/VBoxContainer/Panel"]
 layout_mode = 1

@@ -3,6 +3,7 @@ extends MarginContainer
 
 @onready var health_bar: ProgressBar = %HealthBar
 @onready var health_label: Label = %HealthLabel
+@onready var class_portrait: ClassPortrait = %ClassPortrait
 
 var health_bar_value : int  = 0
 
@@ -13,6 +14,11 @@ func _process(delta: float) -> void:
 		health_bar.value = lerp(float(health_bar.value), float(health_bar_value), 25 * delta)
 
 func update_player_health(health : int, max_health : int) -> void:
+	if (health - health_bar_value) < 0:
+		class_portrait.on_player_damage()
+	else:
+		class_portrait.on_player_heal()
+	
 	health_bar.max_value = max_health
 	health_bar_value = health
 	

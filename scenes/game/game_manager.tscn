@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b6hkp7ydpotqs"]
+[gd_scene load_steps=11 format=3 uid="uid://b6hkp7ydpotqs"]
 
 [ext_resource type="Script" uid="uid://v54vb110se7y" path="res://scenes/game/game_manager.gd" id="1_x6pty"]
 [ext_resource type="PackedScene" uid="uid://b2rt1670ts75n" path="res://scenes/game/managers/dice_calculator/dice_calculator.tscn" id="2_ghnn3"]
@@ -7,7 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://mjax8ndkjpo" path="res://scenes/game/managers/battle_manager/battle_manager.tscn" id="5_6bobr"]
 [ext_resource type="PackedScene" uid="uid://dkundhi2j3bhk" path="res://scenes/game/inventory_ui/inventory_ui.tscn" id="5_o5hsk"]
 [ext_resource type="Resource" uid="uid://3n6chrsn4hd6" path="res://items/poker_chips/poker_chips.tres" id="5_ok4xb"]
+[ext_resource type="Resource" uid="uid://dwev6h5d8wjs3" path="res://items/human_skull/human_skull.tres" id="6_thida"]
 [ext_resource type="PackedScene" uid="uid://cv7a1erym7ml7" path="res://scenes/game/top_bar_ui/options_top_bar_ui.tscn" id="7_o5hsk"]
+[ext_resource type="PackedScene" uid="uid://rvuf4gnu3aei" path="res://gui_assets/item_particles.tscn" id="10_wap17"]
 
 [node name="GameManager" type="Node2D"]
 script = ExtResource("1_x6pty")
@@ -28,7 +30,7 @@ unique_name_in_owner = true
 
 [node name="PlayerManager" parent="." instance=ExtResource("3_o5hsk")]
 unique_name_in_owner = true
-player_items = Array[ExtResource("4_o5hsk")]([ExtResource("5_ok4xb")])
+player_items = Array[ExtResource("4_o5hsk")]([ExtResource("5_ok4xb"), ExtResource("6_thida")])
 
 [node name="GameLayer" type="CanvasLayer" parent="."]
 
@@ -65,27 +67,17 @@ metadata/_edit_use_anchors_ = true
 clip_children = 1
 layout_mode = 2
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="GameLayer/HBoxContainer/MarginContainer4/Panel"]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-stretch = true
-
-[node name="SubViewport" type="SubViewport" parent="GameLayer/HBoxContainer/MarginContainer4/Panel/SubViewportContainer"]
-handle_input_locally = false
-anisotropic_filtering_level = 0
-canvas_item_default_texture_filter = 0
-size = Vector2i(1517, 1062)
-render_target_update_mode = 4
-
-[node name="BattleManager" parent="GameLayer/HBoxContainer/MarginContainer4/Panel/SubViewportContainer/SubViewport" instance=ExtResource("5_6bobr")]
+[node name="BattleManager" parent="GameLayer/HBoxContainer/MarginContainer4/Panel" instance=ExtResource("5_6bobr")]
 unique_name_in_owner = true
+layout_mode = 1
 
 [node name="OptionsTopBarUI" parent="GameLayer/HBoxContainer/MarginContainer4" instance=ExtResource("7_o5hsk")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="ItemParticles" parent="CanvasLayer2" instance=ExtResource("10_wap17")]
+unique_name_in_owner = true
