@@ -4,8 +4,6 @@ extends Node2D
 @onready var player_manager: PlayerManager = %PlayerManager
 @onready var dice_calculator: DiceCalculator = %DiceCalculator
 @onready var options_top_bar_ui: OptionsTopBarUI = %OptionsTopBarUI
-
-
 @onready var battle_manager: BattleManager = %BattleManager
 
 enum ManagerStates {
@@ -23,7 +21,6 @@ var manager_state : ManagerStates = ManagerStates.START_STAGE
 
 func _ready() -> void:
 	_switch_state(ManagerStates.START_STAGE)
-
 
 func _switch_state(new_state : ManagerStates) -> void:
 	

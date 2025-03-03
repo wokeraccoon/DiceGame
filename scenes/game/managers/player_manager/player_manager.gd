@@ -9,10 +9,10 @@ var money : int  = 3
 
 var rolls : int = 4
 
-@export var inventory : Array[Item] = []
+@export var player_items : Array[Item] = []
 @export var player_class : PlayerClass
 
-#@onready var top_bar_ui: TopBarUI = %TopBarUI
+@onready var inventory_ui: InventoryUI = %InventoryUI
 
 signal player_died
 
@@ -24,8 +24,16 @@ func _ready() -> void:
 	
 	health = max_health
 	
-	#await top_bar_ui.ready
-	#top_bar_ui.update_health(health,max_health)
+	for item : Item in player_items:
+		item.game_manager = get_parent()
+		item.item_owner = Item.Owners.PLAYER
+		item.item_ammount = 99999
+		item.on_item_added()
+		
+	
+	await inventory_ui.ready
+	inventory_ui.update_player_health(health,max_health)
+	inventory_ui.update_item_grid(player_items)
 
 enum PlayerStatuses {
 	ALIVE,
@@ -39,10 +47,10 @@ func update_health(health_change : int = 0, max_health_change : int = 0) -> void
 	if health > max_health:
 		health = max_health
 	
-	#if health_change > 0 or max_health_change > 0:
-		#top_bar_ui.update_health(health,max_health,TopBarUI.HealthUpdates.HEAL)
-	#elif health_change < 0 or max_health_change < 0:
-		#top_bar_ui.update_health(health,max_health,TopBarUI.HealthUpdates.DAMAGE)
+	if health_change > 0 or max_health_change > 0:
+		inventory_ui.update_player_health(health,max_health)
+	elif health_change < 0 or max_health_change < 0:
+		inventory_ui.update_player_health(health,max_health)
 	
 	if health <= 0:
 		player_died.emit()

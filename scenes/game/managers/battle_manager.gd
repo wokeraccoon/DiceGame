@@ -1,6 +1,5 @@
 class_name BattleManager
-extends Node
-
+extends Control
 
 const FLOATING_TEXT = preload("res://gui_assets/floating_text/floating_text.tscn")
 
@@ -25,25 +24,28 @@ var dice_calculator: DiceCalculator
 @onready var enemy_damage_text_spawner: Control = %EnemyDamageTextSpawner
 @onready var enemy_dice_ui: EnemyDiceUI = %EnemyDiceUI
 @onready var battle_stage_3d: BattleStage3D = %BattleStage3D
+@onready var item_particles: CPUParticles2D = %ItemParticles
 
 var player_attack_score : int = 0
 var enemy_attack_score : int = 0
 
-
+signal state_changed(state : BattleStates)
 signal player_victory
 signal player_defeat
+
+func _ready() -> void:
+	ItemHelper.battle_manager = self
 
 func start_battle(player_manager_instance : PlayerManager, dice_calculator_instance : DiceCalculator) -> void:
 	player_manager = player_manager_instance
 	dice_calculator = dice_calculator_instance
-	player_manager.player_died.connect(_on_player_manager_player_died)
 	_change_state(BattleStates.START)
 	
 
 func _change_state(new_state : BattleStates) -> void:
 
 	battle_state = new_state
-
+	
 	match battle_state:
 		BattleStates.START:
 			battle_stage_3d.start_intro()
@@ -85,6 +87,8 @@ func _change_state(new_state : BattleStates) -> void:
 			enemy_info_ui.hide()
 			player_dice_ui.hide()
 			enemy_dice_ui.hide()
+	
+	ItemHelper.on_battle_manager_status_change.emit(battle_state)
 
 func _on_player_dice_ui_dice_roll_finished(dice_values: Dictionary[String,int]) -> void:
 	player_attack_score = 0

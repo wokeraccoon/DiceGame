@@ -1,17 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://dkundhi2j3bhk"]
+[gd_scene load_steps=7 format=3 uid="uid://dkundhi2j3bhk"]
 
 [ext_resource type="StyleBox" uid="uid://cicxvr8nl2f60" path="res://gui_assets/panel/panel_alt.tres" id="1_2hm0h"]
-[ext_resource type="PackedScene" uid="uid://xddgk2vrnfif" path="res://scenes/game/inventory_ui/item_holder/item_holder.tscn" id="2_1x3v6"]
+[ext_resource type="Script" uid="uid://b6elxq5erhkr7" path="res://scenes/game/inventory_ui/inventory_ui.gd" id="1_62m5a"]
 [ext_resource type="Texture2D" uid="uid://o60prr8yrji" path="res://gui_assets/coin_ui.png" id="2_k3jha"]
 [ext_resource type="Texture2D" uid="uid://cggkenhrhp6g4" path="res://gui_assets/heart.png" id="3_62m5a"]
+[ext_resource type="Texture2D" uid="uid://br1bq0n8j61px" path="res://player_classes/cowboy.png" id="3_ic8us"]
+[ext_resource type="Texture2D" uid="uid://bayb8nqmox68b" path="res://gui_assets/button/normal_button/disabled_button.png" id="4_q610w"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_k3jha"]
-
-[node name="MarginContainer" type="MarginContainer"]
-custom_minimum_size = Vector2(384, 147.7)
+[node name="InventoryUI" type="MarginContainer"]
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_right = 16.0
+offset_right = 384.0
 grow_vertical = 2
 size_flags_horizontal = 0
 size_flags_vertical = 3
@@ -19,6 +18,7 @@ theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
+script = ExtResource("1_62m5a")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 2
@@ -55,10 +55,11 @@ theme_override_constants/margin_bottom = 8
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="Label" type="Label" parent="VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer2/VBoxContainer"]
+[node name="ClassNameLabel" type="Label" parent="VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer2/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
-text = "{CLASS_NAME}"
+text = "Cowboy"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -67,14 +68,30 @@ clip_children = 1
 custom_minimum_size = Vector2(336, 336)
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer2/VBoxContainer/Panel"]
+[node name="ClassPortrait" type="TextureRect" parent="VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer2/VBoxContainer/Panel"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("PlaceholderTexture2D_k3jha")
+texture = ExtResource("3_ic8us")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer2/VBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_q610w")
+draw_center = false
+region_rect = Rect2(0, 0, 16, 10)
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer2/VBoxContainer"]
 layout_mode = 2
@@ -89,7 +106,8 @@ size_flags_vertical = 4
 texture = ExtResource("3_62m5a")
 expand_mode = 2
 
-[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer2"]
+[node name="HealthBar" type="ProgressBar" parent="VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -97,7 +115,8 @@ value = 50.0
 rounded = true
 show_percentage = false
 
-[node name="Label" type="Label" parent="VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer2/ProgressBar"]
+[node name="HealthLabel" type="Label" parent="VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer2/HealthBar"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -123,7 +142,8 @@ size_flags_vertical = 4
 texture = ExtResource("2_k3jha")
 expand_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer"]
+[node name="MoneyLabel" type="Label" parent="VBoxContainer/MarginContainer2/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -136,9 +156,7 @@ custom_minimum_size = Vector2(368, 407)
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
 
 [node name="Panel" type="Panel" parent="VBoxContainer/MarginContainer"]
 layout_mode = 2
@@ -147,13 +165,41 @@ theme_override_styles/panel = ExtResource("1_2hm0h")
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 42)
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+alignment = 1
+
+[node name="LeftPageButton" type="Button" parent="VBoxContainer/MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 48)
+layout_mode = 2
+text = "<<"
+flat = true
+
+[node name="CharmsPageLabel" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(51, 42)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
 theme_override_font_sizes/font_size = 64
-text = "Charms 9/9"
+text = "Charms 1/1"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="RightPageButton" type="Button" parent="VBoxContainer/MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 48)
+layout_mode = 2
+text = ">>"
+flat = true
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -163,7 +209,8 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="GridContainer" type="GridContainer" parent="VBoxContainer/MarginContainer/VBoxContainer/MarginContainer"]
+[node name="ItemGrid" type="GridContainer" parent="VBoxContainer/MarginContainer/VBoxContainer/MarginContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(320, 320)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -171,37 +218,11 @@ theme_override_constants/h_separation = 16
 theme_override_constants/v_separation = 16
 columns = 3
 
-[node name="ItemHolder" parent="VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/GridContainer" instance=ExtResource("2_1x3v6")]
-layout_mode = 2
-
-[node name="ItemHolder2" parent="VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/GridContainer" instance=ExtResource("2_1x3v6")]
-layout_mode = 2
-
-[node name="ItemHolder3" parent="VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/GridContainer" instance=ExtResource("2_1x3v6")]
-layout_mode = 2
-
-[node name="ItemHolder4" parent="VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/GridContainer" instance=ExtResource("2_1x3v6")]
-layout_mode = 2
-
-[node name="ItemHolder5" parent="VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/GridContainer" instance=ExtResource("2_1x3v6")]
-layout_mode = 2
-
-[node name="ItemHolder6" parent="VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/GridContainer" instance=ExtResource("2_1x3v6")]
-layout_mode = 2
-
-[node name="ItemHolder7" parent="VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/GridContainer" instance=ExtResource("2_1x3v6")]
-layout_mode = 2
-
-[node name="ItemHolder8" parent="VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/GridContainer" instance=ExtResource("2_1x3v6")]
-layout_mode = 2
-
-[node name="ItemHolder9" parent="VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/GridContainer" instance=ExtResource("2_1x3v6")]
-layout_mode = 2
-
 [node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer"]
 clip_contents = true
-custom_minimum_size = Vector2(368, 110)
+custom_minimum_size = Vector2(368, 96)
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
@@ -226,12 +247,14 @@ theme_override_constants/margin_bottom = 8
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer3/Panel/MarginContainer"]
 layout_mode = 2
 
-[node name="Button2" type="Button" parent="VBoxContainer/MarginContainer3/Panel/MarginContainer/HBoxContainer"]
+[node name="CharmsButton" type="Button" parent="VBoxContainer/MarginContainer3/Panel/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Charms"
 
-[node name="Button" type="Button" parent="VBoxContainer/MarginContainer3/Panel/MarginContainer/HBoxContainer"]
+[node name="SnacksButton" type="Button" parent="VBoxContainer/MarginContainer3/Panel/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Snacks"

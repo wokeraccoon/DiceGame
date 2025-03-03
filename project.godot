@@ -25,6 +25,7 @@ config/icon="uid://dwcxl8pu7otlk"
 
 MobileSettings="*res://platform_defaults/mobile_settings.gd"
 PcSettings="*res://platform_defaults/pc_settings.gd"
+ItemHelper="*res://scenes/item_helper.gd"
 
 [display]
 

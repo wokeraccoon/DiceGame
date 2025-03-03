@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://dwev6h5d8wjs3"]
+
+[ext_resource type="Texture2D" uid="uid://3oaf0r8nhqol" path="res://items/human_skull/human_skull.png" id="1_ctr4t"]
+[ext_resource type="Script" uid="uid://da8mqn4nu0yp8" path="res://items/human_skull/human_skull.gd" id="2_ctr4t"]
+
+[resource]
+script = ExtResource("2_ctr4t")
+item_name = "Human Skull"
+tagline = "A remnant from a bygone era..."
+description = "TBD"
+item_texture = ExtResource("1_ctr4t")
+item_ammount = 1
+metadata/_custom_type_script = "uid://bmuicu5jd88ev"

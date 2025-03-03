@@ -41,6 +41,8 @@ func _ready() -> void:
 			dice.connect("roll_complete",on_dice_roll_complete)
 			player_dice.append(dice)
 			dice.dice_owner = Dice.DiceOwners.PLAYER
+			
+	ItemHelper.player_dice_ui = self
 	
 
 func on_dice_roll_complete() -> void:
@@ -63,7 +65,7 @@ func on_dice_roll_complete() -> void:
 		total_dice_score_label.text = str(total_dice_score)
 		
 		dice_roll_finished.emit(dice_values)
-
+		ItemHelper.on_player_dice_ui_roll_completed.emit()
 		
 		
 
