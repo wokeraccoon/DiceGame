@@ -8,6 +8,8 @@ extends Node2D
 @onready var item_particles: CPUParticles2D = %ItemParticles
 @onready var inventory_ui: InventoryUI = %InventoryUI
 
+@export var current_enemy_pool : EnemyPool
+
 enum ManagerStates {
 	START_STAGE,
 	CHOOSE_PATH,
@@ -33,5 +35,11 @@ func _switch_state(new_state : ManagerStates) -> void:
 	
 	match manager_state:
 		ManagerStates.START_STAGE:
-			battle_manager.start_battle(player_manager,dice_calculator)
-			
+			battle_manager.preparate_manager(player_manager,dice_calculator)
+			_switch_state(ManagerStates.BATTLE)
+		ManagerStates.BATTLE:
+			battle_manager.start_battle(current_enemy_pool.request_enemy_from_pool(Enemy.EnemyTypes.EARLY_LEVEL))
+
+
+func _on_battle_manager_player_victory() -> void:
+	_switch_state(ManagerStates.BATTLE)

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cfq66dvtr34an" path="res://scenes/game/managers/battle_manager.gd" id="1_fg1kb"]
 [ext_resource type="PackedScene" uid="uid://tliv023b8t2y" path="res://scenes/game/managers/battle_manager/battle_stage/battle_ui/player_dice_ui/player_dice_ui.tscn" id="2_crwhu"]
 [ext_resource type="PackedScene" uid="uid://cdbe3ylrhpbku" path="res://scenes/game/managers/enemy_manager/enemy_manager.tscn" id="2_p8obw"]
-[ext_resource type="Resource" uid="uid://bla561aa14rfg" path="res://enemies/icon.tres" id="3_2d04w"]
+[ext_resource type="Resource" uid="uid://bla561aa14rfg" path="res://enemies/icon/icon.tres" id="3_2d04w"]
 [ext_resource type="PackedScene" uid="uid://dkx41chdlblvm" path="res://scenes/game/managers/battle_manager/battle_stage/dungeon_world_3d/battle_stage_3d.tscn" id="3_7e5o1"]
 [ext_resource type="PackedScene" uid="uid://dsqqw522ht8gh" path="res://scenes/game/managers/battle_manager/battle_stage/battle_ui/enemy_info_ui.tscn" id="3_p8obw"]
 [ext_resource type="Material" uid="uid://yi12nvml12rs" path="res://gui_assets/shaders/palette_limiter_mat.tres" id="4_2d04w"]
@@ -56,17 +56,6 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 1
 metadata/_edit_use_anchors_ = true
-
-[node name="EnemyDamageTextSpawner" type="Control" parent="."]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 0
 
 [node name="PlayerDiceUI" parent="." instance=ExtResource("2_crwhu")]
 unique_name_in_owner = true

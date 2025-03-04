@@ -60,13 +60,14 @@ func _switch_state(state : DiceStates) -> void:
 			if !dice_button.button_pressed:
 				for i in randi_range(8,12):
 					animation_player.play("DICE_ROLL")
-					
-					await animation_player.animation_finished
 					dice_value = randi_range(1,6)
 					if use_alt_dice:
 						dice_texture.texture = alt_dice_array_textures[dice_value - 1]
 					else:
 						dice_texture.texture = dice_array_textures[dice_value - 1]
+					await animation_player.animation_finished
+					
+					
 			else:
 				await get_tree().create_timer(randi_range(1,2)).timeout
 

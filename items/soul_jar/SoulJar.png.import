@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://3oaf0r8nhqol"
-path="res://.godot/imported/human_skull.png-18e3908b22a0cf7f48d046e083e6a3d9.ctex"
+uid="uid://db3afrkagiler"
+path="res://.godot/imported/SoulJar.png-63388f0441901d95dee5be686e3d6ef5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://items/human_skull/human_skull.png"
-dest_files=["res://.godot/imported/human_skull.png-18e3908b22a0cf7f48d046e083e6a3d9.ctex"]
+source_file="res://items/soul_jar/SoulJar.png"
+dest_files=["res://.godot/imported/SoulJar.png-63388f0441901d95dee5be686e3d6ef5.ctex"]
 
 [params]
 

@@ -1,7 +1,6 @@
 class_name BattleManager
 extends Control
 
-const FLOATING_TEXT = preload("res://gui_assets/floating_text/floating_text.tscn")
 
 enum BattleStates {
 	START,
@@ -21,7 +20,6 @@ var dice_calculator: DiceCalculator
 @onready var enemy_manager: EnemyManager = %EnemyManager
 @onready var player_dice_ui: PlayerDiceUI = %PlayerDiceUI
 @onready var enemy_info_ui: EnemyInfoUI = %EnemyInfoUI
-@onready var enemy_damage_text_spawner: Control = %EnemyDamageTextSpawner
 @onready var enemy_dice_ui: EnemyDiceUI = %EnemyDiceUI
 @onready var battle_stage_3d: BattleStage3D = %BattleStage3D
 
@@ -35,12 +33,15 @@ signal player_defeat
 func _ready() -> void:
 	ItemHelper.battle_manager = self
 
-func start_battle(player_manager_instance : PlayerManager, dice_calculator_instance : DiceCalculator) -> void:
+func preparate_manager(player_manager_instance : PlayerManager, dice_calculator_instance : DiceCalculator) -> void:
 	player_manager = player_manager_instance
 	dice_calculator = dice_calculator_instance
 	
 	player_manager.player_died.connect(_on_player_manager_player_died)
 	enemy_manager.enemy_died.connect(_on_enemy_manager_enemy_died)
+
+func start_battle(new_enemy : Enemy) -> void:
+	enemy_manager.preparate_new_enemy(new_enemy)
 	_change_state(BattleStates.START)
 	
 
@@ -51,9 +52,10 @@ func _change_state(new_state : BattleStates) -> void:
 	match battle_state:
 		BattleStates.START:
 			battle_stage_3d.start_intro()
+			battle_stage_3d.set_enemy_sprite(enemy_manager.enemy_texture)
 			player_dice_ui.set_rolls_left(player_manager.rolls)
 			enemy_dice_ui.set_dice_ammount(enemy_manager.dice_ammount)
-			enemy_info_ui.set_enemy_name_description(enemy_manager.enemy_resource.name, enemy_manager.enemy_resource.short_description)
+			enemy_info_ui.set_enemy_name_description(enemy_manager.enemy_name, enemy_manager.enemy_description)
 			enemy_info_ui.set_enemy_health_info(enemy_manager.health,enemy_manager.max_health)
 			player_dice_ui.hide()
 			enemy_dice_ui.hide()
@@ -126,11 +128,11 @@ func _on_battle_stage_3d_battle_ready() -> void:
 
 
 func _on_battle_stage_3d_enemy_dying_animation_finished() -> void:
-	print("enemy_died")
+	player_victory.emit()
 
 
 func _on_battle_stage_3d_player_dying_animation_finished() -> void:
-	print("player_died")
+	get_tree().reload_current_scene()
 
 
 func _on_battle_stage_3d_enemy_just_attacked() -> void:
@@ -141,9 +143,6 @@ func _on_battle_stage_3d_enemy_just_attacked() -> void:
 
 
 func _on_battle_stage_3d_player_just_attacked() -> void:
-	var floating_text : FloatingText = FLOATING_TEXT.instantiate()
-	enemy_damage_text_spawner.add_child(floating_text)
-	floating_text.set_floating_text(str(player_attack_score),floating_text.ColorPresets.ENEMY_DAMAGE)
 	enemy_manager.update_health(-player_attack_score)
 	
 	enemy_info_ui.set_enemy_health_info(enemy_manager.health,enemy_manager.max_health)

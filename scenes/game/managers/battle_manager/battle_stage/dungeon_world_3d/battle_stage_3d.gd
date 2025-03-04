@@ -5,6 +5,7 @@ extends Node3D
 @onready var player_animation_player: AnimationPlayer = $PlayerAnimationPlayer
 @onready var enemy_sprite: Sprite3D = %EnemySprite
 @onready var damage_vignette: TextureRect = $DamageVignette
+@onready var player_hit_particles: CPUParticles3D = $EnemySpot/PlayerHitParticles
 
 
 signal battle_ready
@@ -32,13 +33,14 @@ func player_attack() -> void:
 	await get_tree().create_timer(0.5).timeout
 	enemy_animation_player.play("RESET")
 	await enemy_animation_player.animation_finished
+	player_hit_particles.emitting = true
 	for i in randi_range(10,15):
 		enemy_sprite.offset.x = randf_range(-2,2)
 		enemy_sprite.offset.y = randf_range(-2,2)
 		await get_tree().create_timer(0.025).timeout
 	enemy_sprite.offset = Vector2.ZERO
 	
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(1).timeout
 	enemy_animation_player.play("ENEMY_IDLE")
 	player_just_attacked.emit()
 
