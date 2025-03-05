@@ -5,7 +5,6 @@ extends Node2D
 @onready var dice_calculator: DiceCalculator = %DiceCalculator
 @onready var options_top_bar_ui: OptionsTopBarUI = %OptionsTopBarUI
 @onready var battle_manager: BattleManager = %BattleManager
-@onready var item_particles: CPUParticles2D = %ItemParticles
 @onready var inventory_ui: InventoryUI = %InventoryUI
 
 @export var current_enemy_pool : EnemyPool

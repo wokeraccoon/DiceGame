@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://br1bq0n8j61px"
-path="res://.godot/imported/cowboy.png-29bf11c2ba31ac646a3830a8f4777ac4.ctex"
+uid="uid://hfoxlfuc0g51"
+path="res://.godot/imported/cosmonaut.png-939cb7a08cf61c106c5a75808dd7db4e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player_classes/cowboy.png"
-dest_files=["res://.godot/imported/cowboy.png-29bf11c2ba31ac646a3830a8f4777ac4.ctex"]
+source_file="res://player_classes/cosmonaut.png"
+dest_files=["res://.godot/imported/cosmonaut.png-939cb7a08cf61c106c5a75808dd7db4e.ctex"]
 
 [params]
 

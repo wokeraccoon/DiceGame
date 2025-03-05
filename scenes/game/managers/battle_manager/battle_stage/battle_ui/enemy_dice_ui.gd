@@ -14,6 +14,9 @@ var dice_rolled : int = 0
 signal dice_roll_finished(dice_values : Dictionary[String,int])
 
 func set_dice_ammount(dice_ammount : int) -> void:
+	for dice : Dice in enemy_dice:
+		dice.queue_free()
+	enemy_dice.clear()
 	max_dice_ammount = dice_ammount
 
 func roll_dice() -> void:

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://db3afrkagiler"
-path="res://.godot/imported/SoulJar.png-63388f0441901d95dee5be686e3d6ef5.ctex"
+uid="uid://ba6w414daofbv"
+path="res://.godot/imported/poker_chip.png-bb15fb467b6e246c1a39d95185d300ad.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://items/soul_jar/SoulJar.png"
-dest_files=["res://.godot/imported/SoulJar.png-63388f0441901d95dee5be686e3d6ef5.ctex"]
+source_file="res://items/poker_chip.png"
+dest_files=["res://.godot/imported/poker_chip.png-bb15fb467b6e246c1a39d95185d300ad.ctex"]
 
 [params]
 

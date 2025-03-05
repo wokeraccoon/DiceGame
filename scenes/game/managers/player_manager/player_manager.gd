@@ -9,7 +9,9 @@ var money : int  = 3
 
 var rolls : int = 4
 
-@export var player_items : Array[Item] = []
+@export var starting_items : Array[Item] = []
+
+var player_items : Array[Item] = []
 @export var player_class : PlayerClass
 
 @onready var inventory_ui: InventoryUI = %InventoryUI
@@ -24,15 +26,11 @@ func _ready() -> void:
 	
 	health = max_health
 	
-	for item : Item in player_items:
-		item.game_manager = get_parent()
-		item.item_owner = Item.Owners.PLAYER
-		item.on_item_added()
-		
-	
 	await inventory_ui.ready
 	inventory_ui.update_player_health(health,max_health)
-	inventory_ui.update_item_grid(player_items)
+	
+	for item : Item in starting_items:
+		add_item(item)
 
 enum PlayerStatuses {
 	ALIVE,
@@ -53,3 +51,15 @@ func update_health(health_change : int = 0, max_health_change : int = 0) -> void
 	
 	if health <= 0:
 		player_died.emit()
+
+func add_item(item : Item) -> void:
+	if !player_items.has(item):
+		player_items.append(item)
+		item.item_owner = Item.Owners.PLAYER
+	else:
+		var existing_item : Item = player_items[player_items.bsearch(item)]
+		
+		existing_item.item_ammount += 1
+	
+	item.on_item_added()
+	inventory_ui.update_item_grid(player_items)

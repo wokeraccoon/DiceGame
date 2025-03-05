@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=3 format=3 uid="uid://dwev6h5d8wjs3"]
 
-[ext_resource type="Texture2D" uid="uid://db3afrkagiler" path="res://items/soul_jar/SoulJar.png" id="1_ytwg5"]
+[ext_resource type="Texture2D" uid="uid://db3afrkagiler" path="res://items/soul_jar/soul_jar.png" id="1_ytwg5"]
 [ext_resource type="Script" uid="uid://da8mqn4nu0yp8" path="res://items/soul_jar/soul_jar.gd" id="2_tl4rk"]
 
 [resource]

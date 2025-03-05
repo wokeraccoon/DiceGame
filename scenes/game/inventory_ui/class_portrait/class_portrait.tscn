@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://p8a5j4tihr3y"]
 
-[ext_resource type="Texture2D" uid="uid://br1bq0n8j61px" path="res://player_classes/cowboy.png" id="1_cwar0"]
+[ext_resource type="Texture2D" uid="uid://br1bq0n8j61px" path="res://player_classes/sherrif.png" id="1_cwar0"]
 [ext_resource type="Script" uid="uid://c8e7y8heyb12o" path="res://scenes/game/inventory_ui/class_portrait/class_portrait.gd" id="2_cdkfq"]
 
 [sub_resource type="Animation" id="Animation_cdkfq"]

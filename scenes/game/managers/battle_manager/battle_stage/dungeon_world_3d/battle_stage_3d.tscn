@@ -4,7 +4,7 @@
 [ext_resource type="Material" uid="uid://blyf6qcep6rvq" path="res://scenes/game/dungeon_assets/dungeon_wall_mat.tres" id="2_mb4eh"]
 [ext_resource type="Material" uid="uid://biat7o7g74y4c" path="res://scenes/game/dungeon_assets/dungeon_floor_mat.tres" id="3_kapum"]
 [ext_resource type="Texture2D" uid="uid://cthdjn64hfl7r" path="res://icon.svg" id="4_gh2vl"]
-[ext_resource type="Texture2D" uid="uid://dushgaske7km8" path="res://player_classes/cowboy_bullet_impac.png" id="5_hffms"]
+[ext_resource type="Texture2D" uid="uid://dushgaske7km8" path="res://player_classes/sherrif_bullet_impac.png" id="5_hffms"]
 
 [sub_resource type="Environment" id="Environment_2em46"]
 fog_enabled = true
@@ -130,22 +130,10 @@ step = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("EnemySpot:rotation")
+tracks/0/path = NodePath("EnemySpot:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 3, 4),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, -0.523599, 0), Vector3(0, 0.523599, 0), Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("EnemySpot:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
