@@ -37,6 +37,7 @@ func _switch_state(new_state : ManagerStates) -> void:
 			battle_manager.preparate_manager(player_manager,dice_calculator)
 			_switch_state(ManagerStates.BATTLE)
 		ManagerStates.BATTLE:
+			battle_manager.show()
 			battle_manager.start_battle(current_enemy_pool.request_enemy_from_pool(Enemy.EnemyTypes.EARLY_LEVEL))
 
 

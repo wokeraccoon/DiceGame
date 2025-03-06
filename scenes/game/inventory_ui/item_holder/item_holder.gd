@@ -6,14 +6,16 @@ extends MarginContainer
 @onready var item_description: ItemDescription = %ItemDescription
 
 
-func update_item(item : Item = null) -> void:
+func update_item(item : Item = null, show_ammount : bool = true) -> void:
 	if item == null:
 		item_texture.hide()
 	else:
 		item_texture.texture = null
 		item_texture.texture = item.item_texture
 		quantity_label.text = "x" + str(item.item_ammount)
+		quantity_label.visible = show_ammount
 		item_description.set_item_info(item)
+	
 
 func _process(delta: float) -> void:
 	

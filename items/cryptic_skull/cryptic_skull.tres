@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://cp17tobf4llg3"]
+
+[ext_resource type="Texture2D" uid="uid://3oaf0r8nhqol" path="res://items/cryptic_skull/cryptic_skull.png" id="1_due3y"]
+[ext_resource type="Script" uid="uid://o6fudoirkktn" path="res://items/cryptic_skull/cryptic_skull.gd" id="2_qvsln"]
+
+[resource]
+script = ExtResource("2_qvsln")
+item_name = "Cryptic Skull"
+tagline = "A remnant from a lost world..."
+description = "TBD"
+item_texture = ExtResource("1_due3y")
+item_ammount = 1
+metadata/_custom_type_script = "uid://bmuicu5jd88ev"

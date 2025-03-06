@@ -4,6 +4,7 @@ extends MarginContainer
 @onready var health_bar: ProgressBar = %HealthBar
 @onready var health_label: Label = %HealthLabel
 @onready var class_portrait: ClassPortrait = %ClassPortrait
+@onready var money_label: Label = %MoneyLabel
 
 var health_bar_value : int  = 0
 
@@ -26,7 +27,9 @@ func update_player_health(health : int, max_health : int) -> void:
 	
 	if health_bar_value < 0:
 		health_bar_value = 0
-	
+
+func update_player_money(money : int) -> void:
+	money_label.text = "$" + str(money)
 
 const ITEM_HOLDER = preload("res://scenes/game/inventory_ui/item_holder/item_holder.tscn")
 @onready var item_grid: GridContainer = %ItemGrid

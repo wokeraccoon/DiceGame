@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d4ht1uom2vw3o"
-path="res://.godot/imported/cyptic_skull.png-0271a0ef3675e210c36ec7fd5ea7b032.ctex"
+uid="uid://dy0s02ueophnp"
+path="res://.godot/imported/ceremonial_dagger.png-75426fe1b212c8a6f6e0acf96a75ee19.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://items/cyptic_skull.png"
-dest_files=["res://.godot/imported/cyptic_skull.png-0271a0ef3675e210c36ec7fd5ea7b032.ctex"]
+source_file="res://items/ceremonial_dagger/ceremonial_dagger.png"
+dest_files=["res://.godot/imported/ceremonial_dagger.png-75426fe1b212c8a6f6e0acf96a75ee19.ctex"]
 
 [params]
 

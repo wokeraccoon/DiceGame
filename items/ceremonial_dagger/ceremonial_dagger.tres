@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://hhnnnar6d0lf"]
+
+[ext_resource type="Texture2D" uid="uid://dy0s02ueophnp" path="res://items/ceremonial_dagger/ceremonial_dagger.png" id="1_1ldvn"]
+[ext_resource type="Script" uid="uid://bmuicu5jd88ev" path="res://classes/item.gd" id="2_kduns"]
+
+[resource]
+script = ExtResource("2_kduns")
+item_name = "Ceremonial Dagger"
+tagline = "\"I'm so sorry Marion. I'm so so sorry. I don't think-\""
+description = "TBD"
+item_texture = ExtResource("1_1ldvn")
+item_ammount = 1
+metadata/_custom_type_script = "uid://bmuicu5jd88ev"

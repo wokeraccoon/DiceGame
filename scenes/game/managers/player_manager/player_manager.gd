@@ -2,11 +2,8 @@ class_name PlayerManager
 extends Node
 
 var max_health : int = 500
-
 var health : int = 100
-
-var money : int  = 3
-
+var money : int  = 99999
 var rolls : int = 4
 
 @export var starting_items : Array[Item] = []
@@ -28,6 +25,7 @@ func _ready() -> void:
 	
 	await inventory_ui.ready
 	inventory_ui.update_player_health(health,max_health)
+	inventory_ui.update_player_money(money)
 	
 	for item : Item in starting_items:
 		add_item(item)
@@ -51,6 +49,9 @@ func update_health(health_change : int = 0, max_health_change : int = 0) -> void
 	
 	if health <= 0:
 		player_died.emit()
+
+func update_money(new_money_ammount : int) -> void:
+	money += new_money_ammount
 
 func add_item(item : Item) -> void:
 	if !player_items.has(item):

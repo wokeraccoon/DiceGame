@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemPool" load_steps=10 format=3 uid="uid://bwwpglucwxr0p"]
+
+[ext_resource type="Script" uid="uid://bmuicu5jd88ev" path="res://classes/item.gd" id="1_re7he"]
+[ext_resource type="Resource" uid="uid://hhnnnar6d0lf" path="res://items/ceremonial_dagger/ceremonial_dagger.tres" id="2_51nw6"]
+[ext_resource type="Script" uid="uid://8m00s38i0a0x" path="res://items/item_pool.gd" id="2_ar5ds"]
+[ext_resource type="Resource" uid="uid://cp17tobf4llg3" path="res://items/cryptic_skull/cryptic_skull.tres" id="3_x3s4g"]
+[ext_resource type="Resource" uid="uid://c81ycjako8ops" path="res://items/d20/d20.tres" id="4_ubequ"]
+[ext_resource type="Resource" uid="uid://deybupyulpxnm" path="res://items/jimbo/jimbo.tres" id="5_fm1pi"]
+[ext_resource type="Resource" uid="uid://bx7370ia5mbvf" path="res://items/pink_gold_ring/pink_gold_ring.tres" id="6_k0dcw"]
+[ext_resource type="Resource" uid="uid://3n6chrsn4hd6" path="res://items/poker_chips/poker_chips.tres" id="7_lxaux"]
+[ext_resource type="Resource" uid="uid://dwev6h5d8wjs3" path="res://items/soul_jar/soul_jar.tres" id="8_u4jbw"]
+
+[resource]
+script = ExtResource("2_ar5ds")
+item_pool = Array[ExtResource("1_re7he")]([ExtResource("2_51nw6"), ExtResource("3_x3s4g"), ExtResource("4_ubequ"), ExtResource("5_fm1pi"), ExtResource("6_k0dcw"), ExtResource("7_lxaux"), ExtResource("8_u4jbw")])
+metadata/_custom_type_script = "uid://8m00s38i0a0x"

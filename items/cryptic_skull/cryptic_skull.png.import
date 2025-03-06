@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cvcedngjq0ibr"
-path="res://.godot/imported/soul_jar.png-7708fe956ca2a968e29574a34f6de7cf.ctex"
+uid="uid://3oaf0r8nhqol"
+path="res://.godot/imported/cryptic_skull.png-65e840a255f22b3c0c8476efcdb1716c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://items/soul_jar.png"
-dest_files=["res://.godot/imported/soul_jar.png-7708fe956ca2a968e29574a34f6de7cf.ctex"]
+source_file="res://items/cryptic_skull/cryptic_skull.png"
+dest_files=["res://.godot/imported/cryptic_skull.png-65e840a255f22b3c0c8476efcdb1716c.ctex"]
 
 [params]
 

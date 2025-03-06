@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://deybupyulpxnm"]
+
+[ext_resource type="Texture2D" uid="uid://u32qij3uxlwx" path="res://items/jimbo/jimbo.png" id="1_mwsum"]
+[ext_resource type="Script" uid="uid://bmuicu5jd88ev" path="res://classes/item.gd" id="2_tctco"]
+
+[resource]
+script = ExtResource("2_tctco")
+item_name = "Jimbo"
+tagline = "\"I'm literally a fool, what's your excuse?\""
+description = "TBD"
+item_texture = ExtResource("1_mwsum")
+item_ammount = 1
+metadata/_custom_type_script = "uid://bmuicu5jd88ev"
