@@ -6,6 +6,7 @@ extends Node2D
 @onready var options_top_bar_ui: OptionsTopBarUI = %OptionsTopBarUI
 @onready var battle_manager: BattleManager = %BattleManager
 @onready var inventory_ui: InventoryUI = %InventoryUI
+@onready var shop_manager: Control = %ShopManager
 
 @export var current_enemy_pool : EnemyPool
 
@@ -29,17 +30,24 @@ func _ready() -> void:
 	_switch_state(ManagerStates.START_STAGE)
 
 func _switch_state(new_state : ManagerStates) -> void:
-	
+	shop_manager.hide()
+	battle_manager.hide()
 	manager_state = new_state
 	
 	match manager_state:
 		ManagerStates.START_STAGE:
 			battle_manager.preparate_manager(player_manager,dice_calculator)
-			#_switch_state(ManagerStates.BATTLE)
+			_switch_state(ManagerStates.BATTLE)
 		ManagerStates.BATTLE:
 			battle_manager.show()
 			battle_manager.start_battle(current_enemy_pool.request_enemy_from_pool(Enemy.EnemyTypes.EARLY_LEVEL))
-
+		ManagerStates.SHOP_KEEPER:
+			shop_manager.show()
 
 func _on_battle_manager_player_victory() -> void:
+	player_manager.update_money(randi_range(3,5))
+	_switch_state(ManagerStates.SHOP_KEEPER)
+
+
+func _on_shop_manager_shop_exited() -> void:
 	_switch_state(ManagerStates.BATTLE)

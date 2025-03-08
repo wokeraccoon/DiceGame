@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b6hkp7ydpotqs"]
+[gd_scene load_steps=9 format=3 uid="uid://b6hkp7ydpotqs"]
 
 [ext_resource type="Script" uid="uid://v54vb110se7y" path="res://scenes/game/game_manager.gd" id="1_x6pty"]
 [ext_resource type="Resource" uid="uid://cx8a6qsdwerl8" path="res://enemies/test_pool.tres" id="2_0vd8f"]
@@ -6,10 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c8iv0aaoj855d" path="res://scenes/game/managers/player_manager/player_manager.tscn" id="3_o5hsk"]
 [ext_resource type="PackedScene" uid="uid://mjax8ndkjpo" path="res://scenes/game/managers/battle_manager/battle_manager.tscn" id="5_6bobr"]
 [ext_resource type="PackedScene" uid="uid://dkundhi2j3bhk" path="res://scenes/game/inventory_ui/inventory_ui.tscn" id="5_o5hsk"]
-[ext_resource type="Script" uid="uid://bmuicu5jd88ev" path="res://classes/item.gd" id="5_wap17"]
-[ext_resource type="Resource" uid="uid://3n6chrsn4hd6" path="res://items/poker_chips/poker_chips.tres" id="6_0vd8f"]
 [ext_resource type="PackedScene" uid="uid://p5vqfkp0fdqb" path="res://scenes/game/managers/shop_manager/shop_manager.tscn" id="6_ok4xb"]
-[ext_resource type="Resource" uid="uid://dwev6h5d8wjs3" path="res://items/soul_jar/soul_jar.tres" id="7_0vd8f"]
 [ext_resource type="PackedScene" uid="uid://cv7a1erym7ml7" path="res://scenes/game/top_bar_ui/options_top_bar_ui.tscn" id="7_o5hsk"]
 
 [node name="GameManager" type="Node2D"]
@@ -32,7 +29,8 @@ unique_name_in_owner = true
 
 [node name="PlayerManager" parent="." instance=ExtResource("3_o5hsk")]
 unique_name_in_owner = true
-starting_items = Array[ExtResource("5_wap17")]([ExtResource("6_0vd8f"), ExtResource("7_0vd8f")])
+money = 10
+rolls = 3
 
 [node name="GameLayer" type="CanvasLayer" parent="."]
 
@@ -70,6 +68,8 @@ clip_children = 1
 layout_mode = 2
 
 [node name="ShopManager" parent="GameLayer/HBoxContainer/MarginContainer4/Panel" instance=ExtResource("6_ok4xb")]
+unique_name_in_owner = true
+visible = false
 layout_mode = 1
 
 [node name="BattleManager" parent="GameLayer/HBoxContainer/MarginContainer4/Panel" instance=ExtResource("5_6bobr")]
@@ -82,4 +82,5 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0
 
+[connection signal="shop_exited" from="GameLayer/HBoxContainer/MarginContainer4/Panel/ShopManager" to="." method="_on_shop_manager_shop_exited"]
 [connection signal="player_victory" from="GameLayer/HBoxContainer/MarginContainer4/Panel/BattleManager" to="." method="_on_battle_manager_player_victory"]

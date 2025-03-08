@@ -1,10 +1,10 @@
 class_name PlayerManager
 extends Node
 
-var max_health : int = 500
-var health : int = 100
-var money : int  = 9
-var rolls : int = 4
+@export var max_health : int = 500
+@export var health : int = 100
+@export var money : int  = 3
+@export var rolls : int = 4
 
 @export var starting_items : Array[Item] = []
 

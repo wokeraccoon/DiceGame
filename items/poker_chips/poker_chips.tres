@@ -10,6 +10,7 @@ item_name = "Poker Chips"
 tagline = "Cash them out!"
 description = "Increases attack by {current_percent}%
 [+{percent}% per stack]"
+item_value = 3
 item_texture = ExtResource("1_aiq42")
 item_ammount = 1
 metadata/_custom_type_script = "uid://bmuicu5jd88ev"

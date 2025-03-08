@@ -56,26 +56,27 @@ layout_mode = 2
 theme_override_constants/separation = 64
 alignment = 1
 
-[node name="Button2" type="Button" parent="MarginContainer/HBoxContainer2"]
+[node name="RerollButton" type="Button" parent="MarginContainer/HBoxContainer2"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(312, 96)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 64
-disabled = true
 text = "Reroll Shop ($5)"
 
-[node name="Button" type="Button" parent="MarginContainer/HBoxContainer2"]
-custom_minimum_size = Vector2(512, 128)
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(512, 0)
 layout_mode = 2
-theme_override_font_sizes/font_size = 96
-disabled = true
-text = "Purchase Item(s)"
 
-[node name="Button3" type="Button" parent="MarginContainer/HBoxContainer2"]
+[node name="NextLevelButton" type="Button" parent="MarginContainer/HBoxContainer2"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(312, 96)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 64
 text = "Next Level"
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer2/RerollButton" to="." method="_on_reroll_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer2/NextLevelButton" to="." method="_on_next_level_button_pressed"]

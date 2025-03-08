@@ -11,6 +11,7 @@ item_name = "Soul jar"
 tagline = "All the souls you \"collected\" in one nice jar!"
 description = "After enemy's death, gain +{total_extra_health} health.
 [Starts at +{starting_health} health. Gains +{health_per_stack} per stack]"
+item_value = 3
 item_texture = ExtResource("1_ytwg5")
 item_ammount = 1
 metadata/_custom_type_script = "uid://bmuicu5jd88ev"
