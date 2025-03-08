@@ -29,6 +29,7 @@ func update_player_health(health : int, max_health : int) -> void:
 		health_bar_value = 0
 
 func update_player_money(money : int) -> void:
+	print("test")
 	money_label.text = "$" + str(money)
 
 const ITEM_HOLDER = preload("res://scenes/game/inventory_ui/item_holder/item_holder.tscn")

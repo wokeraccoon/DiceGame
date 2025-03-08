@@ -5,10 +5,11 @@
 
 [resource]
 script = ExtResource("2_aiq42")
-extra_damage_perctent = 10
+extra_damage_percent = 10
 item_name = "Poker Chips"
 tagline = "Cash them out!"
-description = "Increases attack by {percent}% [+{percent}% per stack, currently {current_percent}]"
+description = "Increases attack by {current_percent}%
+[+{percent}% per stack]"
 item_texture = ExtResource("1_aiq42")
 item_ammount = 1
 metadata/_custom_type_script = "uid://bmuicu5jd88ev"

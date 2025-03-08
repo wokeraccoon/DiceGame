@@ -13,12 +13,14 @@ func _ready() -> void:
 func generate_shop() -> void:
 	for child : Node in shop_item_list.get_children():
 		child.queue_free()
-	
-	var temp_item_list : ItemPool = item_pool.duplicate()
+
 	
 	for i in 3:
 		var shop_item : ShopItem = SHOP_ITEM.instantiate()
 		shop_item_list.add_child(shop_item)
 		
-		var item : Item = temp_item_list.item_pool.pick_random()
+		var item : Item = item_pool.item_pool.pick_random()
+		item.on_item_added()
 		shop_item.item_holder.update_item(item,false)
+		shop_item.item_name.text = item.item_name
+		shop_item.item_price.text = '$' + str(item.item_value)

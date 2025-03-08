@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b6hkp7ydpotqs"]
+[gd_scene load_steps=12 format=3 uid="uid://b6hkp7ydpotqs"]
 
 [ext_resource type="Script" uid="uid://v54vb110se7y" path="res://scenes/game/game_manager.gd" id="1_x6pty"]
 [ext_resource type="Resource" uid="uid://cx8a6qsdwerl8" path="res://enemies/test_pool.tres" id="2_0vd8f"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://bmuicu5jd88ev" path="res://classes/item.gd" id="5_wap17"]
 [ext_resource type="Resource" uid="uid://3n6chrsn4hd6" path="res://items/poker_chips/poker_chips.tres" id="6_0vd8f"]
 [ext_resource type="PackedScene" uid="uid://p5vqfkp0fdqb" path="res://scenes/game/managers/shop_manager/shop_manager.tscn" id="6_ok4xb"]
+[ext_resource type="Resource" uid="uid://dwev6h5d8wjs3" path="res://items/soul_jar/soul_jar.tres" id="7_0vd8f"]
 [ext_resource type="PackedScene" uid="uid://cv7a1erym7ml7" path="res://scenes/game/top_bar_ui/options_top_bar_ui.tscn" id="7_o5hsk"]
 
 [node name="GameManager" type="Node2D"]
@@ -31,7 +32,7 @@ unique_name_in_owner = true
 
 [node name="PlayerManager" parent="." instance=ExtResource("3_o5hsk")]
 unique_name_in_owner = true
-starting_items = Array[ExtResource("5_wap17")]([ExtResource("6_0vd8f")])
+starting_items = Array[ExtResource("5_wap17")]([ExtResource("6_0vd8f"), ExtResource("7_0vd8f")])
 
 [node name="GameLayer" type="CanvasLayer" parent="."]
 
@@ -69,7 +70,6 @@ clip_children = 1
 layout_mode = 2
 
 [node name="ShopManager" parent="GameLayer/HBoxContainer/MarginContainer4/Panel" instance=ExtResource("6_ok4xb")]
-visible = false
 layout_mode = 1
 
 [node name="BattleManager" parent="GameLayer/HBoxContainer/MarginContainer4/Panel" instance=ExtResource("5_6bobr")]

@@ -4,6 +4,7 @@ extends Resource
 @export var item_name : String
 @export_multiline var tagline : String
 @export_multiline var description : String
+@export var item_value : int = 3
 @export var item_texture : Texture2D = preload("res://icon.svg")
 
 enum Owners {

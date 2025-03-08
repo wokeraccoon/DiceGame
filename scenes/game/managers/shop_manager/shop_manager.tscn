@@ -70,7 +70,7 @@ custom_minimum_size = Vector2(512, 128)
 layout_mode = 2
 theme_override_font_sizes/font_size = 96
 disabled = true
-text = "Purchase Item"
+text = "Purchase Item(s)"
 
 [node name="Button3" type="Button" parent="MarginContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(312, 96)

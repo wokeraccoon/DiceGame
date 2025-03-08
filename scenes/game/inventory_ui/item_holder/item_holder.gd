@@ -18,10 +18,13 @@ func update_item(item : Item = null, show_ammount : bool = true) -> void:
 	
 
 func _process(delta: float) -> void:
+	var mouse_pos : Vector2 = get_global_mouse_position()
 	
 	if item_description.visible:
-		var mouse_pos : Vector2 = get_global_mouse_position()
-		item_description.global_position = mouse_pos
+		item_description.global_position = mouse_pos.clamp(
+			Vector2.ZERO,
+			(get_viewport_rect().size - item_description.size)
+		)
 
 
 func _on_mouse_entered() -> void:
