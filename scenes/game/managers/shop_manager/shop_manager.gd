@@ -24,7 +24,7 @@ func generate_shop() -> void:
 		shop_item_list.add_child(shop_item)
 		
 		var item : Item = item_pool.item_pool.pick_random()
-		item.on_item_added()
+		item.set_description()
 		shop_item.item_holder.update_item(item,false)
 		shop_item.item_resource = item
 		shop_item.item_name.text = item.item_name
@@ -34,6 +34,7 @@ func generate_shop() -> void:
 
 func _on_reroll_button_pressed() -> void:
 	if ItemHelper.player_manager.money >= 5:
+		ItemHelper.player_manager.update_money(-5)
 		generate_shop()
 	else:
 		reroll_button.text = "Too poor!"

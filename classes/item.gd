@@ -20,6 +20,9 @@ var item_owner : Owners = Owners.NONE
 func on_item_added() -> void:
 	pass
 
+func set_description() -> void:
+	pass
+
 func on_item_ammount_increased() -> void:
 	pass
 	

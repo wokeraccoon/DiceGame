@@ -29,7 +29,7 @@ unique_name_in_owner = true
 
 [node name="PlayerManager" parent="." instance=ExtResource("3_o5hsk")]
 unique_name_in_owner = true
-money = 10
+money = 9999
 rolls = 3
 
 [node name="GameLayer" type="CanvasLayer" parent="."]

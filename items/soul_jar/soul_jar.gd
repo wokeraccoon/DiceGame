@@ -8,7 +8,10 @@ func on_item_added() -> void:
 	total_extra_health = (starting_health + (health_per_stack * (item_ammount - 1)))
 	if !ItemHelper.on_enemy_died.is_connected(on_enemy_death):
 		ItemHelper.on_enemy_died.connect(on_enemy_death)
-	description = description.replace("{total_extra_health}",str(total_extra_health))
+	set_description()
+		
+func set_description() -> void:
+	description = description.replace("{total_extra_health}",str((starting_health + (health_per_stack * (item_ammount - 1)))))
 	description = description.replace("{health_per_stack}",str(health_per_stack))
 	description = description.replace("{starting_health}",str(starting_health))
 
