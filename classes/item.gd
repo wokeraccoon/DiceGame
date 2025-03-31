@@ -15,8 +15,6 @@ enum Owners {
 
 var item_owner : Owners = Owners.NONE
 
-@export_range(1,999,1) var item_ammount : int = 1
-
 func on_item_added() -> void:
 	pass
 

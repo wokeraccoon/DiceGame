@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dkundhi2j3bhk"]
+[gd_scene load_steps=9 format=3 uid="uid://dkundhi2j3bhk"]
 
 [ext_resource type="StyleBox" uid="uid://cicxvr8nl2f60" path="res://gui_assets/panel/panel_alt.tres" id="1_2hm0h"]
 [ext_resource type="Script" uid="uid://b6elxq5erhkr7" path="res://scenes/game/inventory_ui/inventory_ui.gd" id="1_62m5a"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://p8a5j4tihr3y" path="res://scenes/game/inventory_ui/class_portrait/class_portrait.tscn" id="3_ic8us"]
 [ext_resource type="Texture2D" uid="uid://hfoxlfuc0g51" path="res://player_classes/cosmonaut.png" id="4_hilvt"]
 [ext_resource type="Texture2D" uid="uid://bayb8nqmox68b" path="res://gui_assets/button/normal_button/disabled_button.png" id="4_q610w"]
+[ext_resource type="PackedScene" uid="uid://xddgk2vrnfif" path="res://scenes/game/inventory_ui/item_holder/item_holder.tscn" id="8_hilvt"]
 
 [node name="InventoryUI" type="MarginContainer"]
 anchors_preset = 9
@@ -172,13 +173,6 @@ theme_override_constants/margin_bottom = 8
 layout_mode = 2
 alignment = 1
 
-[node name="LeftPageButton" type="Button" parent="VBoxContainer/MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(64, 48)
-layout_mode = 2
-text = "<<"
-flat = true
-
 [node name="CharmsPageLabel" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(51, 42)
@@ -186,16 +180,9 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 theme_override_font_sizes/font_size = 64
-text = "Charms 1/1"
+text = "Charms"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="RightPageButton" type="Button" parent="VBoxContainer/MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(64, 48)
-layout_mode = 2
-text = ">>"
-flat = true
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -205,7 +192,11 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="ItemGrid" type="GridContainer" parent="VBoxContainer/MarginContainer/VBoxContainer/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="ItemGrid" type="GridContainer" parent="VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(320, 320)
 layout_mode = 2
@@ -213,6 +204,66 @@ size_flags_horizontal = 4
 theme_override_constants/h_separation = 16
 theme_override_constants/v_separation = 16
 columns = 3
+
+[node name="ItemHolder" parent="VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/ItemGrid" instance=ExtResource("8_hilvt")]
+layout_mode = 2
+
+[node name="ItemHolder2" parent="VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/ItemGrid" instance=ExtResource("8_hilvt")]
+layout_mode = 2
+
+[node name="ItemHolder3" parent="VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/ItemGrid" instance=ExtResource("8_hilvt")]
+layout_mode = 2
+
+[node name="ItemHolder4" parent="VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/ItemGrid" instance=ExtResource("8_hilvt")]
+layout_mode = 2
+
+[node name="ItemHolder5" parent="VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/ItemGrid" instance=ExtResource("8_hilvt")]
+layout_mode = 2
+
+[node name="ItemHolder6" parent="VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/ItemGrid" instance=ExtResource("8_hilvt")]
+layout_mode = 2
+
+[node name="ItemHolder7" parent="VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/ItemGrid" instance=ExtResource("8_hilvt")]
+layout_mode = 2
+
+[node name="ItemHolder8" parent="VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/ItemGrid" instance=ExtResource("8_hilvt")]
+layout_mode = 2
+
+[node name="ItemHolder9" parent="VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/ItemGrid" instance=ExtResource("8_hilvt")]
+layout_mode = 2
+
+[node name="ItemHolder10" parent="VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/ItemGrid" instance=ExtResource("8_hilvt")]
+layout_mode = 2
+
+[node name="ItemHolder11" parent="VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/ItemGrid" instance=ExtResource("8_hilvt")]
+layout_mode = 2
+
+[node name="ItemHolder12" parent="VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/ItemGrid" instance=ExtResource("8_hilvt")]
+layout_mode = 2
+
+[node name="ItemHolder13" parent="VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/ItemGrid" instance=ExtResource("8_hilvt")]
+layout_mode = 2
+
+[node name="ItemHolder14" parent="VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/ItemGrid" instance=ExtResource("8_hilvt")]
+layout_mode = 2
+
+[node name="ItemHolder15" parent="VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/ItemGrid" instance=ExtResource("8_hilvt")]
+layout_mode = 2
+
+[node name="ItemHolder16" parent="VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/ItemGrid" instance=ExtResource("8_hilvt")]
+layout_mode = 2
+
+[node name="ItemHolder17" parent="VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/ItemGrid" instance=ExtResource("8_hilvt")]
+layout_mode = 2
+
+[node name="ItemHolder18" parent="VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/ItemGrid" instance=ExtResource("8_hilvt")]
+layout_mode = 2
+
+[node name="ItemHolder19" parent="VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/ItemGrid" instance=ExtResource("8_hilvt")]
+layout_mode = 2
+
+[node name="ItemHolder20" parent="VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/ItemGrid" instance=ExtResource("8_hilvt")]
+layout_mode = 2
 
 [node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer"]
 clip_contents = true

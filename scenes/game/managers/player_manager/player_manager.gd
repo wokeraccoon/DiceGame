@@ -55,20 +55,4 @@ func update_money(new_money_ammount : int) -> void:
 	inventory_ui.update_player_money(money)
 
 func add_item(new_item : Item) -> void:
-	
-	
-	if !player_items.has(new_item):
-		player_items.append(new_item)
-		new_item.item_owner = Item.Owners.PLAYER
-	else:
-		var existing_item : Item = null
-		
-		for item in player_items:
-			if new_item.item_name == item.item_name:
-				existing_item = item
-		
-		print(new_item.item_name)
-		existing_item.item_ammount += 1
-	
-	new_item.on_item_added()
-	inventory_ui.update_item_grid(player_items)
+	pass

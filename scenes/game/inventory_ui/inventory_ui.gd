@@ -35,9 +35,12 @@ func update_player_money(money : int) -> void:
 const ITEM_HOLDER = preload("res://scenes/game/inventory_ui/item_holder/item_holder.tscn")
 @onready var item_grid: GridContainer = %ItemGrid
 
+var item_pages : Array[Array] = []
+
 func update_item_grid(items : Array[Item]) -> void:
 	for child : Node in item_grid.get_children():
 		child.queue_free()
+	
 	
 	for item : Item in items:
 		var item_holder : ItemHolder = ITEM_HOLDER.instantiate()

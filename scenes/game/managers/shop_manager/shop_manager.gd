@@ -25,7 +25,7 @@ func generate_shop() -> void:
 		
 		var item : Item = item_pool.item_pool.pick_random()
 		item.set_description()
-		shop_item.item_holder.update_item(item,false)
+		shop_item.item_holder.update_item(item)
 		shop_item.item_resource = item
 		shop_item.item_name.text = item.item_name
 		shop_item.price = item.item_value

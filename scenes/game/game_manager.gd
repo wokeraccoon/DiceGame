@@ -37,7 +37,7 @@ func _switch_state(new_state : ManagerStates) -> void:
 	match manager_state:
 		ManagerStates.START_STAGE:
 			battle_manager.preparate_manager(player_manager,dice_calculator)
-			_switch_state(ManagerStates.SHOP_KEEPER)
+			_switch_state(ManagerStates.BATTLE)
 		ManagerStates.BATTLE:
 			battle_manager.show()
 			battle_manager.start_battle(current_enemy_pool.request_enemy_from_pool(Enemy.EnemyTypes.EARLY_LEVEL))
@@ -46,7 +46,7 @@ func _switch_state(new_state : ManagerStates) -> void:
 
 func _on_battle_manager_player_victory() -> void:
 	player_manager.update_money(randi_range(3,5))
-	_switch_state(ManagerStates.SHOP_KEEPER)
+	_switch_state(ManagerStates.BATTLE)
 
 
 func _on_shop_manager_shop_exited() -> void:
