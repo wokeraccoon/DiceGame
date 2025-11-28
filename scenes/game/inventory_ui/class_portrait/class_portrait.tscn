@@ -1,0 +1,83 @@
+[gd_scene load_steps=7 format=3 uid="uid://p8a5j4tihr3y"]
+
+[ext_resource type="Texture2D" uid="uid://br1bq0n8j61px" path="res://player_classes/sherrif.png" id="1_cwar0"]
+[ext_resource type="Script" uid="uid://c8e7y8heyb12o" path="res://scenes/game/inventory_ui/class_portrait/class_portrait.gd" id="2_cdkfq"]
+
+[sub_resource type="Animation" id="Animation_cdkfq"]
+resource_name = "DAMAGE"
+length = 0.4
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EffectOverlay:color")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.909804, 0.231373, 0.231373, 0), Color(0.909804, 0.231373, 0.231373, 1), Color(0.909804, 0.231373, 0.231373, 0), Color(0.909804, 0.231373, 0.231373, 1), Color(0.909804, 0.231373, 0.231373, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_bcusv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EffectOverlay:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.909804, 0.231373, 0.231373, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_nalm8"]
+resource_name = "HEALING"
+length = 0.4
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EffectOverlay:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.117647, 0.737255, 0.45098, 0), Color(0.117647, 0.737255, 0.45098, 1), Color(0.117647, 0.737255, 0.45098, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nalm8"]
+_data = {
+&"DAMAGE": SubResource("Animation_cdkfq"),
+&"HEALING": SubResource("Animation_nalm8"),
+&"RESET": SubResource("Animation_bcusv")
+}
+
+[node name="ClassPortrait" type="TextureRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_cwar0")
+script = ExtResource("2_cdkfq")
+
+[node name="EffectOverlay" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.909804, 0.231373, 0.231373, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_nalm8")
+}

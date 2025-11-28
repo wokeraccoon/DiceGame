@@ -1,0 +1,150 @@
+[gd_scene load_steps=4 format=3 uid="uid://di75elvh0b7x8"]
+
+[ext_resource type="StyleBox" uid="uid://cicxvr8nl2f60" path="res://gui_assets/panel/panel_alt.tres" id="1_ms7yw"]
+[ext_resource type="Script" uid="uid://b6u20o1d5fctp" path="res://scenes/game/managers/battle_manager/battle_stage/battle_ui/player_dice_ui/dice_reference_ui/combo_reference_ui.gd" id="1_y5o1d"]
+[ext_resource type="PackedScene" uid="uid://bvardchi5ekg6" path="res://scenes/game/managers/battle_manager/battle_stage/battle_ui/player_dice_ui/dice_reference_ui/singles_dice.tscn" id="3_54d8w"]
+
+[node name="ComboReferenceUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_y5o1d")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.18, 0.133, 0.184, 0.8)
+metadata/_edit_lock_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Panel" type="Panel" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Dice Combo Reference"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="SinglesButton" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(256, 64)
+layout_mode = 2
+size_flags_vertical = 3
+text = "Single"
+
+[node name="PairButton" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(256, 64)
+layout_mode = 2
+size_flags_vertical = 3
+text = "Pair"
+
+[node name="TwoPairButton" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(256, 64)
+layout_mode = 2
+size_flags_vertical = 3
+text = "Two Pair"
+
+[node name="ThreeKindButton" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(256, 64)
+layout_mode = 2
+size_flags_vertical = 3
+text = "Three of a Kind"
+
+[node name="FourKindButton" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(256, 64)
+layout_mode = 2
+size_flags_vertical = 3
+text = "Four of a Kind"
+
+[node name="FullHouseButton" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(256, 64)
+layout_mode = 2
+size_flags_vertical = 3
+text = "Full House"
+
+[node name="StraightButton" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(256, 64)
+layout_mode = 2
+size_flags_vertical = 3
+text = "Straight"
+
+[node name="YatchButton" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(256, 64)
+layout_mode = 2
+size_flags_vertical = 3
+text = "Yatch!"
+
+[node name="CenterContainer" type="MarginContainer" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(768, 640)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/CenterContainer"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("1_ms7yw")
+
+[node name="ComboShowcase" type="CenterContainer" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/CenterContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="SinglesDice" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/CenterContainer/ComboShowcase" instance=ExtResource("3_54d8w")]
+visible = false
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Close"
+
+[connection signal="draw" from="." to="." method="_on_draw"]
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/SinglesButton" to="." method="_on_singles_button_pressed"]
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/PairButton" to="." method="_on_pair_button_pressed"]
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/TwoPairButton" to="." method="_on_two_pair_button_pressed"]
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/ThreeKindButton" to="." method="_on_three_kind_button_pressed"]
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/FourKindButton" to="." method="_on_four_kind_button_pressed"]
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/FullHouseButton" to="." method="_on_full_house_button_pressed"]
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/StraightButton" to="." method="_on_straight_button_pressed"]
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/YatchButton" to="." method="_on_yatch_button_pressed"]
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

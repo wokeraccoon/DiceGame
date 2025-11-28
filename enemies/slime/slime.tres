@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Enemy" load_steps=4 format=3 uid="uid://gvvoxuot4m5"]
+
+[ext_resource type="Script" uid="uid://bmuicu5jd88ev" path="res://classes/item.gd" id="1_maxgr"]
+[ext_resource type="Texture2D" uid="uid://cixyvfasn0lwt" path="res://enemies/slime/slime.png" id="2_maxgr"]
+[ext_resource type="Script" uid="uid://igki11xootrd" path="res://classes/enemy.gd" id="3_8m1yw"]
+
+[resource]
+script = ExtResource("3_8m1yw")
+enemy_name = "Slime"
+short_description = "\"Are those... bones???\""
+enemy_sprite = ExtResource("2_maxgr")
+default_items = Array[ExtResource("1_maxgr")]([])
+base_health = 300
+max_dice_ammount = 3
+enemy_type = 0
+metadata/_custom_type_script = "uid://igki11xootrd"

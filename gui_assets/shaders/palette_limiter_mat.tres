@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://yi12nvml12rs"]
+
+[ext_resource type="Shader" uid="uid://cn1m0if6s8lsr" path="res://gui_assets/shaders/palette_limiter.gdshader" id="1_otdmp"]
+[ext_resource type="Texture2D" uid="uid://qakayfu34fhq" path="res://gui_assets/shaders/resurrect-64-1x.png" id="2_kor2x"]
+
+[resource]
+shader = ExtResource("1_otdmp")
+shader_parameter/num_colors = 64
+shader_parameter/PALETTE_TEXTURE = ExtResource("2_kor2x")

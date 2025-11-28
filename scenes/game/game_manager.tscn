@@ -1,98 +1,86 @@
-[gd_scene load_steps=12 format=3 uid="uid://b6hkp7ydpotqs"]
+[gd_scene load_steps=9 format=3 uid="uid://b6hkp7ydpotqs"]
 
 [ext_resource type="Script" uid="uid://v54vb110se7y" path="res://scenes/game/game_manager.gd" id="1_x6pty"]
-[ext_resource type="PackedScene" uid="uid://b2rt1670ts75n" path="res://scenes/game/dice_calculator/dice_calculator.tscn" id="2_ghnn3"]
-[ext_resource type="PackedScene" uid="uid://dkx41chdlblvm" path="res://scenes/game/battle_stage/battle_stage.tscn" id="3_i3nyo"]
-[ext_resource type="PackedScene" uid="uid://c8iv0aaoj855d" path="res://scenes/game/player_manager/player_manager.tscn" id="3_o5hsk"]
-[ext_resource type="PackedScene" uid="uid://tliv023b8t2y" path="res://scenes/game/battle_stage/battle_ui/player_dice_ui.tscn" id="4_g0gdj"]
-[ext_resource type="PackedScene" uid="uid://bt7hu8n4rfque" path="res://gui_assets/vignette.tscn" id="4_o5hsk"]
-[ext_resource type="PackedScene" uid="uid://cdbe3ylrhpbku" path="res://scenes/game/enemy_manager/enemy_manager.tscn" id="4_wap17"]
-[ext_resource type="Resource" uid="uid://bla561aa14rfg" path="res://enemies/icon.tres" id="5_0vd8f"]
-[ext_resource type="PackedScene" uid="uid://cv7a1erym7ml7" path="res://scenes/game/top_bar_ui/top_bar_ui.tscn" id="6_u5ytd"]
-[ext_resource type="PackedScene" uid="uid://dsqqw522ht8gh" path="res://scenes/game/battle_stage/battle_ui/enemy_info_ui.tscn" id="7_ok4xb"]
-[ext_resource type="PackedScene" uid="uid://o0mlkxh53i6j" path="res://scenes/game/battle_stage/battle_ui/enemy_dice_ui.tscn" id="10_0vd8f"]
+[ext_resource type="Resource" uid="uid://cx8a6qsdwerl8" path="res://enemies/test_pool.tres" id="2_0vd8f"]
+[ext_resource type="PackedScene" uid="uid://b2rt1670ts75n" path="res://scenes/game/managers/dice_calculator/dice_calculator.tscn" id="2_ghnn3"]
+[ext_resource type="PackedScene" uid="uid://c8iv0aaoj855d" path="res://scenes/game/managers/player_manager/player_manager.tscn" id="3_o5hsk"]
+[ext_resource type="PackedScene" uid="uid://mjax8ndkjpo" path="res://scenes/game/managers/battle_manager/battle_manager.tscn" id="5_6bobr"]
+[ext_resource type="PackedScene" uid="uid://dkundhi2j3bhk" path="res://scenes/game/inventory_ui/inventory_ui.tscn" id="5_o5hsk"]
+[ext_resource type="PackedScene" uid="uid://p5vqfkp0fdqb" path="res://scenes/game/managers/shop_manager/shop_manager.tscn" id="6_ok4xb"]
+[ext_resource type="PackedScene" uid="uid://cv7a1erym7ml7" path="res://scenes/game/top_bar_ui/options_top_bar_ui.tscn" id="7_o5hsk"]
 
 [node name="GameManager" type="Node2D"]
 script = ExtResource("1_x6pty")
+current_enemy_pool = ExtResource("2_0vd8f")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.180392, 0.133333, 0.184314, 1)
 
 [node name="DiceCalculator" parent="." instance=ExtResource("2_ghnn3")]
+unique_name_in_owner = true
 
 [node name="PlayerManager" parent="." instance=ExtResource("3_o5hsk")]
-
-[node name="EnemyManager" parent="." instance=ExtResource("4_wap17")]
-enemy_resource = ExtResource("5_0vd8f")
-
-[node name="BattleScreen" type="CanvasLayer" parent="."]
-
-[node name="DungeonScreen" type="Control" parent="BattleScreen"]
-custom_minimum_size = Vector2(480, 480)
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_vertical = 3
-
-[node name="SubViewportContainer" type="SubViewportContainer" parent="BattleScreen/DungeonScreen"]
-texture_filter = 1
-texture_repeat = 1
-custom_minimum_size = Vector2(640, 480)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-stretch = true
-stretch_shrink = 4
-metadata/_edit_use_anchors_ = true
-metadata/_edit_lock_ = true
-
-[node name="SubViewport" type="SubViewport" parent="BattleScreen/DungeonScreen/SubViewportContainer"]
-handle_input_locally = false
-size = Vector2i(480, 270)
-render_target_update_mode = 4
-
-[node name="BattleStage" parent="BattleScreen/DungeonScreen/SubViewportContainer/SubViewport" instance=ExtResource("3_i3nyo")]
 unique_name_in_owner = true
+money = 9999
+rolls = 3
 
-[node name="Vignette" parent="BattleScreen" instance=ExtResource("4_o5hsk")]
+[node name="GameLayer" type="CanvasLayer" parent="."]
 
-[node name="PlayerDiceUI" parent="BattleScreen" instance=ExtResource("4_g0gdj")]
-unique_name_in_owner = true
-visible = false
-
-[node name="EnemyInfoUI" parent="BattleScreen" instance=ExtResource("7_ok4xb")]
-unique_name_in_owner = true
-visible = false
-
-[node name="EnemyDiceUI" parent="BattleScreen" instance=ExtResource("10_0vd8f")]
-unique_name_in_owner = true
-visible = false
-
-[node name="EnemyDamageTextSpawner" type="Control" parent="BattleScreen"]
-unique_name_in_owner = true
-layout_mode = 3
+[node name="HBoxContainer" type="HBoxContainer" parent="GameLayer"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="InfoBar" type="CanvasLayer" parent="."]
-
-[node name="TopBarUI" parent="InfoBar" instance=ExtResource("6_u5ytd")]
+[node name="InventoryUI" parent="GameLayer/HBoxContainer" instance=ExtResource("5_o5hsk")]
 unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 2
 
-[connection signal="battle_ready" from="BattleScreen/DungeonScreen/SubViewportContainer/SubViewport/BattleStage" to="." method="_on_battle_stage_battle_ready"]
-[connection signal="enemy_attacked" from="BattleScreen/DungeonScreen/SubViewportContainer/SubViewport/BattleStage" to="." method="_on_battle_stage_enemy_attacked"]
-[connection signal="enemy_died" from="BattleScreen/DungeonScreen/SubViewportContainer/SubViewport/BattleStage" to="." method="_on_battle_stage_enemy_died"]
-[connection signal="player_attacked" from="BattleScreen/DungeonScreen/SubViewportContainer/SubViewport/BattleStage" to="." method="_on_battle_stage_player_attacked"]
-[connection signal="player_died" from="BattleScreen/DungeonScreen/SubViewportContainer/SubViewport/BattleStage" to="." method="_on_battle_stage_player_died"]
-[connection signal="dice_roll_finished" from="BattleScreen/PlayerDiceUI" to="." method="_on_player_dice_ui_dice_roll_finished"]
-[connection signal="player_attack" from="BattleScreen/PlayerDiceUI" to="." method="_on_player_dice_ui_player_attack"]
-[connection signal="dice_roll_finished" from="BattleScreen/EnemyDiceUI" to="." method="_on_enemy_dice_ui_dice_roll_finished"]
+[node name="MarginContainer4" type="MarginContainer" parent="GameLayer/HBoxContainer"]
+custom_minimum_size = Vector2(1533, 1080)
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 7.78
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 10
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="GameLayer/HBoxContainer/MarginContainer4"]
+clip_children = 1
+layout_mode = 2
+
+[node name="ShopManager" parent="GameLayer/HBoxContainer/MarginContainer4/Panel" instance=ExtResource("6_ok4xb")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="BattleManager" parent="GameLayer/HBoxContainer/MarginContainer4/Panel" instance=ExtResource("5_6bobr")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="OptionsTopBarUI" parent="GameLayer/HBoxContainer/MarginContainer4" instance=ExtResource("7_o5hsk")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+
+[connection signal="shop_exited" from="GameLayer/HBoxContainer/MarginContainer4/Panel/ShopManager" to="." method="_on_shop_manager_shop_exited"]
+[connection signal="player_victory" from="GameLayer/HBoxContainer/MarginContainer4/Panel/BattleManager" to="." method="_on_battle_manager_player_victory"]

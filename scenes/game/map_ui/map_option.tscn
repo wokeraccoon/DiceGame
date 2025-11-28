@@ -1,0 +1,119 @@
+[gd_scene load_steps=13 format=3 uid="uid://bj2qpp31nbhfl"]
+
+[ext_resource type="Texture2D" uid="uid://bafdr03yn6rxu" path="res://scenes/game/map_ui/map_button/normal_map_button.png" id="1_la2gh"]
+[ext_resource type="Script" uid="uid://c4dcsh63fh2mf" path="res://scenes/game/map_ui/map_option.gd" id="1_stdb2"]
+[ext_resource type="Texture2D" uid="uid://sthty10ioxgu" path="res://scenes/game/map_ui/map_button/disabled_map_button.png" id="1_xoy20"]
+[ext_resource type="Texture2D" uid="uid://brs6r6ji2jufu" path="res://scenes/game/map_ui/map_button/hover_map_button.png" id="2_iq2wp"]
+[ext_resource type="Texture2D" uid="uid://cvv6y4jh00lll" path="res://scenes/game/map_ui/map_icons.png" id="2_isafe"]
+[ext_resource type="Texture2D" uid="uid://bft0ofyi47no1" path="res://scenes/game/map_ui/map_button/pressed_map_button.png" id="3_pmiuw"]
+[ext_resource type="Texture2D" uid="uid://bo3hsk4em3mdf" path="res://scenes/game/map_ui/map_button/selected_option.png" id="6_wkmmk"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pmiuw"]
+texture = ExtResource("1_xoy20")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wkmmk"]
+texture = ExtResource("2_iq2wp")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ksfgj"]
+texture = ExtResource("3_pmiuw")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xoy20"]
+texture = ExtResource("1_la2gh")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4t7oa"]
+resource_local_to_scene = true
+atlas = ExtResource("2_isafe")
+region = Rect2(160, 0, 32, 32)
+
+[node name="MapOption" type="Button"]
+custom_minimum_size = Vector2(128, 128)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/disabled = SubResource("StyleBoxTexture_pmiuw")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_wkmmk")
+theme_override_styles/hover = SubResource("StyleBoxTexture_wkmmk")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ksfgj")
+theme_override_styles/normal = SubResource("StyleBoxTexture_xoy20")
+disabled = true
+toggle_mode = true
+icon_alignment = 1
+vertical_icon_alignment = 0
+script = ExtResource("1_stdb2")
+
+[node name="OptionIcon" type="TextureRect" parent="."]
+unique_name_in_owner = true
+self_modulate = Color(0.588235, 0.423529, 0.423529, 1)
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_4t7oa")
+
+[node name="SelectedIcon" type="TextureRect" parent="."]
+unique_name_in_owner = true
+visible = false
+self_modulate = Color(0.431373, 0.152941, 0.152941, 1)
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -48.0
+offset_right = 48.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("6_wkmmk")
+
+[connection signal="toggled" from="." to="." method="_on_toggled"]

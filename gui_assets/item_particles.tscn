@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://rvuf4gnu3aei"]
+
+[ext_resource type="Texture2D" uid="uid://bg02uvlscpk4c" path="res://items/poker_chips/poker_chip.png" id="1_svvh2"]
+[ext_resource type="Script" uid="uid://dg611ojnqpso6" path="res://gui_assets/item_particles.gd" id="2_jymwj"]
+
+[sub_resource type="Curve" id="Curve_jymwj"]
+_data = [Vector2(0, 0.0229094), 0.0, 5.39421, 0, 0, Vector2(1, 0), -2.55903, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_wfmpd"]
+offsets = PackedFloat32Array(0, 0.341516)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
+
+[node name="ItemParticles" type="CPUParticles2D"]
+emitting = false
+texture = ExtResource("1_svvh2")
+one_shot = true
+speed_scale = 1.5
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 200.0
+initial_velocity_max = 400.0
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_jymwj")
+color_initial_ramp = SubResource("Gradient_wfmpd")
+script = ExtResource("2_jymwj")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

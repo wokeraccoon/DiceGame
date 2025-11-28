@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://c81ycjako8ops"]
+
+[ext_resource type="Texture2D" uid="uid://bvccgx636lqgk" path="res://items/d20/d20.png" id="1_c7057"]
+[ext_resource type="Script" uid="uid://bmuicu5jd88ev" path="res://classes/item.gd" id="2_0iufo"]
+
+[resource]
+script = ExtResource("2_0iufo")
+item_name = "D20"
+tagline = "\"...that's a NAT 1\""
+description = "TBD"
+item_texture = ExtResource("1_c7057")
+item_ammount = 1
+metadata/_custom_type_script = "uid://bmuicu5jd88ev"

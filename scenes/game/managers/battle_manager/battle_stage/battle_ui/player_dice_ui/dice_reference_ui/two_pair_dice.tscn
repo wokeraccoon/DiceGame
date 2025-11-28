@@ -1,0 +1,51 @@
+[gd_scene load_steps=2 format=3 uid="uid://dghnbggh5a3pf"]
+
+[ext_resource type="PackedScene" uid="uid://bpa5hb2vk5kyk" path="res://dice/dice.tscn" id="1_bddmr"]
+
+[node name="TwoPairDice" type="MarginContainer"]
+custom_minimum_size = Vector2(0, 128)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 96
+text = "Two Pair (x15)"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Two pairs with the same dice"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(512, 64)
+layout_mode = 2
+theme_override_constants/separation = 128
+alignment = 1
+
+[node name="Dice2" parent="VBoxContainer/HBoxContainer" instance=ExtResource("1_bddmr")]
+layout_mode = 2
+is_decorative = true
+
+[node name="Dice3" parent="VBoxContainer/HBoxContainer" instance=ExtResource("1_bddmr")]
+layout_mode = 2
+is_decorative = true
+
+[node name="Dice4" parent="VBoxContainer/HBoxContainer" instance=ExtResource("1_bddmr")]
+layout_mode = 2
+dice_value = 4
+is_decorative = true
+
+[node name="Dice5" parent="VBoxContainer/HBoxContainer" instance=ExtResource("1_bddmr")]
+layout_mode = 2
+dice_value = 4
+is_decorative = true

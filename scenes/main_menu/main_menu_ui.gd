@@ -14,7 +14,7 @@ func _ready() -> void:
 	elif OS.has_feature("pc"):
 		quit_button.show()
 	
-	version_label.text = ProjectSettings.get_setting("application/config/version")
+	version_label.text = "v" + ProjectSettings.get_setting("application/config/version")
 	
 	new_game_button.grab_focus()
 

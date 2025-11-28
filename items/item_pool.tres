@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemPool" load_steps=5 format=3 uid="uid://bwwpglucwxr0p"]
+
+[ext_resource type="Script" uid="uid://bmuicu5jd88ev" path="res://classes/item.gd" id="1_re7he"]
+[ext_resource type="Script" uid="uid://8m00s38i0a0x" path="res://items/item_pool.gd" id="2_ar5ds"]
+[ext_resource type="Resource" uid="uid://3n6chrsn4hd6" path="res://items/poker_chips/poker_chips.tres" id="7_lxaux"]
+[ext_resource type="Resource" uid="uid://dwev6h5d8wjs3" path="res://items/soul_jar/soul_jar.tres" id="8_u4jbw"]
+
+[resource]
+script = ExtResource("2_ar5ds")
+item_pool = Array[ExtResource("1_re7he")]([ExtResource("7_lxaux"), ExtResource("8_u4jbw")])
+metadata/_custom_type_script = "uid://8m00s38i0a0x"

@@ -1,0 +1,346 @@
+[gd_scene load_steps=6 format=3 uid="uid://tliv023b8t2y"]
+
+[ext_resource type="Script" uid="uid://c8el58cqssgax" path="res://scenes/game/managers/battle_manager/battle_stage/battle_ui/player_dice_ui/player_dice_ui.gd" id="1_3dxad"]
+[ext_resource type="Theme" uid="uid://df1l4akfmabug" path="res://gui_assets/game_theme.tres" id="1_d8wp3"]
+[ext_resource type="PackedScene" uid="uid://di75elvh0b7x8" path="res://scenes/game/managers/battle_manager/battle_stage/battle_ui/player_dice_ui/dice_reference_ui/combo_reference_ui.tscn" id="4_fkdcp"]
+[ext_resource type="Texture2D" uid="uid://djxqfcftc5p30" path="res://gui_assets/panel/panel_background_dark.png" id="4_p55k8"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sjw43"]
+texture = ExtResource("4_p55k8")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+
+[node name="PlayerDiceUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_d8wp3")
+script = ExtResource("1_3dxad")
+
+[node name="BottomAreaUi" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(964, 272)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -261.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BottomAreaUi"]
+layout_mode = 2
+alignment = 2
+
+[node name="ScoringArea" type="HBoxContainer" parent="BottomAreaUi/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+alignment = 1
+
+[node name="DiceHandPanel" type="MarginContainer" parent="BottomAreaUi/VBoxContainer/ScoringArea"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Panel" type="Panel" parent="BottomAreaUi/VBoxContainer/ScoringArea/DiceHandPanel"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BottomAreaUi/VBoxContainer/ScoringArea/DiceHandPanel"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="BottomAreaUi/VBoxContainer/ScoringArea/DiceHandPanel/HBoxContainer"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="ComboReferenceButton" type="Button" parent="BottomAreaUi/VBoxContainer/ScoringArea/DiceHandPanel/HBoxContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Combo
+Reference"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BottomAreaUi/VBoxContainer/ScoringArea/DiceHandPanel/HBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="BottomAreaUi/VBoxContainer/ScoringArea/DiceHandPanel/HBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Panel" type="Panel" parent="BottomAreaUi/VBoxContainer/ScoringArea/DiceHandPanel/HBoxContainer/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_sjw43")
+
+[node name="MarginContainer" type="MarginContainer" parent="BottomAreaUi/VBoxContainer/ScoringArea/DiceHandPanel/HBoxContainer/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="BottomAreaUi/VBoxContainer/ScoringArea/DiceHandPanel/HBoxContainer/HBoxContainer/MarginContainer2/MarginContainer"]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="Label2" type="Label" parent="BottomAreaUi/VBoxContainer/ScoringArea/DiceHandPanel/HBoxContainer/HBoxContainer/MarginContainer2/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 32
+text = "Total Dice Points"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TotalDiceScoreLabel" type="Label" parent="BottomAreaUi/VBoxContainer/ScoringArea/DiceHandPanel/HBoxContainer/HBoxContainer/MarginContainer2/MarginContainer/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 48
+text = "30"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="BottomAreaUi/VBoxContainer/ScoringArea/DiceHandPanel/HBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 48
+text = "X"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="BottomAreaUi/VBoxContainer/ScoringArea/DiceHandPanel/HBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Panel" type="Panel" parent="BottomAreaUi/VBoxContainer/ScoringArea/DiceHandPanel/HBoxContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_sjw43")
+
+[node name="MarginContainer" type="MarginContainer" parent="BottomAreaUi/VBoxContainer/ScoringArea/DiceHandPanel/HBoxContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BottomAreaUi/VBoxContainer/ScoringArea/DiceHandPanel/HBoxContainer/HBoxContainer/MarginContainer/MarginContainer"]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Label" type="Label" parent="BottomAreaUi/VBoxContainer/ScoringArea/DiceHandPanel/HBoxContainer/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 32
+text = "Current Dice Combo"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DiceHandLabel" type="RichTextLabel" parent="BottomAreaUi/VBoxContainer/ScoringArea/DiceHandPanel/HBoxContainer/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "[shake rate=25.0 level=5 connected=0][font_size=48]Three of a kind (30)[/font_size][/shake]"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="BottomAreaUi/VBoxContainer/ScoringArea/DiceHandPanel/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 64
+text = "="
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer3" type="MarginContainer" parent="BottomAreaUi/VBoxContainer/ScoringArea/DiceHandPanel/HBoxContainer"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Panel" type="Panel" parent="BottomAreaUi/VBoxContainer/ScoringArea/DiceHandPanel/HBoxContainer/MarginContainer3"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_sjw43")
+
+[node name="MarginContainer" type="MarginContainer" parent="BottomAreaUi/VBoxContainer/ScoringArea/DiceHandPanel/HBoxContainer/MarginContainer3"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BottomAreaUi/VBoxContainer/ScoringArea/DiceHandPanel/HBoxContainer/MarginContainer3/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="BottomAreaUi/VBoxContainer/ScoringArea/DiceHandPanel/HBoxContainer/MarginContainer3/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 32
+text = "Attack score"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AttackScoreLabel" type="Label" parent="BottomAreaUi/VBoxContainer/ScoringArea/DiceHandPanel/HBoxContainer/MarginContainer3/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 64
+text = "999999"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DiceArea" type="HBoxContainer" parent="BottomAreaUi/VBoxContainer"]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+size_flags_vertical = 8
+alignment = 1
+
+[node name="MarginContainer4" type="MarginContainer" parent="BottomAreaUi/VBoxContainer/DiceArea"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="RollsLeftBox" type="MarginContainer" parent="BottomAreaUi/VBoxContainer/DiceArea"]
+custom_minimum_size = Vector2(142, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Panel2" type="Panel" parent="BottomAreaUi/VBoxContainer/DiceArea/RollsLeftBox"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_sjw43")
+
+[node name="MarginContainer" type="MarginContainer" parent="BottomAreaUi/VBoxContainer/DiceArea/RollsLeftBox"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="HBoxContainer" parent="BottomAreaUi/VBoxContainer/DiceArea/RollsLeftBox/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="RollsLeftLabel" type="Label" parent="BottomAreaUi/VBoxContainer/DiceArea/RollsLeftBox/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 48
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="BottomAreaUi/VBoxContainer/DiceArea/RollsLeftBox/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 32
+text = "Rolls Left"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer6" type="MarginContainer" parent="BottomAreaUi/VBoxContainer/DiceArea"]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+
+[node name="RollButton" type="Button" parent="BottomAreaUi/VBoxContainer/DiceArea"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Roll"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BottomAreaUi/VBoxContainer/DiceArea"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="BottomAreaUi/VBoxContainer/DiceArea"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="PlayerDiceHolder" type="HBoxContainer" parent="BottomAreaUi/VBoxContainer/DiceArea"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(512, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_constants/separation = 128
+alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="BottomAreaUi/VBoxContainer/DiceArea"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="AttackButton" type="Button" parent="BottomAreaUi/VBoxContainer/DiceArea"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Attack"
+
+[node name="MarginContainer8" type="MarginContainer" parent="BottomAreaUi/VBoxContainer/DiceArea"]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+
+[node name="MarginContainer9" type="MarginContainer" parent="BottomAreaUi/VBoxContainer/DiceArea"]
+custom_minimum_size = Vector2(142, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MarginContainer7" type="MarginContainer" parent="BottomAreaUi/VBoxContainer/DiceArea"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="ComboReferenceUI" parent="CanvasLayer" instance=ExtResource("4_fkdcp")]
+unique_name_in_owner = true
+visible = false
+
+[connection signal="pressed" from="BottomAreaUi/VBoxContainer/ScoringArea/DiceHandPanel/HBoxContainer/MarginContainer/ComboReferenceButton" to="." method="_on_combo_reference_button_pressed"]
+[connection signal="pressed" from="BottomAreaUi/VBoxContainer/DiceArea/RollButton" to="." method="_on_roll_button_pressed"]
+[connection signal="pressed" from="BottomAreaUi/VBoxContainer/DiceArea/AttackButton" to="." method="_on_attack_button_pressed"]

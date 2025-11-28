@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://bx7370ia5mbvf"]
+
+[ext_resource type="Texture2D" uid="uid://md2y8n371otk" path="res://items/pink_gold_ring/pink_gold_ring.png" id="1_56u2i"]
+[ext_resource type="Script" uid="uid://bmuicu5jd88ev" path="res://classes/item.gd" id="2_7a3t6"]
+
+[resource]
+script = ExtResource("2_7a3t6")
+item_name = "Pink Gold Ring"
+tagline = "Made out of a gold and aluminium alloy!"
+description = "TBD"
+item_texture = ExtResource("1_56u2i")
+item_ammount = 1
+metadata/_custom_type_script = "uid://bmuicu5jd88ev"

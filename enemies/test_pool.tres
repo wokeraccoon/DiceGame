@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="EnemyPool" load_steps=4 format=3 uid="uid://cx8a6qsdwerl8"]
+
+[ext_resource type="Script" uid="uid://igki11xootrd" path="res://classes/enemy.gd" id="1_3faqj"]
+[ext_resource type="Script" uid="uid://b81il2ef1i48w" path="res://enemies/enemy_pool.gd" id="2_cx858"]
+[ext_resource type="Resource" uid="uid://g38bxcgto8me" path="res://enemies/living_wall/living_wall.tres" id="3_eefdb"]
+
+[resource]
+script = ExtResource("2_cx858")
+enemy_pool = Array[ExtResource("1_3faqj")]([ExtResource("3_eefdb")])
+metadata/_custom_type_script = "uid://b81il2ef1i48w"
