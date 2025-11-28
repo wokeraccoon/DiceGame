@@ -19,7 +19,7 @@ The source code for this project is licensed under the **MIT License**.
 
 You are free to reuse, modify, and distribute the code for both commercial and non-commercial purposes, provided you include the original copyright and license notice.
 
-[See the full license text here](LICENSING.md)
+[See the full license text here](LICENSE.md)
 
 ### Sprites, Textures, 3D Models, shaders, character designs
 
