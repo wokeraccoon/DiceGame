@@ -82,6 +82,3 @@ Game name: Dice Game
   	- "Resurrect 64" palette by Kerrie Lake
 	- wokeraccoon logo by Tyr Kilcat
 	- palette limiter shader: https://godotshaders.com/shader/palette-limiter-shader/
-
-	- Sound Effects
-	 -"Dice Set A.m4a", "Dice Set B.m4a" and "Dice C.m4a: by Phorgador. License: Attribution 4.0. Link: https://freesound.org/people/Phorgador/
