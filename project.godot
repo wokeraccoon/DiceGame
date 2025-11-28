@@ -14,7 +14,7 @@ config/name="DiceGame"
 config/version="v0.1.1"
 run/main_scene="res://scenes/main.tscn"
 config/quit_on_go_back=false
-config/features=PackedStringArray("4.4")
+config/features=PackedStringArray("4.5")
 boot_splash/bg_color=Color(0.180392, 0.133333, 0.184314, 1)
 boot_splash/image="uid://c2rulvjndiu8m"
 boot_splash/fullsize=false
@@ -41,9 +41,9 @@ dices=""
 [gui]
 
 fonts/dynamic_fonts/use_oversampling=false
+theme/default_font_antialiasing=2
 theme/custom="uid://df1l4akfmabug"
 theme/custom_font="uid://ne3sevn7sw6u"
-theme/default_font_antialiasing=2
 
 [input]
 
