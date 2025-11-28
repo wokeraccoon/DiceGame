@@ -1,6 +1,8 @@
 # Gambler's Prayer: An Unfinished Dice game roguelike
 Gambler's Prayer is a roguelike dice game that was going to be mix of Yatch Dice (the public domain version of Yatzee) and a Dungeon Crawler, with a similar item system as Balatro and/or the Risk of Rain series of games.
 
+<img width="1280" height="720" alt="Screenshot From 2025-11-28 14-29-10" src="https://github.com/user-attachments/assets/fe00462b-b3c1-4611-a272-4ba43734a5e4" />
+
 The idea was to play as different characters where each one was going to have different modifiers for the start of the game like more rolls, get more or less money, harder or easier enemies. Then, go through a randomly generated dungeon and use Yatch Dice combos to attack enemies, the higher score you get by rolling the dice, the more damage you do.
 
 ## Why is it "Unfinished"
